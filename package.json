@@ -9,10 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "accept-language": "^3.0.20",
     "framer-motion": "^12.26.2",
+    "i18next": "^25.7.4",
+    "i18next-resources-to-backend": "^1.2.1",
+    "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-i18next": "^16.5.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
