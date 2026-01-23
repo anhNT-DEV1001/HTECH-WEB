@@ -16,7 +16,7 @@ export const config = {
  * @param req
  * @returns
  */
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
   const pathnameIsMissingLocale = languages.every(
     (locale) =>
