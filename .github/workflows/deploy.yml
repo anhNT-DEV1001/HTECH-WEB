@@ -1,0 +1,38 @@
+name: Deploy Next.js to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/HTECH-WEB
+            
+            # Cập nhật code mới nhất
+            git pull origin main
+            
+            # Xóa cache cũ để tránh lỗi đường dẫn Windows/Linux
+            rm -rf .next
+            
+            # Cài đặt và build
+            npm install
+            npm run build
+            
+            # Restart ứng dụng bằng PM2
+            pm2 restart htech-app || pm2 start npm --name htech-app -- start
+            
+            # Lưu lại trạng thái
+            pm2 save
