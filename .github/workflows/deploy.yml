@@ -25,7 +25,6 @@ jobs:
             git pull origin main
             
             # Xóa cache cũ để tránh lỗi đường dẫn Windows/Linux
-            rm -rf .next
             
             # Cài đặt và build
             npm install
