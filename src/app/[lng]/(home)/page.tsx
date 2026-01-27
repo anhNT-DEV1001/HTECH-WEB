@@ -1,5 +1,5 @@
 import { JsonLangFile } from "@/enums";
-import { useTranslation } from "@/i18n";
+import { useServerTranslation } from "@/i18n";
 
 export default async function Home({
   params,
@@ -7,7 +7,7 @@ export default async function Home({
   params: Promise<{ lng: string }>;
 }) {
   const { lng } = await params;
-  const { t } = await useTranslation(lng, JsonLangFile.MENU);
+  const { t } = await useServerTranslation(lng, JsonLangFile.MENU);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

@@ -5,7 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 /**
  * @author Nguyễn Tuấn Anh
  * @created_at : 17/01/2026
- * @updated_at : 17/01/2026
+ * @updated_at : 25/01/2026
+ * @updated_by : Đức Minh
  * @description Component chuyển đổi ngôn ngữ giữa Tiếng Việt và Tiếng Anh
  * @params null
  * @returns
@@ -24,11 +25,11 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-4 py-2  hover:bg-gray-200 rounded-lg transition-colors"
+      className="flex items-center gap-2 px-2 py-2 w-auto h-7 sm:h-10 cursor-pointer hover:bg-gray-200 rounded-lg transition-colors"
       aria-label="Change Language"
     >
       <Image
-        src={currentLang === "vi" ? "/assets/en.webp" : "/assets/vi.webp"}
+        src={currentLang === "vi" ? "/assets/vi.webp" : "/assets/en.webp"}
         alt={currentLang === "vi" ? "English" : "Tiếng Việt"}
         width={24}
         height={24}
