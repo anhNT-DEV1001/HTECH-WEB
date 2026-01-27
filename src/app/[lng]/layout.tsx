@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { languages } from "@/i18n";
 import "@/public/styles/globals.css";
 import type { Metadata } from "next";
@@ -27,7 +26,7 @@ export default async function RootLayout({
     <html lang={lng}>
       <body className="h-full w-full relative">
         
-        <Header/>
+        <Header lng={lng}/>
         {children}
         <Footer/>
       </body>

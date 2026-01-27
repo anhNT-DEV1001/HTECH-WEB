@@ -37,7 +37,7 @@ const initI18next = async (lng: string, ns: string) => {
  * @param options
  * @returns
  */
-export async function useTranslation(
+export async function useServerTranslation(
   lng: string,
   ns?: string,
   options: any = {},

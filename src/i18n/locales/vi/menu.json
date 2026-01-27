@@ -1,6 +1,9 @@
 {
   "home": "Trang chủ",
-  "about": "Giới thiệu",
+  "aboutUs": "Về chúng tôi",
   "services": "Dịch vụ",
-  "contact": "Liên hệ"
+  "contact": "Liên hệ",
+  "cooperate": "Hợp tác",
+  "news" : "Tin tức"
+
 }

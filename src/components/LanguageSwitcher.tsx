@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
       aria-label="Change Language"
     >
       <Image
-        src={currentLang === "vi" ? "/assets/en.webp" : "/assets/vi.webp"}
+        src={currentLang === "vi" ? "/assets/vi.webp" : "/assets/en.webp"}
         alt={currentLang === "vi" ? "English" : "Tiếng Việt"}
         width={24}
         height={24}
