@@ -5,7 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 /**
  * @author Nguyễn Tuấn Anh
  * @created_at : 17/01/2026
- * @updated_at : 17/01/2026
+ * @updated_at : 25/01/2026
+ * @updated_by : Đức Minh
  * @description Component chuyển đổi ngôn ngữ giữa Tiếng Việt và Tiếng Anh
  * @params null
  * @returns
