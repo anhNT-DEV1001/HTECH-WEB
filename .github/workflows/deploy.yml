@@ -22,7 +22,8 @@ jobs:
             cd /var/www/HTECH-WEB
             
             # Cập nhật code mới nhất
-            git pull origin main
+            git fetch --all
+            git reset --hard origin/main
             
             # Xóa cache cũ để tránh lỗi đường dẫn Windows/Linux
             
