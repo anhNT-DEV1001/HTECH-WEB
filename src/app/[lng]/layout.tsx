@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { languages } from "@/i18n";
 import "@/public/styles/globals.css";
@@ -24,11 +26,10 @@ export default async function RootLayout({
   return (
     <html lang={lng}>
       <body className="h-full w-full relative">
-        <div className="absolute top-4 right-4 z-50">
-          <LanguageSwitcher />
-        </div>
-
+        
+        <Header/>
         {children}
+        <Footer/>
       </body>
     </html>
   );
