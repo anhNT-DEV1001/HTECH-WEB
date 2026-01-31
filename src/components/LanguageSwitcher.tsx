@@ -1,4 +1,5 @@
 "use client";
+import { Globe } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -34,6 +35,7 @@ export default function LanguageSwitcher() {
         width={24}
         height={24}
       />
+      <Globe size={24}/>
     </button>
   );
 }

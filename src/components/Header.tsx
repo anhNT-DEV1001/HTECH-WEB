@@ -3,8 +3,8 @@ import { useClientTranslation } from "@/i18n";
 /**
  * @author Ta Duc Minh
  * @created_at : 26/01/2026
- * @updated_at : 26/01/2026
- * @description Component Header
+ * @updated_at : 30/01/2026
+ * @description update max width
  * @params null
  * @returns
  */
@@ -22,7 +22,8 @@ export default function Header({lng} : {lng: string}){
   return (
     <header className="sticky top-0">
       <div className="py-2">
-        <div className="flex flex-row justify-between w-full lg:w-2/3 sm:w-4/5 px-4 mx-auto items-center">
+        <div className="flex flex-row justify-between max-w-6xl lg:w-2/3 
+        sm:w-4/5 px-4 mx-auto items-center">
           <div className="flex wrap">
             <button
               onClick={toggleLogo}
@@ -38,7 +39,8 @@ export default function Header({lng} : {lng: string}){
           </div>
           <div className="flex">
             <div className="hidden sm:flex flex-row items-center ">
-              <li className="flex flex-row px-4 text-sm md:text-lg gap-2 items-center">
+              <li className="flex flex-row px-4 text-sm md:text-lg 
+              gap-2 items-center">
                 <ul>{t("home")}</ul>
                 <ul>{t("services")}</ul>
                 <ul>{t("contact")}</ul>
