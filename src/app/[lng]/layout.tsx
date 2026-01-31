@@ -36,7 +36,7 @@ export default async function RootLayout({
         className={`${beVietnamPro.variable} font-sans h-full w-full relative`}>
         <Header lng={lng} />
         {children}
-        <Footer />
+        <Footer lng={lng}/>
       </body>
     </html>
   );
