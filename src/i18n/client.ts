@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react"; 
+import { useEffect } from "react";
 import i18next from "i18next";
 import {
   initReactI18next,
