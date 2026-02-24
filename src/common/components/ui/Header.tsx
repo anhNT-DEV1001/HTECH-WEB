@@ -66,12 +66,6 @@ export default function Header() {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/services']) && activeStyle)}>
-                <Link href="/services">Dịch vụ</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            
-            <NavigationMenuItem>
               <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/projects']) && activeStyle)}>
                 Dự án
               </NavigationMenuTrigger>
@@ -101,6 +95,13 @@ export default function Header() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/services']) && activeStyle)}>
+                <Link href="/services">Dịch vụ</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
             
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/news']) && activeStyle)}>
