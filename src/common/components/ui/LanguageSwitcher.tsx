@@ -35,7 +35,7 @@ export default function LanguageSwitcher() {
         width={24}
         height={24}
       />
-      <Globe size={24}/>
+      <Globe size={24} />
     </button>
   );
 }

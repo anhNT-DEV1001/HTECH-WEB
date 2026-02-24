@@ -1,9 +1,8 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { languages } from "@/i18n";
-import "@/public/styles/globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
+import Header from "@/common/components/ui/Header";
 
 export const metadata: Metadata = {
   title: "HTech Web",
@@ -34,9 +33,10 @@ export default async function RootLayout({
     <html lang={lng}>
       <body
         className={`${beVietnamPro.variable} font-sans h-full w-full relative`}>
-        <Header lng={lng} />
+        {/* <Header lng={lng} /> */}
+        <Header/>
         {children}
-        <Footer lng={lng}/>
+        {/* <Footer lng={lng}/> */}
       </body>
     </html>
   );
