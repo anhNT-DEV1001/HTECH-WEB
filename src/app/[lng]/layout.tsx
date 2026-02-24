@@ -3,6 +3,7 @@ import "../globals.css";
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import Header from "@/common/components/ui/Header";
+import Footer from "@/common/components/ui/Footer";
 
 export const metadata: Metadata = {
   title: "HTech Web",
@@ -36,7 +37,7 @@ export default async function RootLayout({
         {/* <Header lng={lng} /> */}
         <Header/>
         {children}
-        {/* <Footer lng={lng}/> */}
+        <Footer/>
       </body>
     </html>
   );
