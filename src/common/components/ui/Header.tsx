@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 
 import {
@@ -23,6 +22,9 @@ import {
 
 import LanguageSwitcher from "./LanguageSwitcher"
 import { cn } from "@/lib/utils"
+import { usePathname } from "next/navigation"
+import { useClientTranslation } from "@/i18n"
+import { JsonLangFile } from "@/enums"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -37,10 +39,17 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export default function Header() {
+export default function Header({slug} : any) {
   const [isOpen, setIsOpen] = React.useState(false)
   const pathname = usePathname()
-  
+  const getLocalizedUrl = (path: string) => {
+    if (!slug) return path;
+    const cleanPath = path === "/" ? "" : path;
+    console.log("===" , `/${slug}${cleanPath}`);
+    return `/${slug}${cleanPath}`;
+  };
+
+  const {t} = useClientTranslation(slug, JsonLangFile.MENU);
   const customNavStyle = "bg-transparent text-base font-medium text-black hover:bg-[#FFF0ED] hover:text-[#EF5941] focus:bg-[#FFF0ED] focus:text-[#EF5941] data-[active]:text-[#EF5941] data-[state=open]:bg-[#FFF0ED] data-[state=open]:text-[#EF5941]"
   const activeStyle = "text-[#EF5941] bg-[#FFF0ED]"
 
@@ -57,7 +66,7 @@ export default function Header() {
   // Helper component cho Mobile link để tự động đóng Sheet khi click
   const MobileLink = ({ href, children, active }: { href: string, children: React.ReactNode, active?: boolean }) => (
     <Link
-      href={href}
+      href={getLocalizedUrl(href)}
       onClick={() => setIsOpen(false)}
       className={cn(
         "block rounded-md px-4 py-2 text-base font-medium transition-colors hover:bg-[#FFF0ED] hover:text-[#EF5941]",
@@ -85,36 +94,36 @@ export default function Header() {
                 <SheetTitle className="sr-only">Menu điều hướng</SheetTitle>
                 <div className="flex flex-col gap-6">
                   {/* Logo trong Mobile Menu */}
-                  <Link href="/" onClick={() => setIsOpen(false)}>
+                  <Link href={`/${slug}/`} onClick={() => setIsOpen(false)}>
                     <img src="/assets/logo.png" alt="HTECH Logo" className="h-8 w-auto object-contain" />
                   </Link>
 
                   {/* Cấu trúc Menu dọc cho Mobile */}
                   <nav className="flex flex-col gap-2">
                     <div className="space-y-1">
-                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">Trang chủ</h4>
-                      <MobileLink href="/" active={pathname === "/"}>Trang chủ</MobileLink>
-                      <MobileLink href="/abouts" active={pathname?.startsWith("/abouts")}>Về chúng tôi</MobileLink>
+                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('home')}</h4>
+                      <MobileLink href="/" active={pathname === getLocalizedUrl("/")}>{t('home')}</MobileLink>
+                      <MobileLink href="/abouts" active={pathname?.startsWith(getLocalizedUrl("/abouts"))}>{t('abouts')}</MobileLink>
                     </div>
 
                     <div className="space-y-1 mt-4">
-                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">Dự án</h4>
+                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('projects')}</h4>
                       {components.map((comp) => (
-                        <MobileLink key={comp.title} href={comp.href} active={pathname?.startsWith(comp.href)}>
+                        <MobileLink key={comp.title} href={comp.href} active={pathname?.startsWith(getLocalizedUrl(comp.href))}>
                           {comp.title}
                         </MobileLink>
                       ))}
                     </div>
 
                     <div className="space-y-1 mt-4">
-                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">Hợp tác</h4>
-                      <MobileLink href="/partners" active={pathname?.startsWith("/partners")}>Đối tác</MobileLink>
-                      <MobileLink href="/jobs" active={pathname?.startsWith("/jobs")}>Tuyển dụng</MobileLink>
+                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('partnership')}</h4>
+                      <MobileLink href="/partners" active={pathname?.startsWith(getLocalizedUrl("/partners"))}>{t('partners')}</MobileLink>
+                      <MobileLink href="/jobs" active={pathname?.startsWith(getLocalizedUrl("/jobs"))}>{t('jobs')}</MobileLink>
                     </div>
 
                     <div className="space-y-1 mt-4">
-                      <MobileLink href="/services" active={pathname?.startsWith("/services")}>Dịch vụ</MobileLink>
-                      <MobileLink href="/news" active={pathname?.startsWith("/news")}>Tin tức</MobileLink>
+                      <MobileLink href="/services" active={pathname?.startsWith(getLocalizedUrl("/services"))}>{t('services')}</MobileLink>
+                      <MobileLink href="/news" active={pathname?.startsWith(getLocalizedUrl("/news"))}>{t('news')}</MobileLink>
                     </div>
                   </nav>
                 </div>
@@ -123,7 +132,7 @@ export default function Header() {
           </div>
 
           {/* Logo (Desktop & Mobile) */}
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link href={getLocalizedUrl("/")} className="flex shrink-0 items-center">
             <img src="/assets/logo.png" alt="HTECH Logo" className="h-8 w-auto object-contain" />
           </Link>
         </div>
@@ -131,22 +140,21 @@ export default function Header() {
         {/* Desktop Menu (Ẩn trên mobile) */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-2">
-            
             <NavigationMenuItem>
               <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/', '/abouts']) && activeStyle)}> 
-                Trang chủ
+                {t('home')}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="w-96 p-4">
-                  <ListItem href="/" title="Trang chủ">Trang chủ</ListItem>
-                  <ListItem href="/abouts" title="Về chúng tôi">Về chúng tôi</ListItem>
+                <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href={getLocalizedUrl("/")} title={`${t('home')}`}>{t('home')}</ListItem>
+                  <ListItem href={getLocalizedUrl('/abouts')} title={`${t('abouts')}`}>{t('abouts')}</ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/projects']) && activeStyle)}>
-                Dự án
+                {t('projects')}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -165,25 +173,25 @@ export default function Header() {
             
             <NavigationMenuItem>
               <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/partners', '/jobs']) && activeStyle)}>
-                Hợp tác
+                {t('partnership')}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="w-96 p-4">
-                  <ListItem href="/partners" title="Đối tác">Đối tác</ListItem>
-                  <ListItem href="/jobs" title="Tuyển dụng">Tuyển dụng</ListItem>
+                <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href={getLocalizedUrl('/partners')} title={`${t('partners')}`}>{t('partners')}</ListItem>
+                  <ListItem href={getLocalizedUrl('/jobs')} title={`${t('jobs')}`}>{t('jobs')}</ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/services']) && activeStyle)}>
-                <Link href="/services">Dịch vụ</Link>
+                <Link href={getLocalizedUrl('/services')}>{t('services')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/news']) && activeStyle)}>
-                <Link href="/news">Tin tức</Link>
+                <Link href={getLocalizedUrl('/news')}>{t('news')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             
@@ -193,8 +201,8 @@ export default function Header() {
         {/* Right actions */}
         <div className="flex shrink-0 items-center gap-2 md:gap-4">
           <LanguageSwitcher />
-          <Link href="/abouts" className="hidden sm:flex rounded-full bg-[#EF5941] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#d84e38]">
-            Tham gia
+          <Link href={getLocalizedUrl('/abouts')} className="hidden sm:flex rounded-full bg-[#EF5941] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#d84e38]">
+            {t('join_us')}
           </Link>
         </div>
       </header>

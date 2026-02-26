@@ -11,8 +11,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F4F4F5] py-10 md:py-12 text-[#1a1a1a]">
-      {/* Giảm khoảng cách giữa các phần trên mobile (space-y-8), PC giữ nguyên (md:space-y-12) */}
+    <footer className="bg-[#F4F4F5] pt-10 md:py-12 text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
         
         {/* SECTION 1: Logo, Giới thiệu, Sản phẩm */}

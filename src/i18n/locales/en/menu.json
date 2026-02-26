@@ -1,8 +1,12 @@
 {
+  "nav_menu": "Navigation Menu",
   "home": "Home",
-  "aboutUs": "About Us",
+  "abouts": "About Us",
+  "projects": "Projects",
+  "partnership": "Partnership",
+  "partners": "Partners",
+  "jobs": "Careers",
   "services": "Services",
-  "contact": "Contact",
-  "cooperate" : "Cooperate",
-  "news" : "News"
+  "news": "News",
+  "join_us": "Join Us"
 }

@@ -35,7 +35,7 @@ export default async function RootLayout({
       <body
         className={`${beVietnamPro.variable} font-sans h-full w-full relative`}>
         {/* <Header lng={lng} /> */}
-        <Header/>
+        <Header slug={lng}/>
         {children}
         <Footer/>
       </body>

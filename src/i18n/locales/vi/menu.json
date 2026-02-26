@@ -1,9 +1,12 @@
 {
+  "nav_menu": "Menu điều hướng",
   "home": "Trang chủ",
-  "aboutUs": "Về chúng tôi",
+  "abouts": "Về chúng tôi",
+  "projects": "Dự án",
+  "partnership": "Hợp tác",
+  "partners": "Đối tác",
+  "jobs": "Tuyển dụng",
   "services": "Dịch vụ",
-  "contact": "Liên hệ",
-  "cooperate": "Hợp tác",
-  "news" : "Tin tức"
-
+  "news": "Tin tức",
+  "join_us": "Tham gia"
 }
