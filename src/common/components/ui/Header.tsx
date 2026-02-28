@@ -45,7 +45,6 @@ export default function Header({slug} : any) {
   const getLocalizedUrl = (path: string) => {
     if (!slug) return path;
     const cleanPath = path === "/" ? "" : path;
-    console.log("===" , `/${slug}${cleanPath}`);
     return `/${slug}${cleanPath}`;
   };
 
