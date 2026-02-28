@@ -7,18 +7,34 @@ export default function ProjectSection() {
   const projects = [
     {
       id: 1,
-      tag: "Hệ sinh thái toàn diện",
-      title: "Kiến tạo hệ sinh thái đổi mới để doanh nghiệp bứt phá, kết nối và phát triển bền vững.",
+      tag: "VRT&CON 2025",
+      title: "TRIỂN LÃM & HỘI NGHỊ QUỐC TẾ VRT&CON’2025.",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-      image: "/project-1.jpg",
+      image: "/assets/services/s2.jpg",
       bgClass: "bg-[#F4F5FA]"
     },
     {
       id: 2,
-      tag: "Hệ sinh thái toàn diện",
+      tag: "VRT&CON 2026",
+      title: "TRIỂN LÃM & HỘI NGHỊ QUỐC TẾ VRT&CON’2025.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+      image: "/assets/services/s2.jpg",
+      bgClass: "bg-[#F6F4FA]"
+    },
+    {
+      id: 3,
+      tag: "V-SECON 2026",
       title: "Kiến tạo hệ sinh thái đổi mới để doanh nghiệp bứt phá, kết nối và phát triển bền vững.",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-      image: "/project-2.jpg",
+      image: "/assets/services/s2.jpg",
+      bgClass: "bg-[#F6F4FA]"
+    },
+    {
+      id: 4,
+      tag: "TOKKEN 2026",
+      title: "Kiến tạo hệ sinh thái đổi mới để doanh nghiệp bứt phá, kết nối và phát triển bền vững.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+      image: "/assets/services/s2.jpg",
       bgClass: "bg-[#F6F4FA]"
     }
   ];

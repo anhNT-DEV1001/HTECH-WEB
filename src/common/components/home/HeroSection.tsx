@@ -25,7 +25,7 @@ export default function HeroSection() {
   return (
     <motion.section
         id="hero-section"
-        className="flex flex-col items-center bg-white bg-gradient-to-b from-transparent via-orange-500/25 to-transparent pb-10"
+        className="flex flex-col items-center bg-white bg-gradient-to-b from-transparent via-[#fde2e2] to-transparent pb-10"
         variants={containerVariants}
         initial="hidden"
         animate="show"

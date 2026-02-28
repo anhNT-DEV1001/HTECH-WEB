@@ -35,7 +35,7 @@ export default function ServiceSection() {
       </motion.h1>
 
       {/* Tabs */}
-      <motion.div 
+      {/* <motion.div 
         className="flex flex-wrap justify-center gap-4 mb-10"
         variants={fadeUpVariant as any}
         initial="hidden"
@@ -54,7 +54,7 @@ export default function ServiceSection() {
         <button className="px-8 py-2.5 rounded-full border border-gray-400 bg-white text-[#1E0D01] font-medium transition-colors hover:bg-gray-50">
           Service 4
         </button>
-      </motion.div>
+      </motion.div> */}
 
       {/* Main Content Card */}
       <div className="w-full max-w-6xl bg-[#FFF8F6] rounded-[2rem] p-8 md:p-14 flex flex-col lg:flex-row items-center gap-10">
@@ -71,7 +71,7 @@ export default function ServiceSection() {
             Dịch vụ Fulfillment chuyên nghiệp dành cho TMĐT
           </h2>
           <p className="text-[#1E0D01]/80 leading-relaxed text-lg pr-0 lg:pr-10">
-            Nâng tầm trải nghiệm mua hàng 5 sao với dịch vụ hoàn thiện đơn hàng từ kho vận tới giao hàng chặng cuối, chuyên nghiệp, nhanh chóng, và chính xác của UpBase.
+            HTECH được xây dựng và phát triển dựa trên nền tảng của đội ngũ trí thức trẻ, năng động, nhiệt huyết và giàu khát vọng, với hơn 10 năm kinh nghiệm trong các lĩnh vực: cung cấp và lắp đặt thiết bị an ninh – an toàn; thiết bị viễn thông và điện tử; tổ chức các triển lãm quốc tế, hội thảo chuyên ngành; và cung cấp dịch vụ tư vấn chuyên sâu.
           </p>
           <a 
             href="#" 
@@ -94,21 +94,21 @@ export default function ServiceSection() {
 
           {/* Image 1: Top Left */}
           <img 
-            src="/placeholder-1.jpg" 
+            src="/assets/services/s1.jpg" 
             alt="service-img-1" 
             className="absolute top-[5%] left-[5%] w-[50%] h-[45%] rounded-xl object-cover shadow-lg z-10 bg-gray-200" 
           />
 
           {/* Image 2: Bottom Left */}
           <img 
-            src="/placeholder-2.jpg" 
+            src="/assets/services/s3.webp" 
             alt="service-img-2" 
             className="absolute bottom-[5%] left-[15%] w-[45%] h-[50%] rounded-xl object-cover shadow-lg z-20 bg-gray-300" 
           />
 
           {/* Image 3: Middle Right */}
           <img 
-            src="/placeholder-3.jpg" 
+            src="/assets/services/s2.jpg" 
             alt="service-img-3" 
             className="absolute top-[35%] right-[5%] w-[45%] h-[35%] rounded-xl object-cover shadow-lg z-30 bg-gray-400" 
           />

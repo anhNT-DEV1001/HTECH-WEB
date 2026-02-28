@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F4F4F5] pt-10 md:py-12 text-[#1a1a1a]">
+    <footer className="bg-[#f4f6f9] pt-10 md:py-12 text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
         
         {/* SECTION 1: Logo, Giới thiệu, Sản phẩm */}
