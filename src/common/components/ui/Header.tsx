@@ -100,7 +100,7 @@ export default function Header({slug} : any) {
                   {/* Cấu trúc Menu dọc cho Mobile */}
                   <nav className="flex flex-col gap-2">
                     <div className="space-y-1">
-                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('home')}</h4>
+                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">HTECH</h4>
                       <MobileLink href="/" active={pathname === getLocalizedUrl("/")}>{t('home')}</MobileLink>
                       <MobileLink href="/abouts" active={pathname?.startsWith(getLocalizedUrl("/abouts"))}>{t('abouts')}</MobileLink>
                     </div>

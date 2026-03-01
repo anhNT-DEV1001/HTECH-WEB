@@ -8,7 +8,7 @@ export default function ProjectSection() {
     {
       id: 1,
       tag: "VRT&CON 2025",
-      title: "TRIỂN LÃM & HỘI NGHỊ QUỐC TẾ VRT&CON’2025.",
+      title: "TRIỂN LÃM & HỘI NGHỊ QUỐC TẾ VRT&CON 2025.",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
       image: "/assets/services/s2.jpg",
       bgClass: "bg-[#F4F5FA]"
@@ -16,7 +16,7 @@ export default function ProjectSection() {
     {
       id: 2,
       tag: "VRT&CON 2026",
-      title: "TRIỂN LÃM & HỘI NGHỊ QUỐC TẾ VRT&CON’2025.",
+      title: "TRIỂN LÃM & HỘI NGHỊ QUỐC TẾ VRT&CON 2026.",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
       image: "/assets/services/s2.jpg",
       bgClass: "bg-[#F6F4FA]"
