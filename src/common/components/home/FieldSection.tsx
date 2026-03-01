@@ -84,7 +84,7 @@ export default function FieldSection() {
   };
 
   return (
-    <section id="section-field" className="flex flex-col items-center py-16 px-4 w-full bg-white relative overflow-hidden">
+    <section id="section-field" className="flex flex-col items-center py-16 px-4 w-full bg-gradient-to-b from-transparent via-[#fde2e2] to-transparent relative overflow-hidden">
       {/* Header */}
       <motion.h2 
         className="text-[#1E0D01] font-bold text-3xl mb-6"
@@ -115,7 +115,7 @@ export default function FieldSection() {
       >
         
         {/* Decorative Wave Line */}
-        <div className="absolute top-12 left-0 w-full hidden md:block -z-10 pointer-events-none">
+        <div className="absolute top-12 left-0 w-full hidden md:block -z-10 pointer-events-none text-[#EF5941]">
           <svg width="100%" height="60" viewBox="0 0 1000 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <path d="M150 30 Q 325 -20 500 30 T 850 30" stroke="#FCA5A5" strokeWidth="1" strokeDasharray="6 6" fill="transparent"/>
           </svg>
@@ -133,13 +133,13 @@ export default function FieldSection() {
               
               {/* Icon with Concentric Circles */}
               <div className="relative flex items-center justify-center w-24 h-24 mb-6 rounded-full border border-dashed border-red-300 bg-red-50/30 hover:scale-105 transition-transform">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
-                  <IconComponent size={28} className="text-[#1E0D01] bg-transparent" strokeWidth={1.5} />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-sm">
+                  <IconComponent size={28} className="text-[#EF5941] bg-transparent" strokeWidth={1.5} />
                 </div>
               </div>
 
               {/* Text Content */}
-              <h3 className="text-xl font-semibold text-[#1E0D01] mb-3">
+              <h3 className="text-xl font-semibold text-[#EF5941] mb-3">
                 {field.title}
               </h3>
               <p className="text-[#1E0D01]/70 text-sm whitespace-pre-line leading-relaxed">
