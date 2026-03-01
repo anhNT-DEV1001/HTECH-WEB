@@ -35,7 +35,7 @@ export async function generateMetadata({
       template: "%s | HTECH",
     },
     description: description,
-    keywords: ["HTECH", "Công nghệ", "Chuyển đổi số", "Phần mềm", "IT Solutions"],
+    keywords: ["HTECH", "Công nghệ", "Chuyển đổi số", "Phần mềm", "IT Solutions","HTech Event", "htechevent"],
     
     openGraph: {
       title: title,
