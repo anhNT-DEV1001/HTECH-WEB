@@ -16,9 +16,9 @@ export default async function Home({
     <main className="min-h-screen pt-4 flex flex-col">
       {/* Đã thêm background trắng và gradient overlay 25% vào hero-section */}
       <HeroSection/>
-      <ServiceSection/>
+      <ServiceSection lng={lng} />
       <FieldSection/>
-      <ProjectSection/>
+      <ProjectSection lng={lng} />
       <NewsSection/>
     </main>
   );

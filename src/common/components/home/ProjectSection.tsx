@@ -1,7 +1,7 @@
 import ProjectSectionClient from './ProjectSectionClient';
 import { htechService } from '@/common/services/htech.service';
 
-export default async function ProjectSection() {
+export default async function ProjectSection({ lng }: { lng: string }) {
   let projectList: any[] = [];
   try {
     const response: any = await htechService.getOutstandingProjects();
@@ -26,5 +26,5 @@ export default async function ProjectSection() {
     console.error("Error fetching outstanding projects:", error);
   }
 
-  return <ProjectSectionClient projects={projectList} />;
+  return <ProjectSectionClient lng={lng} projects={projectList} />;
 }
