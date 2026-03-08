@@ -1,8 +1,11 @@
 import { ArrowUpRight } from 'lucide-react';
 import { htechService } from '@/common/services/htech.service';
 import NewsCarousel from './NewsCarousel';
+import { useServerTranslation } from '@/i18n';
 
-export default async function NewsSection() {
+export default async function NewsSection({ lng }: { lng: string }) {
+  const { t } = await useServerTranslation(lng);
+
   let newsList: any[] = [];
   try {
     const response: any = await htechService.getOutstandingNews();
@@ -34,15 +37,15 @@ export default async function NewsSection() {
         
         {/* Header */}
         <h2 className="text-[#1E0D01] font-bold text-3xl md:text-4xl mb-12 text-center">
-          Cập nhật tin tức - hoạt động
+          {t('news_title')}
         </h2>
 
         {/* Carousel Container */}
-        <NewsCarousel newsList={newsList} />
+        <NewsCarousel lng={lng} newsList={newsList} />
 
         {/* Nút Xem thêm */}
         <button className="mt-12 px-8 py-3 bg-[#EF5941] text-white rounded-full font-medium flex items-center gap-2 hover:bg-[#E63E35] transition-colors shadow-sm hover:shadow-md">
-          Xem thêm 
+          {t('news_view_more')}
           <ArrowUpRight size={20} strokeWidth={2.5} />
         </button>
 

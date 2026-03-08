@@ -19,7 +19,7 @@ export default async function Home({
       <ServiceSection lng={lng} />
       <FieldSection/>
       <ProjectSection lng={lng} />
-      <NewsSection/>
+      <NewsSection lng={lng} />
     </main>
   );
 }
