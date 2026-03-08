@@ -7,4 +7,6 @@
 export enum JsonLangFile {
   MENU = "menu",
   TRANSLATION = "translation",
+  Projects = "projects",
+  HOME = "home",
 }
