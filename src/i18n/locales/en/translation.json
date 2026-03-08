@@ -1,4 +1,14 @@
 {
   "welcome": "Hello Next.js 16",
-  "description": "This is a multi-language tutorial"
+  "description": "This is a multi-language tutorial",
+  "service_title": "Services Provided by HTECH",
+  "service_heading": "Professional Fulfillment Services for E-Commerce",
+  "service_description": "HTECH is built and developed on the foundation of a young, dynamic, enthusiastic and ambitious intellectual team, with over 10 years of experience in the fields of: supplying and installing security and safety equipment; telecommunications and electronic equipment; organizing international exhibitions and professional seminars; and providing in-depth consulting services.",
+  "service_cta": "Learn More",
+  "project_title": "Our Projects",
+  "project_subtitle": "Explore the outstanding technology projects we have been and are implementing.",
+  "project_empty": "No projects have been updated yet.",
+  "project_default_name": "Project Name",
+  "project_default_desc": "Detailed content for this project is being updated.",
+  "project_partners": "Proudly accompanying comprehensively and delivering successful growth with over 100 reputable partners"
 }

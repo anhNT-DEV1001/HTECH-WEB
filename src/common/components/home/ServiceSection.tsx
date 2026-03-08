@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useClientTranslation } from "@/i18n";
 
-export default function ServiceSection() {
+export default function ServiceSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
+
   // Variant trượt từ dưới lên (cho Header & Tabs)
   const fadeUpVariant = {
     hidden: { opacity: 0, y: 50 },
@@ -31,30 +34,8 @@ export default function ServiceSection() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        Dịch vụ HTECH cung cấp
+        {t('service_title')}
       </motion.h1>
-
-      {/* Tabs */}
-      {/* <motion.div 
-        className="flex flex-wrap justify-center gap-4 mb-10"
-        variants={fadeUpVariant as any}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <button className="px-8 py-2.5 rounded-full border border-red-400 bg-red-50 text-[#1E0D01] font-medium transition-colors hover:bg-red-100">
-          Service 1
-        </button>
-        <button className="px-8 py-2.5 rounded-full border border-gray-400 bg-white text-[#1E0D01] font-medium transition-colors hover:bg-gray-50">
-          Service 2
-        </button>
-        <button className="px-8 py-2.5 rounded-full border border-gray-400 bg-white text-[#1E0D01] font-medium transition-colors hover:bg-gray-50">
-          Service 3
-        </button>
-        <button className="px-8 py-2.5 rounded-full border border-gray-400 bg-white text-[#1E0D01] font-medium transition-colors hover:bg-gray-50">
-          Service 4
-        </button>
-      </motion.div> */}
 
       {/* Main Content Card */}
       <div className="w-full max-w-6xl bg-[#FFF8F6] rounded-[2rem] p-8 md:p-14 flex flex-col lg:flex-row items-center gap-10">
@@ -68,16 +49,16 @@ export default function ServiceSection() {
           viewport={{ once: true, amount: 0.2 }}
         >
           <h2 className="text-[#1E0D01] font-bold text-2xl md:text-3xl leading-snug">
-            Dịch vụ Fulfillment chuyên nghiệp dành cho TMĐT
+            {t('service_heading')}
           </h2>
           <p className="text-[#1E0D01]/80 leading-relaxed text-lg pr-0 lg:pr-10">
-            HTECH được xây dựng và phát triển dựa trên nền tảng của đội ngũ trí thức trẻ, năng động, nhiệt huyết và giàu khát vọng, với hơn 10 năm kinh nghiệm trong các lĩnh vực: cung cấp và lắp đặt thiết bị an ninh – an toàn; thiết bị viễn thông và điện tử; tổ chức các triển lãm quốc tế, hội thảo chuyên ngành; và cung cấp dịch vụ tư vấn chuyên sâu.
+            {t('service_description')}
           </p>
           <a 
             href="#" 
             className="text-[#FF5A4D] font-semibold underline underline-offset-4 decoration-2 hover:text-red-600 inline-block pt-2"
           >
-            Tìm hiểu ngay
+            {t('service_cta')}
           </a>
         </motion.div>
 
