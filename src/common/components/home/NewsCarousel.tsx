@@ -1,8 +1,9 @@
 'use client';
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getLocalizedField } from '@/common/utils/localizedField';
 
-export default function NewsCarousel({ newsList }: { newsList: any[] }) {
+export default function NewsCarousel({ lng, newsList }: { lng: string; newsList: any[] }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -46,32 +47,37 @@ export default function NewsCarousel({ newsList }: { newsList: any[] }) {
             : 'grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8'
         }`}
       >
-        {newsList.map((item, index) => (
-          <div 
-            key={item.id || index} 
-            className={`flex flex-col gap-4 group/card cursor-pointer ${
-              showArrows 
-                ? 'shrink-0 snap-start w-[85vw] md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.33rem)]' 
-                : ''
-            }`}
-          >
-            <div className="w-full h-[200px] md:h-[240px] overflow-hidden rounded-[2rem]">
-              <img 
-                src={item.thumbnail_url || '/placeholder-image.jpg'} 
-                alt={item.title_vn} 
-                className="w-full h-full object-cover bg-gray-200 group-hover/card:scale-105 transition-transform duration-500"
-              />
+        {newsList.map((item, index) => {
+          const title = getLocalizedField(item, "title", lng);
+          const summary = getLocalizedField(item, "summary", lng) || getLocalizedField(item, "description", lng);
+
+          return (
+            <div 
+              key={item.id || index} 
+              className={`flex flex-col gap-4 group/card cursor-pointer ${
+                showArrows 
+                  ? 'shrink-0 snap-start w-[85vw] md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.33rem)]' 
+                  : ''
+              }`}
+            >
+              <div className="w-full h-[200px] md:h-[240px] overflow-hidden rounded-[2rem]">
+                <img 
+                  src={item.thumbnail_url || '/placeholder-image.jpg'} 
+                  alt={title} 
+                  className="w-full h-full object-cover bg-gray-200 group-hover/card:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="flex flex-col gap-2 px-1">
+                <h3 className="text-[#1E0D01] font-bold text-lg leading-tight group-hover/card:text-[#FF4A3F] transition-colors line-clamp-2" title={title}>
+                  {title}
+                </h3>
+                <p className="text-[#1E0D01]/60 text-sm leading-relaxed line-clamp-3">
+                  {summary}
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-2 px-1">
-              <h3 className="text-[#1E0D01] font-bold text-lg leading-tight group-hover/card:text-[#FF4A3F] transition-colors line-clamp-2" title={item.title_vn}>
-                {item.title_vn}
-              </h3>
-              <p className="text-[#1E0D01]/60 text-sm leading-relaxed line-clamp-3">
-                {item.summary_vn || item.description_vn}
-              </p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Nút Next (Mũi tên phải) */}
