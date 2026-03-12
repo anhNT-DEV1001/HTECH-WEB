@@ -6,10 +6,10 @@ import ShapeSection from "@/common/components/about/ShapeSection";
 export default function Abouts() {
   return (
     <div className="">
-      <ShapeSection/>
-      <MissionVisionSection/>
-      <MissionDetailsSection/>
-      <ContactSection/>
+      <ShapeSection />
+      <MissionVisionSection />
+      <MissionDetailsSection />
+      <ContactSection />
     </div>
   )
 }
