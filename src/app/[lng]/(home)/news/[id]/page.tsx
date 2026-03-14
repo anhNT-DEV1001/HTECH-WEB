@@ -56,7 +56,7 @@ export default async function NewsDetailPage({
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-gray-50 pt-40 pb-20 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 pt-20 pb-10 flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Không tìm thấy bài viết</h2>
           <p className="text-gray-500 mb-6">Bài viết này có thể đã bị xóa hoặc không tồn tại.</p>
@@ -78,7 +78,7 @@ export default async function NewsDetailPage({
   }) : '';
 
   return (
-    <div className="min-h-screen bg-white pt-32 pb-20">
+    <div className="min-h-screen bg-white pt-15 pb-5">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
         {/* Breadcrumb / Back Link */}
