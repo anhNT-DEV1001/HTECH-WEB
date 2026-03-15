@@ -26,18 +26,7 @@ import { usePathname } from "next/navigation"
 import { useClientTranslation } from "@/i18n"
 import { JsonLangFile } from "@/enums"
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/projects/primitives/alert-dialog",
-    description: "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/projects/primitives/hover-card",
-    description: "For sighted users to preview content available behind a link.",
-  },
-]
+
 
 export default function Header({slug} : any) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -106,12 +95,7 @@ export default function Header({slug} : any) {
                     </div>
 
                     <div className="space-y-1 mt-4">
-                      <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('projects')}</h4>
-                      {components.map((comp) => (
-                        <MobileLink key={comp.title} href={comp.href} active={pathname?.startsWith(getLocalizedUrl(comp.href))}>
-                          {comp.title}
-                        </MobileLink>
-                      ))}
+                      <MobileLink href="/projects" active={isMenuActive(['/projects'])}>{t('projects')}</MobileLink>
                     </div>
 
                     <div className="space-y-1 mt-4">
@@ -152,22 +136,9 @@ export default function Header({slug} : any) {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/projects']) && activeStyle)}>
-                {t('projects')}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  {components.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
+              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/projects']) && activeStyle)}>
+                <Link href={getLocalizedUrl('/projects')}>{t('projects')}</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             
             <NavigationMenuItem>

@@ -11,7 +11,7 @@ export const htechService = {
 
   /**
    * Fetch outstanding projects
-   * GET /projects/htech/outstanding
+   * GET /project/htech/outstanding
    */
   getOutstandingProjects: async () => {
     return axiosInstance.get('/project/htech/outstanding');
@@ -38,5 +38,34 @@ export const htechService = {
    */
   getNewsById: async (id: string | number) => {
     return axiosInstance.get(`/news/${id}`);
+  },
+
+  /**
+   * Fetch all public projects with optional filters
+   * GET /project/htech/all
+   */
+  getAllProjects: async (params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    category_id?: number;
+  }) => {
+    return axiosInstance.get('/project/htech/all', { params });
+  },
+
+  /**
+   * Fetch all project categories (public)
+   * GET /project/htech/categories
+   */
+  getProjectCategories: async () => {
+    return axiosInstance.get('/project/htech/categories');
+  },
+
+  /**
+   * Fetch a single project by ID (public)
+   * GET /project/htech/:id
+   */
+  getProjectById: async (id: string | number) => {
+    return axiosInstance.get(`/project/htech/${id}`);
   },
 };
