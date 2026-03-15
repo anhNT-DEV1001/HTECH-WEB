@@ -60,4 +60,12 @@ export const htechService = {
   getProjectCategories: async () => {
     return axiosInstance.get('/project/htech/categories');
   },
+
+  /**
+   * Fetch a single project by ID (public)
+   * GET /project/htech/:id
+   */
+  getProjectById: async (id: string | number) => {
+    return axiosInstance.get(`/project/htech/${id}`);
+  },
 };

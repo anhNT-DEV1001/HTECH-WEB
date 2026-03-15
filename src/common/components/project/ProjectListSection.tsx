@@ -86,8 +86,9 @@ function SkeletonCard() {
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project, index, slug }: { project: Project; index: number; slug?: string }) {
   const status = STATUS_MAP[project.status] ?? STATUS_MAP.UPCOMING;
+  const detailHref = `/${slug || 'vi'}/projects/${project.id}`;
 
   return (
     <motion.div
@@ -97,6 +98,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
       className="group relative flex flex-col rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl border border-gray-100 hover:border-[#EF5941]/20 transition-all duration-300"
     >
+      <Link href={detailHref} className="absolute inset-0 z-10" aria-label={project.title_vn} />
       {/* Thumbnail */}
       <div className="relative h-52 overflow-hidden bg-gray-100">
         <img
@@ -166,7 +168,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
       </div>
 
-      {/* Read more overlay link */}
+      {/* Hover ring */}
       <div className="absolute inset-0 rounded-2xl ring-2 ring-transparent group-hover:ring-[#EF5941]/15 transition-all duration-300 pointer-events-none" />
     </motion.div>
   );
@@ -337,7 +339,7 @@ export default function ProjectListSection({ slug }: Props) {
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
               {projects.map((project, i) => (
-                <ProjectCard key={project.id} project={project} index={i} />
+                <ProjectCard key={project.id} project={project} index={i} slug={slug} />
               ))}
             </motion.div>
           </AnimatePresence>
