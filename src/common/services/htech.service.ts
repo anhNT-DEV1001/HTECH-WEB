@@ -18,6 +18,29 @@ export const htechService = {
   },
 
   /**
+   * Fetch all public news with pagination and filters
+   * GET /news/htech/all
+   */
+  getAllNews: async (params?: { page?: number; limit?: number; category_id?: number; search?: string; searchBy?: string }) => {
+    return axiosInstance.get('/news/htech/all', { params });
+  },
+
+  /**
+   * Fetch all public news categories
+   * GET /news/htech/category
+   */
+  getAllCategories: async () => {
+    return axiosInstance.get('/news/htech/category');
+  },
+  /**
+   * Fetch a specific news article by ID
+   * GET /news/:id
+   */
+  getNewsById: async (id: string | number) => {
+    return axiosInstance.get(`/news/${id}`);
+  },
+
+  /**
    * Fetch all public projects with optional filters
    * GET /project/htech/all
    */
