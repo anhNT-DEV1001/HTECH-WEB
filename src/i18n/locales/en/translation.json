@@ -28,5 +28,21 @@
   "footer_address": "Address",
   "footer_social": "Connect with Us",
   "footer_cta_text": "Contact us for partnership",
-  "footer_cta_button": "Contact Us"
+  "footer_cta_button": "Contact Us",
+
+  "jobs_hero_title_1": "Kickstart",
+  "jobs_hero_title_2": "your career",
+  "jobs_hero_title_3": "",
+  "jobs_hero_subtitle": "Learn together, grow together, and create unforgettable moments.",
+  "jobs_section_title": "Build with us",
+  "jobs_search_placeholder": "Search",
+  "jobs_filter_type": "Job type",
+  "jobs_filter_experience": "Experience",
+  "jobs_filter_field": "Category",
+  "jobs_salary_nego": "Negotiable",
+  "jobs_apply": "Apply",
+  "jobs_empty": "No job openings available",
+  "jobs_empty_desc": "We currently don't have any open positions. Please check back later!",
+  "jobs_view_all": "View all",
+  "jobs_salary_prefix": "Up to"
 }
