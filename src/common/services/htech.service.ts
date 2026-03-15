@@ -68,4 +68,36 @@ export const htechService = {
   getProjectById: async (id: string | number) => {
     return axiosInstance.get(`/project/htech/${id}`);
   },
+
+  /**
+   * Fetch all public active jobs with pagination and filters
+   * GET /jobs/htech/all
+   */
+  getAllJobs: async (params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    searchBy?: string;
+    job_type?: string;
+    experience?: string;
+    field_of_work_id?: number;
+  }) => {
+    return axiosInstance.get('/jobs/htech/all', { params });
+  },
+
+  /**
+   * Fetch all fields of work (public)
+   * GET /jobs/htech/field-of-works
+   */
+  getFieldsOfWork: async () => {
+    return axiosInstance.get('/jobs/htech/field-of-works');
+  },
+
+  /**
+   * Fetch a single job by ID (public)
+   * GET /jobs/htech/:id
+   */
+  getJobById: async (id: string | number) => {
+    return axiosInstance.get(`/jobs/htech/${id}`);
+  },
 };

@@ -28,5 +28,21 @@
   "footer_address": "Địa chỉ",
   "footer_social": "Kết nối với chúng tôi",
   "footer_cta_text": "Liên hệ hợp tác với chúng tôi",
-  "footer_cta_button": "Liên hệ hợp tác"
+  "footer_cta_button": "Liên hệ hợp tác",
+
+  "jobs_hero_title_1": "Khởi động",
+  "jobs_hero_title_2": "sự nghiệp",
+  "jobs_hero_title_3": "của bạn",
+  "jobs_hero_subtitle": "Cùng nhau học hỏi, phát triển và tạo nên những khoảnh khắc đáng nhớ.",
+  "jobs_section_title": "Kiến tạo cùng chúng tôi",
+  "jobs_search_placeholder": "Tìm kiếm",
+  "jobs_filter_type": "Loại công việc",
+  "jobs_filter_experience": "Kinh nghiệm",
+  "jobs_filter_field": "Chế độ",
+  "jobs_salary_nego": "Thỏa thuận",
+  "jobs_apply": "Ứng tuyển",
+  "jobs_empty": "Chưa có vị trí tuyển dụng nào",
+  "jobs_empty_desc": "Hiện tại chúng tôi chưa có vị trí nào đang tuyển. Hãy quay lại sau nhé!",
+  "jobs_view_all": "Xem tất cả",
+  "jobs_salary_prefix": "Lên tới"
 }
