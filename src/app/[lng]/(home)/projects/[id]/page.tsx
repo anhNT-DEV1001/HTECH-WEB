@@ -149,7 +149,7 @@ export default async function ProjectDetailPage({
     <div className="min-h-screen bg-[#F8F9FC]">
 
       {/* ── Hero Banner ──────────────────────────────────────────────────── */}
-      <div className="relative w-full h-[340px] sm:h-[420px] overflow-hidden bg-slate-900">
+      <div className="relative w-full h-[340px] sm:h-[420px] overflow-hidden bg-slate-900 -mt-20">
         <ProjectImage
           src={project.thumbnail_url}
           alt={title}
@@ -160,7 +160,7 @@ export default async function ProjectDetailPage({
         <div className="relative z-10 flex flex-col justify-end h-full max-w-6xl mx-auto px-4 sm:px-8 pb-10 gap-3">
           <Link
             href={`/${lng}/projects`}
-            className="absolute top-6 left-4 sm:left-8 inline-flex items-center gap-1.5 text-white/70 hover:text-white text-sm font-medium transition-colors"
+            className="absolute top-24 left-4 sm:left-8 inline-flex items-center gap-1.5 text-white/70 hover:text-white text-sm font-medium transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Danh sách dự án

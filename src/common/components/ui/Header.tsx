@@ -26,11 +26,12 @@ import { usePathname } from "next/navigation"
 import { useClientTranslation } from "@/i18n"
 import { JsonLangFile } from "@/enums"
 
-
-
 export default function Header({slug} : any) {
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isVisible, setIsVisible] = React.useState(true)
+  const [lastScrollY, setLastScrollY] = React.useState(0)
   const pathname = usePathname()
+  
   const getLocalizedUrl = (path: string) => {
     if (!slug) return path;
     const cleanPath = path === "/" ? "" : path;
@@ -38,7 +39,29 @@ export default function Header({slug} : any) {
   };
 
   const {t} = useClientTranslation(slug, JsonLangFile.MENU);
-  const customNavStyle = "bg-transparent text-base font-medium text-black hover:bg-[#FFF0ED] hover:text-[#EF5941] focus:bg-[#FFF0ED] focus:text-[#EF5941] data-[active]:text-[#EF5941] data-[state=open]:bg-[#FFF0ED] data-[state=open]:text-[#EF5941]"
+  
+  // Logic hide/show header on scroll
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Show header if scrolling up or at the top
+      if (currentScrollY < lastScrollY || currentScrollY < 50) {
+        setIsVisible(true)
+      } 
+      // Hide header if scrolling down and past a threshold
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [lastScrollY])
+
+  const customNavStyle = "bg-transparent text-base font-medium text-black hover:bg-[#FFF0ED] hover:text-[#EF5941] focus:bg-[#FFF0ED] focus:text-[#EF5941] data-[state=open]:bg-[#FFF0ED] data-[state=open]:text-[#EF5941] transition-colors"
   const activeStyle = "text-[#EF5941] bg-[#FFF0ED]"
 
   const isMenuActive = (paths: string[]) => {
@@ -66,11 +89,14 @@ export default function Header({slug} : any) {
   )
 
   return (
-    <div className="sticky top-0 z-50 flex w-full justify-center px-4">
+    <div className={cn(
+      "fixed top-0 left-0 right-0 z-50 flex w-full justify-center px-4 pt-4 bg-transparent transition-all duration-500 ease-in-out",
+      isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+    )}>
       <header className="flex h-16 w-full max-w-6xl items-center justify-between rounded-full bg-white px-4 md:px-6 py-2 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
         
         <div className="flex items-center gap-2">
-          {/* Mobile Menu Trigger (Hiển thị trên mobile, ẩn trên PC) */}
+          {/* Mobile Menu Trigger */}
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -120,45 +146,67 @@ export default function Header({slug} : any) {
           </Link>
         </div>
 
-        {/* Desktop Menu (Ẩn trên mobile) */}
-        <NavigationMenu className="hidden md:flex">
+        {/* Desktop Menu */}
+        <NavigationMenu className="hidden md:flex" viewport={false}>
           <NavigationMenuList className="gap-2">
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/', '/abouts']) && activeStyle)}> 
+            
+            {/* Menu Dropdown: Home */}
+            <NavigationMenuItem className="relative">
+              <NavigationMenuTrigger className={customNavStyle}> 
                 {t('home')}
               </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href={getLocalizedUrl("/")} title={`${t('home')}`}>{t('home')}</ListItem>
-                  <ListItem href={getLocalizedUrl('/abouts')} title={`${t('abouts')}`}>{t('abouts')}</ListItem>
+              <NavigationMenuContent className="absolute left-0 top-full mt-2 p-0">
+                <ul className="flex flex-col w-[180px] bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+                  <ListItem 
+                    href={getLocalizedUrl("/")} 
+                    title={`${t('home')}`} 
+                    isActive={pathname === getLocalizedUrl("/")}
+                  />
+                  <ListItem 
+                    href={getLocalizedUrl('/abouts')} 
+                    title={`${t('abouts')}`} 
+                    isActive={pathname?.startsWith(getLocalizedUrl("/abouts"))}
+                  />
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* Menu Đơn: Projects */}
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/projects']) && activeStyle)}>
                 <Link href={getLocalizedUrl('/projects')}>{t('projects')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={cn(customNavStyle, isMenuActive(['/partners', '/jobs']) && activeStyle)}>
+            {/* Menu Dropdown: Partnership */}
+            <NavigationMenuItem className="relative">
+              <NavigationMenuTrigger className={customNavStyle}>
                 {t('partnership')}
               </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href={getLocalizedUrl('/partners')} title={`${t('partners')}`}>{t('partners')}</ListItem>
-                  <ListItem href={getLocalizedUrl('/jobs')} title={`${t('jobs')}`}>{t('jobs')}</ListItem>
+              <NavigationMenuContent className="absolute left-0 top-full mt-2 p-0">
+                <ul className="flex flex-col w-[180px] bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+                  <ListItem 
+                    href={getLocalizedUrl('/partners')} 
+                    title={`${t('partners')}`} 
+                    isActive={pathname?.startsWith(getLocalizedUrl("/partners"))}
+                  />
+                  <ListItem 
+                    href={getLocalizedUrl('/jobs')} 
+                    title={`${t('jobs')}`} 
+                    isActive={pathname?.startsWith(getLocalizedUrl("/jobs"))}
+                  />
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* Menu Đơn: Services */}
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/services']) && activeStyle)}>
                 <Link href={getLocalizedUrl('/services')}>{t('services')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             
+            {/* Menu Đơn: News */}
             <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/news']) && activeStyle)}>
                 <Link href={getLocalizedUrl('/news')}>{t('news')}</Link>
@@ -180,16 +228,23 @@ export default function Header({slug} : any) {
   )
 }
 
-function ListItem({ title, children, href, ...props }: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+function ListItem({ title, href, isActive, ...props }: React.ComponentPropsWithoutRef<"li"> & { href: string; title: string; isActive?: boolean }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
         <Link 
           href={href} 
-          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#FFF0ED] hover:text-[#EF5941] focus:bg-[#FFF0ED] focus:text-[#EF5941]"
+          className={cn(
+            "block select-none px-4 py-3 no-underline outline-none transition-all duration-200 hover:bg-[#FFF0ED] group",
+            isActive ? "bg-[#FFF0ED]" : ""
+          )}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          <div className={cn(
+            "text-sm font-medium transition-colors group-hover:text-[#EF5941]",
+            isActive ? "text-[#EF5941]" : "text-gray-700"
+          )}>
+            {title}
+          </div>
         </Link>
       </NavigationMenuLink>
     </li>
