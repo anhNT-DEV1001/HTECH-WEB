@@ -8,7 +8,7 @@ export default function ShapeSection() {
     <section 
       id="shape-section" 
       // Background gradient tương tự như trong thiết kế
-      className="w-full min-h-screen py-20 px-4 flex flex-col items-center bg-gradient-to-b from-[#fde2e2] to-white"
+      className="w-full min-h-screen py-20 px-4 flex flex-col items-center bg-gradient-to-b from-[#fde2e2] to-white -mt-20"
     >
       <div className="w-full max-w-5xl flex flex-col items-center">
         
@@ -18,7 +18,7 @@ export default function ShapeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-[32px] overflow-hidden shadow-lg z-0"
+          className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-[32px] overflow-hidden shadow-lg z-0 mt-10"
         >
           {/* Thay đổi src bằng đường dẫn ảnh thực tế của bạn */}
           <img

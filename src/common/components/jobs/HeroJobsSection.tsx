@@ -29,7 +29,7 @@ export default function HeroJobsSection({ lng }: Props) {
 
   return (
     <motion.section
-      className="flex flex-col items-center justify-center pt-16 pb-20 bg-gradient-to-b from-[#FFF0ED] via-[#FFF8F6] to-white"
+      className="flex flex-col items-center justify-center pt-36 pb-20 bg-gradient-to-b from-[#FFF0ED] via-[#FFF8F6] to-white -mt-20"
       variants={containerVariants}
       initial="hidden"
       animate="show"

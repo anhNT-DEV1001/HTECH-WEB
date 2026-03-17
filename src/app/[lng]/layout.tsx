@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import Header from "@/common/components/ui/Header";
 import Footer from "@/common/components/ui/Footer";
+import ScrollToTop from "@/common/components/ui/ScrollToTop";
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["vietnamese", "latin"],
@@ -18,53 +19,74 @@ export async function generateMetadata({
   params: Promise<{ lng: string }>;
 }): Promise<Metadata> {
   const { lng } = await params;
-  
   const isVi = lng === "vi";
-  const title = isVi ? "HTECH - Nâng tầm trí tuệ Việt Nam" : "HTECH - Elevating Vietnamese Intellect";
+  
+  const siteName = "HTECH - Global Nexus";
+  const title = isVi 
+    ? "HTECH - Nâng tầm trí tuệ Việt Nam | Giải pháp Công nghệ Toàn diện" 
+    : "HTECH - Elevating Vietnamese Intellect | Comprehensive Tech Solutions";
+  
   const description = isVi 
-    ? "HTECH là công ty công nghệ tiên phong, đồng hành cùng doanh nghiệp trong chuyển đổi số và kết nối công nghệ với thực tiễn thị trường."
-    : "HTECH is a pioneering technology company, accompanying businesses in digital transformation and connecting technology with market realities.";
+    ? "HTECH là công ty công nghệ tiên phong tại Việt Nam, chuyên cung cấp giải pháp chuyển đổi số, phát triển phần mềm và kết nối hệ sinh thái công nghệ thực tiễn."
+    : "HTECH is a pioneering technology company in Vietnam, specializing in digital transformation solutions, software development, and connecting technology ecosystems.";
+
+  const keywords = isVi
+    ? ["HTECH", "Công nghệ", "Chuyển đổi số", "Phần mềm", "Giải pháp IT", "HTech Event", "htechevent", "Công nghệ Việt Nam"]
+    : ["HTECH", "Technology", "Digital Transformation", "Software Development", "IT Solutions", "HTech Event", "htechevent", "Vietnam Tech"];
+
+  const url = process.env.NEXT_PUBLIC_SITE_URL || "https://htechevent.com";
 
   return {
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://htechevent.com"
-    ),
-    
+    metadataBase: new URL(url),
     title: {
       default: title,
-      template: "%s | HTECH",
+      template: `%s | ${siteName}`,
     },
     description: description,
-    keywords: ["HTECH", "Công nghệ", "Chuyển đổi số", "Phần mềm", "IT Solutions","HTech Event", "htechevent"],
+    keywords: keywords,
+    authors: [{ name: "HTECH Team", url: url }],
+    creator: "HTECH",
+    publisher: "HTECH",
     
+    // Đa ngôn ngữ (Cực kỳ quan trọng cho SEO đa ngôn ngữ)
+    alternates: {
+      canonical: `/${lng}`,
+      languages: {
+        "vi-VN": "/vi",
+        "en-US": "/en",
+        "x-default": "/vi", // Mặc định về tiếng Việt nếu ngôn ngữ khác không khớp
+      },
+    },
+
     openGraph: {
       title: title,
       description: description,
-      url: "/",
-      siteName: "HTECH",
+      url: `/${lng}`,
+      siteName: siteName,
       images: [
         {
           url: "/assets/banner.jpg",
           width: 1200,
           height: 630,
-          alt: "HTECH Banner",
+          alt: isVi ? "HTECH - Nâng tầm trí tuệ Việt Nam" : "HTECH - Elevating Vietnamese Intellect",
         },
       ],
       locale: isVi ? "vi_VN" : "en_US",
       type: "website",
     },
     
-    // Tối ưu cho việc chia sẻ lên X (Twitter)
     twitter: {
       card: "summary_large_image",
       title: title,
       description: description,
       images: ["/assets/banner.jpg"],
+      creator: "@htechevent",
     },
     
     robots: {
       index: true,
       follow: true,
+      nocache: false,
       googleBot: {
         index: true,
         follow: true,
@@ -72,6 +94,17 @@ export async function generateMetadata({
         "max-image-preview": "large",
         "max-snippet": -1,
       },
+    },
+
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png", // Nếu bạn có ảnh icon riêng cho Apple
+    },
+
+    verification: {
+      google: "google-site-verification-id", // Thay bằng mã thật khi bạn có
+      // yandex: "yandex-verification-id",
     },
   };
 }
@@ -94,8 +127,11 @@ export default async function RootLayout({
       <body
         className={`${beVietnamPro.variable} font-sans h-full w-full relative`}>
         <Header slug={lng} />
-        {children}
+        <div className="pt-20">
+          {children}
+        </div>
         <Footer lng={lng} />
+        <ScrollToTop />
       </body>
     </html>
   );
