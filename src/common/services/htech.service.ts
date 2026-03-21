@@ -100,4 +100,16 @@ export const htechService = {
   getJobById: async (id: string | number) => {
     return axiosInstance.get(`/jobs/htech/${id}`);
   },
+
+  sendMailContact: async (data: ContactData) => {
+    return axiosInstance.post('/mails/submit', data);
+  }
 };
+
+export interface ContactData {
+  fullName: string;
+  email: string;
+  phone: string;
+  company?: string; // Có thể bỏ trống
+  message: string;
+}
