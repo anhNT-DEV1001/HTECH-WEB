@@ -44,5 +44,15 @@
   "jobs_empty": "Chưa có vị trí tuyển dụng nào",
   "jobs_empty_desc": "Hiện tại chúng tôi chưa có vị trí nào đang tuyển. Hãy quay lại sau nhé!",
   "jobs_view_all": "Xem tất cả",
-  "jobs_salary_prefix": "Lên tới"
+  "jobs_salary_prefix": "Lên tới",
+
+  "partner_hero_title": "ĐỐI TÁC",
+  "partner_hero_desc": "HTECH kiến tạo mạng lưới kết nối đa chiều giữa doanh nghiệp, tập đoàn, viện trường, quỹ đầu tư và tổ chức quốc tế, mở ra không gian hợp tác để thúc đẩy đổi mới sáng tạo bền vững.",
+  "partner_mission_title": "Chuyên nghiệp và cầu tiến",
+  "partner_mission_desc": "HTECH ra đời với mục đích cung cấp các công cụ, dịch vụ tiên tiến để các startup và doanh nghiệp tiếp cận dễ dàng với công nghệ mới nhất, từ đó thúc đẩy các sáng kiến bền vững trong bối cảnh công nghiệp hóa, hiện đại hóa đất nước.",
+  "partner_global_title": "Liên kết với hệ sinh thái",
+  "partner_global_highlight": "Toàn cầu",
+  "partner_global_subtitle": "Đối tác quốc tế",
+  "partner_vn_title": "Liên kết với hệ sinh thái",
+  "partner_vn_highlight": "tại Việt Nam"
 }
