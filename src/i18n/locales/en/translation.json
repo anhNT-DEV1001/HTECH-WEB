@@ -44,5 +44,15 @@
   "jobs_empty": "No job openings available",
   "jobs_empty_desc": "We currently don't have any open positions. Please check back later!",
   "jobs_view_all": "View all",
-  "jobs_salary_prefix": "Up to"
+  "jobs_salary_prefix": "Up to",
+
+  "partner_hero_title": "PARTNERS",
+  "partner_hero_desc": "HTECH creates a multidimensional network connecting businesses, corporations, academic institutions, investment funds and international organizations, opening up a space for cooperation to promote sustainable innovation.",
+  "partner_mission_title": "Professional and Progressive",
+  "partner_mission_desc": "HTECH was founded with the purpose of providing advanced tools and services to help startups and businesses easily access the latest technology, thereby promoting sustainable initiatives in the context of industrialization and modernization.",
+  "partner_global_title": "Connected with the",
+  "partner_global_highlight": "Global Ecosystem",
+  "partner_global_subtitle": "International Partners",
+  "partner_vn_title": "Connected with the ecosystem",
+  "partner_vn_highlight": "in Vietnam"
 }
