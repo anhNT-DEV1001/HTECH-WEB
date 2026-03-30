@@ -1,77 +1,50 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
+import { useClientTranslation } from "@/i18n";
 
-export default function HeroServiceSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-    },
-  };
+interface Props {
+  lng: string;
+}
 
-  const titleVariants: Variants = {
-    hidden: { opacity: 0, x: -60 },
-    show: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const iconVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    show: { opacity: 0.15, scale: 1, transition: { duration: 1 } }
-  };
+export default function HeroServiceSection({ lng }: Props) {
+  const { t } = useClientTranslation(lng);
 
   return (
-    <motion.section
-      id="hero-service-section"
-      className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[650px] flex items-center overflow-hidden -mt-20"
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-    >
-      {/* Background image - Fixed cover strategy */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/assets/services/heroServiceImg.png"
-          alt="Dịch vụ HTECH"
-          className="w-full h-full object-cover object-center scale-105"
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-slate-900/50" />
-      </div>
-
-      {/* Decorative Branding Icons (Left Side) */}
-      <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10 hidden lg:grid grid-cols-2 gap-10">
-        <motion.div variants={iconVariants} className="w-24 h-24 bg-white/20 rounded-2xl backdrop-blur-sm flex items-center justify-center p-4">
-           <img src="/assets/logo.png" className="w-full h-auto grayscale brightness-200" alt="" />
-        </motion.div>
-        <motion.div variants={iconVariants} className="w-24 h-24 bg-white/20 rounded-2xl backdrop-blur-sm flex items-center justify-center p-4">
-           <img src="/assets/logo.png" className="w-full h-auto grayscale brightness-200 rotate-90" alt="" />
-        </motion.div>
-        <motion.div variants={iconVariants} className="w-24 h-24 bg-white/20 rounded-2xl backdrop-blur-sm flex items-center justify-center p-4">
-           <img src="/assets/logo.png" className="w-full h-auto grayscale brightness-200 rotate-180" alt="" />
-        </motion.div>
-        <motion.div variants={iconVariants} className="w-24 h-24 bg-white/20 rounded-2xl backdrop-blur-sm flex items-center justify-center p-4">
-           <img src="/assets/logo.png" className="w-full h-auto grayscale brightness-200 -rotate-90" alt="" />
-        </motion.div>
-      </div>
-
-      {/* Nội dung chính */}
-      <div className="relative z-20 w-full max-w-7xl px-8 sm:px-16 md:px-24 flex flex-col justify-end h-full pt-40 pb-20">
-        {/* Tiêu đề */}
-        <motion.div variants={titleVariants}>
-          <h1 className="text-6xl sm:text-xl md:text-2xl font-extrabold text-white drop-shadow-2xl tracking-tight uppercase">
-            Dịch vụ
-          </h1>
-        </motion.div>
-      </div>
+    <section className="relative w-full h-[70vh] md:h-[85vh] -mt-20 flex items-end overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/assets/services/heroServiceImg.png')" }}
+      />
       
-      {/* Bottom wave decoration if needed, or simple gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950/40 to-transparent z-10" />
-    </motion.section>
+      {/* Dark Overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pb-12 md:pb-20">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12">
+          {/* Left: Title */}
+          <motion.h1
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#EF5941] leading-none uppercase"
+          >
+            {t("service_hero_title")}
+          </motion.h1>
+
+          {/* Right: Description */}
+          <motion.p
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed max-w-md md:max-w-lg md:text-right"
+          >
+            {t("service_hero_desc")}
+          </motion.p>
+        </div>
+      </div>
+    </section>
   );
 }

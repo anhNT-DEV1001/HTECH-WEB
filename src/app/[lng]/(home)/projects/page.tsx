@@ -10,7 +10,7 @@ export default async function Projects({ params }: Props) {
   const { lng } = await params;
   return (
     <div>
-      <HeroProjectSection />
+      <HeroProjectSection lng={lng} />
       <ProjectListSection slug={lng} />
       <ContactSection />
     </div>
