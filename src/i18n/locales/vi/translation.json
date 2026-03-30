@@ -5,8 +5,12 @@
   "service_heading": "Dịch vụ Fulfillment chuyên nghiệp dành cho TMĐT",
   "service_description": "HTECH được xây dựng và phát triển dựa trên nền tảng của đội ngũ trí thức trẻ, năng động, nhiệt huyết và giàu khát vọng, với hơn 10 năm kinh nghiệm trong các lĩnh vực: cung cấp và lắp đặt thiết bị an ninh – an toàn; thiết bị viễn thông và điện tử; tổ chức các triển lãm quốc tế, hội thảo chuyên ngành; và cung cấp dịch vụ tư vấn chuyên sâu.",
   "service_cta": "Tìm hiểu ngay",
+  "service_hero_title": "DỊCH VỤ",
+  "service_hero_desc": "HTECH cung cấp các dịch vụ chuyên nghiệp, ứng dụng công nghệ hiện đại nhằm tối ưu hóa vận hành và mang lại giá trị thực tiễn cho đối tác, khách hàng.",
   "project_title": "Dự án của chúng tôi",
   "project_subtitle": "Khám phá các dự án công nghệ nổi bật mà chúng tôi đã và đang thực hiện.",
+  "project_hero_title": "DỰ ÁN",
+  "project_hero_desc": "Khám phá các dự án tiêu biểu mà HTECH đã triển khai — từ giải pháp phần mềm đến hệ thống công nghệ thực tiễn.",
   "project_empty": "Chưa có dự án nào được cập nhật.",
   "project_default_name": "Tên dự án",
   "project_default_desc": "Đang cập nhật nội dung chi tiết cho dự án này.",
@@ -44,5 +48,15 @@
   "jobs_empty": "Chưa có vị trí tuyển dụng nào",
   "jobs_empty_desc": "Hiện tại chúng tôi chưa có vị trí nào đang tuyển. Hãy quay lại sau nhé!",
   "jobs_view_all": "Xem tất cả",
-  "jobs_salary_prefix": "Lên tới"
+  "jobs_salary_prefix": "Lên tới",
+
+  "partner_hero_title": "ĐỐI TÁC",
+  "partner_hero_desc": "HTECH kiến tạo mạng lưới kết nối đa chiều giữa doanh nghiệp, tập đoàn, viện trường, quỹ đầu tư và tổ chức quốc tế, mở ra không gian hợp tác để thúc đẩy đổi mới sáng tạo bền vững.",
+  "partner_mission_title": "Chuyên nghiệp và cầu tiến",
+  "partner_mission_desc": "HTECH ra đời với mục đích cung cấp các công cụ, dịch vụ tiên tiến để các startup và doanh nghiệp tiếp cận dễ dàng với công nghệ mới nhất, từ đó thúc đẩy các sáng kiến bền vững trong bối cảnh công nghiệp hóa, hiện đại hóa đất nước.",
+  "partner_global_title": "Liên kết với hệ sinh thái",
+  "partner_global_highlight": "Toàn cầu",
+  "partner_global_subtitle": "Đối tác quốc tế",
+  "partner_vn_title": "Liên kết với hệ sinh thái",
+  "partner_vn_highlight": "tại Việt Nam"
 }

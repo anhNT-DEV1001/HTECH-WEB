@@ -5,8 +5,12 @@
   "service_heading": "Professional Fulfillment Services for E-Commerce",
   "service_description": "HTECH is built and developed on the foundation of a young, dynamic, enthusiastic and ambitious intellectual team, with over 10 years of experience in the fields of: supplying and installing security and safety equipment; telecommunications and electronic equipment; organizing international exhibitions and professional seminars; and providing in-depth consulting services.",
   "service_cta": "Learn More",
+  "service_hero_title": "SERVICES",
+  "service_hero_desc": "HTECH provides professional services, applying modern technology to optimize operations and bring practical value to partners and customers.",
   "project_title": "Our Projects",
   "project_subtitle": "Explore the outstanding technology projects we have been and are implementing.",
+  "project_hero_title": "PROJECTS",
+  "project_hero_desc": "Explore the outstanding projects HTECH has implemented — from software solutions to practical technology systems.",
   "project_empty": "No projects have been updated yet.",
   "project_default_name": "Project Name",
   "project_default_desc": "Detailed content for this project is being updated.",
@@ -44,5 +48,15 @@
   "jobs_empty": "No job openings available",
   "jobs_empty_desc": "We currently don't have any open positions. Please check back later!",
   "jobs_view_all": "View all",
-  "jobs_salary_prefix": "Up to"
+  "jobs_salary_prefix": "Up to",
+
+  "partner_hero_title": "PARTNERS",
+  "partner_hero_desc": "HTECH creates a multidimensional network connecting businesses, corporations, academic institutions, investment funds and international organizations, opening up a space for cooperation to promote sustainable innovation.",
+  "partner_mission_title": "Professional and Progressive",
+  "partner_mission_desc": "HTECH was founded with the purpose of providing advanced tools and services to help startups and businesses easily access the latest technology, thereby promoting sustainable initiatives in the context of industrialization and modernization.",
+  "partner_global_title": "Connected with the",
+  "partner_global_highlight": "Global Ecosystem",
+  "partner_global_subtitle": "International Partners",
+  "partner_vn_title": "Connected with the ecosystem",
+  "partner_vn_highlight": "in Vietnam"
 }

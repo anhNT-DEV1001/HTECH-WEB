@@ -2,10 +2,16 @@ import ContactSection from "@/common/components/about/ContactSection";
 import HeroServiceSection from "@/common/components/services/HeroServiceSection";
 import ServiceSliderSection from "@/common/components/services/ServiceSliderSection";
 
-export default function Services() {
+interface Props {
+  params: {
+    lng: string;
+  };
+}
+
+export default function Services({ params: { lng } }: Props) {
   return (
     <div className="">
-      <HeroServiceSection />
+      <HeroServiceSection lng={lng} />
       <ServiceSliderSection />
       <ContactSection />
     </div>
