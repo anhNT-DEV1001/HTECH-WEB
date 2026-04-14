@@ -79,7 +79,7 @@ export default function HeroSection({ lng }: { lng: string }) {
       initial="hidden"
       animate="show"
     >
-      <motion.h1 variants={itemVariants} className="text-[#1E0D01] font-bold text-3xl">
+      <motion.h1 variants={itemVariants} className="text-[#1E0D01] font-bold text-xl sm:text-2xl md:text-3xl text-center px-4">
         {t("home_hero_company_name")}
       </motion.h1>
 

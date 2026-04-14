@@ -146,6 +146,7 @@ export default function Header({ slug }: { slug: string }) {
                     <div className="space-y-1 mt-4">
                       <MobileNavLink href="/services" active={pathname?.startsWith(getLocalizedUrl("/services"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('services')}</MobileNavLink>
                       <MobileNavLink href="/news" active={pathname?.startsWith(getLocalizedUrl("/news"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('news')}</MobileNavLink>
+                      <MobileNavLink href="/contact" active={pathname?.startsWith(getLocalizedUrl("/contact"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('contact')}</MobileNavLink>
                     </div>
                   </nav>
                 </div>
