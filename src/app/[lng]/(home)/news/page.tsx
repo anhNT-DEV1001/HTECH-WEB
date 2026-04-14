@@ -56,10 +56,10 @@ export default async function NewsServerPage({
 
     // Parse categories
     const _catRes = catRes as { data?: NewsCategory[] } | NewsCategory[];
-    if (_catRes?.data && Array.isArray(_catRes.data)) {
-      categories = _catRes.data;
-    } else if (Array.isArray(_catRes)) {
+    if (Array.isArray(_catRes)) {
       categories = _catRes;
+    } else if (Array.isArray(_catRes.data)) {
+      categories = _catRes.data;
     }
 
     // Parse news data
@@ -93,7 +93,6 @@ export default async function NewsServerPage({
       meta={meta}
       currentCategory={currentCategory}
       currentSearch={currentSearch}
-      currentPage={currentPage}
     />
   );
 }

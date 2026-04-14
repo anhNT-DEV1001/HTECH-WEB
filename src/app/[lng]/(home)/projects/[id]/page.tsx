@@ -45,8 +45,10 @@ function formatDate(dateStr: string | null, lng: string) {
 }
 
 type ProjectImageItem = {
+  id: number;
   image_url: string;
   alt_text?: string;
+  sort_order?: number;
 };
 
 type Project = {
@@ -127,8 +129,9 @@ export default async function ProjectDetailPage({
     if (res?.data) {
       project = res.data as Project;
       project.thumbnail_url = resolveImage(project.thumbnail_url);
-      project.projectImages = (project.projectImages ?? []).map((img) => ({
+      project.projectImages = (project.projectImages ?? []).map((img, index) => ({
         ...img,
+        id: img.id ?? index,
         image_url: resolveImage(img.image_url),
       }));
     }
@@ -152,16 +155,18 @@ export default async function ProjectDetailPage({
     );
   }
 
-  const title = lng === "vi" ? project.title_vn : (project.title_en || project.title_vn);
-  const summary = lng === "vi" ? project.summary_vn : (project.summary_en || project.summary_vn);
-  const description = lng === "vi" ? project.description_vn : (project.description_en || project.description_vn);
-  const venue = lng === "vi" ? project.venue_vn : (project.venue_en || project.venue_vn);
-  const industry = lng === "vi" ? project.industry_vn : (project.industry_en || project.industry_vn);
+  const title = (lng === "vi" ? project.title_vn : (project.title_en || project.title_vn)) || "";
+  const summary = (lng === "vi" ? project.summary_vn : (project.summary_en || project.summary_vn)) || "";
+  const description = (lng === "vi" ? project.description_vn : (project.description_en || project.description_vn)) || "";
+  const venue = (lng === "vi" ? project.venue_vn : (project.venue_en || project.venue_vn)) || "";
+  const industry = (lng === "vi" ? project.industry_vn : (project.industry_en || project.industry_vn)) || "";
   const statusCfg = STATUS_CONFIG[project.status as keyof typeof STATUS_CONFIG] ?? STATUS_CONFIG.UPCOMING;
   const StatusIcon = statusCfg.icon;
   const images = project.projectImages ?? [];
   const statusLabel = t(statusCfg.labelKey);
-  const categoryName = project.category ? (lng === "en" ? (project.category.name_en || project.category.name_vn) : project.category.name_vn) : "";
+  const categoryName = project.category
+    ? ((lng === "en" ? (project.category.name_en || project.category.name_vn) : project.category.name_vn) || "")
+    : "";
 
   const infoCards: { icon: React.ElementType; label: string; value: string; href?: string }[] = [
     ...(project.client_name ? [{ icon: Building2, label: t("project_detail_client"), value: project.client_name }] : []),
@@ -173,7 +178,7 @@ export default async function ProjectDetailPage({
       label: t("project_detail_time"),
       value: `${formatDate(project.start_date, lng)}${project.end_date ? ` → ${formatDate(project.end_date, lng)}` : ` – ${t("project_status_in_progress")}`}`,
     }] : []),
-    ...(project.category ? [{ icon: Tag, label: t("project_detail_category"), value: categoryName }] : []),
+    ...(categoryName ? [{ icon: Tag, label: t("project_detail_category"), value: categoryName }] : []),
     ...(project.location_url ? [{ icon: Globe, label: t("project_detail_map_title"), value: t("project_detail_map"), href: project.location_url }] : []),
   ];
 

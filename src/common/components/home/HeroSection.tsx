@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import { htechService } from "@/common/services/htech.service";
 import { useClientTranslation } from "@/i18n";
@@ -32,7 +32,7 @@ export default function HeroSection({ lng }: { lng: string }) {
     fetchCompanyInfo();
   }, []);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -43,17 +43,17 @@ export default function HeroSection({ lng }: { lng: string }) {
   };
 
   // 2. Cấu hình hiệu ứng trượt từ dưới lên cho từng phần tử con
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 50 }, // Bắt đầu ở vị trí thấp hơn 50px và tàng hình
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     },
   };
 
   // Helper to resolve URL correctly
-  const resolveUrl = (url: string) => {
+  const resolveUrl = (url?: string) => {
     if (!url) return "";
     if (url.startsWith("http")) return url;
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
