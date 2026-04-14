@@ -32,7 +32,7 @@ export default async function Jobs({ params }: Props) {
 
   return (
     <div className="w-full">
-      {bannerUrl && (
+      {/* {bannerUrl && (
         <div className="w-full aspect-video md:h-[400px] lg:h-[500px]">
           {isVideo ? (
             <video 
@@ -52,7 +52,7 @@ export default async function Jobs({ params }: Props) {
             />
           )}
         </div>
-      )}
+      )} */}
       <HeroJobsSection lng={lng} />
       <JobsListSection lng={lng} />
       {/* <ContactSection /> */}
