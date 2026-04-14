@@ -3,30 +3,18 @@ import { htechService } from '@/common/services/htech.service';
 import NewsCarousel from './NewsCarousel';
 import { useServerTranslation } from '@/i18n';
 import Link from 'next/link';
+import { extractListFromApiResponse, resolveApiAssetUrl } from '@/common/utils/api';
 
 export default async function NewsSection({ lng }: { lng: string }) {
   const { t } = await useServerTranslation(lng);
 
   let newsList: any[] = [];
   try {
-    const response: any = await htechService.getOutstandingNews();
-    if (response?.data?.data) {
-      newsList = response.data.data;
-    } else if (Array.isArray(response?.data)) {
-      newsList = response.data;
-    }
-
-    // Format the thumbnail URL
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
-    const host = apiUrl.replace(/\/api\/v1\/?$/, ''); // Remove /api/v1 from host
-
-    newsList = newsList.map((item: any) => {
-      let url = item.thumbnail_url;
-      if (url && !url.startsWith('http')) {
-        url = `${host}${url.startsWith('/') ? url : `/${url}`}`;
-      }
-      return { ...item, thumbnail_url: url || '/placeholder-image.jpg' };
-    });
+    const response = await htechService.getOutstandingNews();
+    newsList = extractListFromApiResponse<any>(response).map((item: any) => ({
+      ...item,
+      thumbnail_url: resolveApiAssetUrl(item.thumbnail_url, '/placeholder-image.jpg'),
+    }));
   } catch (error) {
     console.error("Error fetching outstanding news:", error);
   }

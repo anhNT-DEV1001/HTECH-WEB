@@ -2,6 +2,7 @@ import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import ProjectSectionClient from './ProjectSectionClient';
 import { htechService } from '@/common/services/htech.service';
+import { extractListFromApiResponse, resolveApiAssetUrl } from '@/common/utils/api';
 
 const IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp', '.svg', '.avif']);
 
@@ -9,12 +10,6 @@ type ProjectSectionProject = {
   id?: number | string;
   thumbnail_url?: string | null;
   [key: string]: unknown;
-};
-
-type OutstandingProjectsResponse = {
-  data?: {
-    data?: ProjectSectionProject[];
-  } | ProjectSectionProject[];
 };
 
 async function getPartnerLogos(folder: 'in' | 'out') {
@@ -41,25 +36,12 @@ export default async function ProjectSection({ lng }: { lng: string }) {
   ]);
 
   try {
-    const response = await htechService.getOutstandingProjects() as OutstandingProjectsResponse;
+    const response = await htechService.getOutstandingProjects();
 
-    if (response?.data && !Array.isArray(response.data) && Array.isArray(response.data.data)) {
-       projectList = response.data.data;
-    } else if (Array.isArray(response?.data)) {
-       projectList = response.data;
-    }
-
-    // Format the thumbnail URL
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
-    const host = apiUrl.replace(/\/api\/v1\/?$/, ''); // Remove /api/v1 from host
-
-    projectList = projectList.map((item) => {
-      let url = typeof item.thumbnail_url === 'string' ? item.thumbnail_url : '';
-      if (url && !url.startsWith('http')) {
-        url = `${host}${url.startsWith('/') ? url : `/${url}`}`;
-      }
-      return { ...item, thumbnail_url: url || '/assets/services/s2.jpg' };
-    });
+    projectList = extractListFromApiResponse<ProjectSectionProject>(response).map((item) => ({
+      ...item,
+      thumbnail_url: resolveApiAssetUrl(item.thumbnail_url, '/assets/services/s2.jpg'),
+    }));
   } catch (error) {
     console.error("Error fetching outstanding projects:", error);
   }

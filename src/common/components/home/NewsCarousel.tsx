@@ -44,7 +44,7 @@ export default function NewsCarousel({ lng, newsList }: { lng: string; newsList:
         ref={scrollContainerRef}
         className={`w-full px-4 md:px-8 lg:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${showArrows
           ? 'flex overflow-x-auto snap-x snap-mandatory gap-6 lg:gap-8 pb-4'
-          : 'grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8'
+          : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8'
           }`}
       >
         {newsList.map((item, index) => {
