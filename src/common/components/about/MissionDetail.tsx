@@ -36,7 +36,7 @@ export default function MissionDetailsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-xl md:text-3xl font-bold text-[#1a388a] mb-4">
+          <h2 className="text-xl md:text-3xl font-bold uppercase text-[#1a388a] mb-4">
             Sứ mệnh
           </h2>
         </motion.div>

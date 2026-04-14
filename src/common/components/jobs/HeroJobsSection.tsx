@@ -36,10 +36,10 @@ export default function HeroJobsSection({ lng }: Props) {
     >
       <motion.h1
         variants={itemVariants as any}
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E0D01] text-center px-4"
+        className="hero-title-logo-gradient hero-title-vn-safe text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-center px-4"
       >
         {t("jobs_hero_title_1")}{" "}
-        <span className="italic text-[#1E0D01]">{t("jobs_hero_title_2")}</span>{" "}
+        <span className="hero-title-logo-gradient">{t("jobs_hero_title_2")}</span>{" "}
         {t("jobs_hero_title_3")}
       </motion.h1>
 

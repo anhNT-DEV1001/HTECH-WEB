@@ -103,7 +103,7 @@ export default async function NewsDetailPage({
                 </div>
               )}
 
-              <h1 className="text-3xl md:text-5xl font-bold text-[#1E0D01] leading-tight mb-4">
+              <h1 className="text-3xl md:text-5xl font-bold uppercase text-[#1E0D01] leading-tight mb-4">
                 {title}
               </h1>
 
@@ -136,7 +136,7 @@ export default async function NewsDetailPage({
           {/* Sidebar - Related Articles (Right Column - 1/3 width on desktop) */}
           <aside className="w-full lg:w-1/3">
             <div className="sticky top-32">
-              <h3 className="text-xl font-bold px-4 mb-6 text-[#1E0D01]">
+              <h3 className="text-xl font-bold uppercase px-4 mb-6 text-[#1E0D01]">
                 Bài viết liên quan
               </h3>
 

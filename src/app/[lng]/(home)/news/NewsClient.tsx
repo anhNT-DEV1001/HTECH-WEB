@@ -54,7 +54,7 @@ export default function NewsClient({ lng, initialCategories, initialNewsList, me
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
           <div className="flex items-center gap-3">
-            <h1 className="text-4xl font-bold text-[#1E0D01]">{'Tin Tức'}</h1>
+            <h1 className="text-4xl font-bold uppercase text-[#1E0D01]">{'Tin Tức'}</h1>
           </div>
 
           {/* Search Bar */}

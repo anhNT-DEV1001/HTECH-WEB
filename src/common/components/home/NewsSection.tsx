@@ -37,7 +37,7 @@ export default async function NewsSection({ lng }: { lng: string }) {
       <div className="w-full max-w-7xl flex flex-col items-center">
 
         {/* Header */}
-        <h2 className="text-[#1E0D01] font-bold text-3xl md:text-4xl mb-12 text-center">
+        <h2 className="text-[#1E0D01] font-bold uppercase text-3xl md:text-4xl mb-12 text-center">
           {t('news_title')}
         </h2>
 

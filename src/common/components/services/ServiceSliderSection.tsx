@@ -203,7 +203,7 @@ export default function ServiceSliderSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-10"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-gray-800 mb-3">
             Trải nghiệm Dịch vụ
           </h2>
           <p className="text-gray-500 text-sm sm:text-base max-w-l mx-auto leading-relaxed">

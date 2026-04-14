@@ -1,100 +1,114 @@
 "use client";
 
-import { 
-  ArrowUpRight, 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
-  MapPin, 
-  Mail, 
-  Phone 
+import {
+  ArrowUpRight,
+  Facebook,
+  Instagram,
+  Linkedin,
+  MapPin,
+  Mail,
+  Phone
 } from "lucide-react";
 import Link from "next/link";
 import { useClientTranslation } from "@/i18n";
+import { useEffect, useState } from "react";
+import { htechService } from "@/common/services/htech.service";
 
 export default function Footer({ lng }: { lng: string }) {
   const { t } = useClientTranslation(lng);
+  const [companyInfo, setCompanyInfo] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchCompanyInfo = async () => {
+      try {
+        const res: any = await htechService.getCompanyInfo();
+        if (res?.data) {
+          setCompanyInfo(res.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch company info", error);
+      }
+    };
+    fetchCompanyInfo();
+  }, []);
 
   return (
     <footer className="bg-[#f4f6f9] pt-10 md:py-12 text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
-        
-        {/* SECTION 1: Logo, Giới thiệu, Sản phẩm */}
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-12">
-          {/* Cột 1: Logo */}
-          <div className="md:col-span-5 space-y-4 flex flex-col items-start">
-            <img src="/assets/logo.png" alt="HTECH Logo" className="h-10 md:h-12 w-auto object-contain" />
-            <h1 className="text-sm md:text-base font-bold uppercase tracking-wide">
-              {t('footer_company_name')}
-            </h1>
+        {/* SECTION 2: Logo (Footage), Liên hệ, Giới thiệu, Sản phẩm */}
+        <section className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:grid-cols-12">
+          {/* Footage / Logo */}
+          <div className="lg:col-span-3 space-y-4">
+            <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 md:h-16 w-auto object-contain" />
+            <p className="text-sm text-gray-500 italic">{companyInfo?.name || t('footer_company_name')}</p>
           </div>
-          
-          {/* Cột 2: Giới thiệu */}
-          <div className="md:col-span-4 space-y-3 md:space-y-4">
-            <h2 className="text-base md:text-lg font-bold">{t('footer_about')}</h2>
-            <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
-              <Link href="/" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_home')}</Link>
-              <Link href="/abouts" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_about_us')}</Link>
-              <Link href="/partner" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_partnership')}</Link>
-              <Link href="/privacy" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_privacy')}</Link>
-              <Link href="/terms" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_terms')}</Link>
+          {/* Giới thiệu */}
+          <div className="lg:col-span-3 space-y-4 whitespace-nowrap">
+            <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_about')}</h2>
+            <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
+              <Link href="/" className="hover:text-[#EF5941] transition-colors">{t('footer_home')}</Link>
+              <Link href="/abouts" className="hover:text-[#EF5941] transition-colors">{t('footer_about_us')}</Link>
+              <Link href="/partner" className="hover:text-[#EF5941] transition-colors">{t('footer_partnership')}</Link>
+              <Link href="/privacy" className="hover:text-[#EF5941] transition-colors">{t('footer_privacy')}</Link>
+              <Link href="/terms" className="hover:text-[#EF5941] transition-colors">{t('footer_terms')}</Link>
             </div>
           </div>
 
-          {/* Cột 3: Sản phẩm */}
-          <div className="md:col-span-3 space-y-3 md:space-y-4">
-            <h2 className="text-base md:text-lg font-bold">{t('footer_products')}</h2>
-            <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
-              <Link href="/services" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_services')}</Link>
-              <Link href="/projects" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_projects')}</Link>
-              <Link href="/news" className="hover:text-[#EF5941] transition-colors py-1 md:py-0">{t('footer_news')}</Link>
+          {/* Sản phẩm */}
+          <div className="lg:col-span-2 space-y-4 whitespace-nowrap">
+            <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_products')}</h2>
+            <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
+              <Link href="/services" className="hover:text-[#EF5941] transition-colors">{t('footer_services')}</Link>
+              <Link href="/projects" className="hover:text-[#EF5941] transition-colors">{t('footer_projects')}</Link>
+              <Link href="/news" className="hover:text-[#EF5941] transition-colors">{t('footer_news')}</Link>
             </div>
           </div>
+          {/* Liên hệ */}
+          <div className="lg:col-span-4 space-y-4 whitespace-nowrap">
+            <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_contact')}</h2>
+            <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
+              <p className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 shrink-0 text-[#EF5941]" />
+                <span>{t('footer_address')}: {companyInfo?.address || '120 phố Yên Lãng, Đống Đa, Hà Nội'}</span>
+              </p>
+              <p className="flex items-center gap-3">
+                <Mail className="h-5 w-5 shrink-0 text-[#EF5941]" />
+                <span>Email: {companyInfo?.email || 'physicmommaycry@gmail.com'}</span>
+              </p>
+              <p className="flex items-center gap-3">
+                <Phone className="h-5 w-5 shrink-0 text-[#EF5941]" />
+                <span>Tel: {companyInfo?.phone || '(024) 67676789'}</span>
+              </p>
+            </div>
+          </div>
+
         </section>
 
-        {/* SECTION 2: Liên hệ, Kết nối */}
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-12">
-          {/* Cột 1: Thông tin liên hệ */}
-          <div className="md:col-span-5 space-y-3 md:space-y-4">
-            <h2 className="text-base md:text-lg font-bold">{t('footer_contact')}</h2>
-            <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
-              <p className="flex items-start md:items-center gap-3">
-                <MapPin className="h-5 w-5 shrink-0 mt-0.5 md:mt-0" />
-                <span>{t('footer_address')}: 120 phố Yên Lãng, Đống Đa, Hà Nội</span>
-              </p>
-              <p className="flex items-center gap-3">
-                <Mail className="h-5 w-5 shrink-0" />
-                <span>Email: physicmommaycry@gmail.com</span>
-              </p>
-              <p className="flex items-center gap-3">
-                <Phone className="h-5 w-5 shrink-0" />
-                <span>Tel: (024) 67676789</span>
-              </p>
+        {/* SECTION 3: Mạng xã hội (Hàng ngang) */}
+        <section className="flex flex-col md:flex-row items-center justify-between pt-8 gap-6">
+          <div className="flex items-center gap-4">
+            <h2 className="text-base font-bold text-gray-700 whitespace-nowrap">{t('footer_social')}:</h2>
+            <div className="flex items-center gap-6">
+              <Link href="#" className="text-gray-600 hover:text-[#EF5941] transition-all transform hover:scale-110">
+                <Facebook className="h-6 w-6" />
+              </Link>
+              <Link href="#" className="text-gray-600 hover:text-[#EF5941] transition-all transform hover:scale-110">
+                <Instagram className="h-6 w-6" />
+              </Link>
+              <Link href="#" className="text-gray-600 hover:text-[#EF5941] transition-all transform hover:scale-110">
+                <Linkedin className="h-6 w-6" />
+              </Link>
             </div>
           </div>
 
-          {/* Cột 2: Mạng xã hội */}
-          <div className="md:col-span-4 space-y-3 md:space-y-4">
-            <h2 className="text-base md:text-lg font-bold">{t('footer_social')}</h2>
-            <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
-              <Link href="#" className="flex items-center w-fit hover:text-[#EF5941] transition-colors py-1 md:py-0">
-                <Facebook className="h-5 w-5" /> <span className="ml-2">htechevent.com</span>
-              </Link>
-              <Link href="#" className="flex items-center w-fit hover:text-[#EF5941] transition-colors py-1 md:py-0">
-                <Instagram className="h-5 w-5" /> <span className="ml-2">htechevent.com</span>
-              </Link>
-              <Link href="#" className="flex items-center w-fit hover:text-[#EF5941] transition-colors py-1 md:py-0">
-                <Linkedin className="h-5 w-5" /> <span className="ml-2">htechevent.com</span>
-              </Link>
-            </div>
+          {/* Bản quyền (Chuyển xuống đây cho gọn) */}
+          <div className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
+            <p>© 2026 HTECH. All Rights Reserved.</p>
           </div>
-          
-          {/* Cột 3: Để trống duy trì Grid trên PC */}
-          <div className="hidden md:block md:col-span-3"></div>
         </section>
 
         {/* SECTION 3: Box Liên hệ hợp tác */}
-        <section className="flex flex-col sm:flex-row items-center justify-between rounded-2xl bg-white p-5 sm:px-8 sm:py-4 shadow-sm gap-4 text-center sm:text-left">
+        {/* <section className="flex flex-col sm:flex-row items-center justify-between rounded-2xl bg-white p-5 sm:px-8 sm:py-4 shadow-sm gap-4 text-center sm:text-left">
           <p className="text-base md:text-lg font-semibold">{t('footer_cta_text')}</p>
           <Link 
             href="/abouts" 
@@ -102,12 +116,8 @@ export default function Footer({ lng }: { lng: string }) {
           >
             {t('footer_cta_button')} <ArrowUpRight className="h-5 w-5"/>
           </Link>
-        </section>
+        </section> */}
 
-        {/* Bản quyền */}
-        <section className="pt-2 pb-2 text-center text-xs md:text-sm text-gray-500 border-t border-gray-200/60 md:border-none md:pt-4">
-          <p>© 2026 HTECH. All Rights Reserved.</p>
-        </section>
 
       </div>
     </footer>

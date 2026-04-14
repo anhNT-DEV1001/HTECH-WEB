@@ -13,7 +13,7 @@ export default function Services({ params: { lng } }: Props) {
     <div className="">
       <HeroServiceSection lng={lng} />
       <ServiceSliderSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </div>
   )
 }

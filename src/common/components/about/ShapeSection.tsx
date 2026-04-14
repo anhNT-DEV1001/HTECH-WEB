@@ -39,7 +39,7 @@ export default function ShapeSection() {
           // Sử dụng -mt-24 (margin-top âm) để kéo thẻ này đè lên ảnh
           className="relative z-10 w-11/12 md:w-full max-w-4xl bg-[#f5f5f5] rounded-[32px] p-8 md:p-14 -mt-20 md:-mt-28 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
         >
-          <h2 className="text-lg md:text-3xl font-bold text-[#333333] text-center mb-6">
+          <h2 className="text-lg md:text-3xl font-bold uppercase text-[#333333] text-center mb-6">
             Định hình sứ mệnh
           </h2>
           <p className="text-[#666666] text-lg md:text-lg leading-relaxed  font-normal">

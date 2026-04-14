@@ -316,7 +316,7 @@ export default function JobsListSection({ lng }: Props) {
     <section className="w-full bg-[#F8F9FC] py-14">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* ── Section Header ────────────────────────────────────────────── */}
-        <h2 className="text-xl sm:text-2xl font-bold text-[#1E0D01] mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold uppercase text-[#1E0D01] mb-6">
           {t("jobs_section_title")}
         </h2>
 

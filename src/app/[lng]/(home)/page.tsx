@@ -1,7 +1,7 @@
 import { JsonLangFile } from "@/enums";
 import { useServerTranslation } from "@/i18n";
 import HeroSection from "@/common/components/home/HeroSection";
-import ServiceSection from "@/common/components/home/ServiceSection";
+// import ServiceSection from "@/common/components/home/ServiceSection";
 import FieldSection from "@/common/components/home/FieldSection";
 import ProjectSection from "@/common/components/home/ProjectSection";
 import NewsSection from "@/common/components/home/NewsSection";
@@ -16,7 +16,7 @@ export default async function Home({
     <main className="min-h-screen pt-4 flex flex-col">
       {/* Đã thêm background trắng và gradient overlay 25% vào hero-section */}
       <HeroSection/>
-      <ServiceSection lng={lng} />
+      {/* <ServiceSection lng={lng} /> */}
       <FieldSection/>
       <ProjectSection lng={lng} />
       <NewsSection lng={lng} />

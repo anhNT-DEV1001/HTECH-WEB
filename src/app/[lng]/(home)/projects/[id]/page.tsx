@@ -181,7 +181,7 @@ export default async function ProjectDetailPage({
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight drop-shadow-lg max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white leading-tight drop-shadow-lg max-w-3xl">
             {title}
           </h1>
           <div className="h-1 w-16 rounded-full bg-[#EF5941]" />
@@ -204,7 +204,7 @@ export default async function ProjectDetailPage({
           {/* Info cards */}
           {infoCards.length > 0 && (
             <section>
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-bold uppercase text-gray-900 mb-4 flex items-center gap-2">
                 <span className="h-5 w-1 rounded-full bg-[#EF5941] inline-block" />
                 Thông tin dự án
               </h2>
@@ -219,7 +219,7 @@ export default async function ProjectDetailPage({
           {/* Description */}
           {description && (
             <section>
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-bold uppercase text-gray-900 mb-4 flex items-center gap-2">
                 <span className="h-5 w-1 rounded-full bg-[#EF5941] inline-block" />
                 Mô tả chi tiết
               </h2>
@@ -233,7 +233,7 @@ export default async function ProjectDetailPage({
           {/* Image Gallery */}
           {images.length > 0 && (
             <section>
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-bold uppercase text-gray-900 mb-4 flex items-center gap-2">
                 <span className="h-5 w-1 rounded-full bg-[#EF5941] inline-block" />
                 Hình ảnh dự án
               </h2>

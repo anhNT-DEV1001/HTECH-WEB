@@ -23,7 +23,7 @@ export default function MissionVisionSection() {
             viewport={{ once: true, amount: 0.3 }} 
             transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
           >
-            <h2 className="text-xl md:text-2xl font-extrabold mb-6 leading-tight">
+            <h2 className="text-xl md:text-2xl font-extrabold uppercase mb-6 leading-tight">
               Tầm nhìn
             </h2>
             <p className="text-sm md:text-lg text-blue-100 mb-6 leading-relaxed">

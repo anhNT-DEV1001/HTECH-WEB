@@ -14,12 +14,12 @@ export default function HeroPartnerSection({ lng }: Props) {
     <section className="relative w-full h-[70vh] md:h-[85vh] -mt-20 flex items-end overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[1.12] saturate-105"
         style={{ backgroundImage: "url('/assets/partners/hero.jpg')" }}
       />
       
       {/* Dark Overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/16 to-black/5" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pb-12 md:pb-20">
@@ -29,7 +29,7 @@ export default function HeroPartnerSection({ lng }: Props) {
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#EF5941] leading-none"
+            className="hero-title-logo-gradient hero-title-vn-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase"
           >
             {t("partner_hero_title")}
           </motion.h1>

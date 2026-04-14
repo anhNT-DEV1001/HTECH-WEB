@@ -101,6 +101,14 @@ export const htechService = {
     return axiosInstance.get(`/jobs/htech/${id}`);
   },
 
+  /**
+   * Fetch company info
+   * GET /company/get-company-info
+   */
+  getCompanyInfo: async () => {
+    return axiosInstance.get('/company/get-company-info');
+  },
+
   sendMailContact: async (data: ContactData) => {
     return axiosInstance.post('/mails/submit', data);
   }

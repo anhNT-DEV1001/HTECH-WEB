@@ -9,7 +9,7 @@ export default function Abouts() {
       <ShapeSection />
       <MissionVisionSection />
       <MissionDetailsSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </div>
   )
 }

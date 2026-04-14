@@ -23,7 +23,7 @@ export default function MissionPartnerSection({ lng }: Props) {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="w-full md:w-1/2"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#222222] mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-[#222222] mb-6">
               {t("partner_mission_title")}
             </h2>
             <p className="text-[#666666] text-sm md:text-base leading-relaxed">

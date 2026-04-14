@@ -1,17 +1,9 @@
 import { languages } from "@/i18n";
-import "../globals.css";
+import "@/app/globals.css";
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro } from "next/font/google";
 import Header from "@/common/components/ui/Header";
 import Footer from "@/common/components/ui/Footer";
 import ScrollToTop from "@/common/components/ui/ScrollToTop";
-
-const beVietnamPro = Be_Vietnam_Pro({
-  subsets: ["vietnamese", "latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-be-vietnam-pro",
-  display: "swap",
-});
 
 export async function generateMetadata({
   params,
@@ -124,8 +116,7 @@ export default async function RootLayout({
 
   return (
     <html lang={lng}>
-      <body
-        className={`${beVietnamPro.variable} font-sans h-full w-full relative`}>
+      <body className="font-sans h-full w-full relative">
         <Header slug={lng} />
         <div className="pt-20">
           {children}

@@ -12,7 +12,7 @@ export default async function Projects({ params }: Props) {
     <div>
       <HeroProjectSection lng={lng} />
       <ProjectListSection slug={lng} />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </div>
   );
 }

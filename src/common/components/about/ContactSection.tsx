@@ -67,7 +67,7 @@ export default function ContactSection() {
         transition={{ duration: 0.6 }}
         className="text-center mb-10"
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-[#222222] mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold uppercase text-[#222222] mb-4">
           Liên hệ với chúng tôi
         </h2>
         <p className="text-[#666666] text-sm md:text-base max-w-lg mx-auto">

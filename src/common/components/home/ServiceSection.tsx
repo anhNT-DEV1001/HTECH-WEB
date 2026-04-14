@@ -28,7 +28,7 @@ export default function ServiceSection({ lng }: { lng: string }) {
     <section id="section-service" className="flex flex-col items-center py-12 px-4 w-full overflow-hidden">
       {/* Header */}
       <motion.h1 
-        className="text-[#1E0D01] font-bold text-3xl text-center mb-8"
+        className="text-[#1E0D01] font-bold uppercase text-3xl text-center mb-8"
         variants={fadeUpVariant as any}
         initial="hidden"
         whileInView="show"
@@ -48,7 +48,7 @@ export default function ServiceSection({ lng }: { lng: string }) {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <h2 className="text-[#1E0D01] font-bold text-2xl md:text-3xl leading-snug">
+          <h2 className="text-[#1E0D01] font-bold uppercase text-2xl md:text-3xl leading-snug">
             {t('service_heading')}
           </h2>
           <p className="text-[#1E0D01]/80 leading-relaxed text-lg pr-0 lg:pr-10">

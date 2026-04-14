@@ -243,7 +243,7 @@ export default function ProjectListSection({ slug }: Props) {
         {/* ── Header ─────────────────────────────────────────────────────────── */}
         <div className="mb-8 flex flex-col gap-1">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#EF5941]">Danh mục dự án</p>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+          <h2 className="text-2xl sm:text-3xl font-extrabold uppercase text-gray-900">
             Tất cả dự án
             {meta.total > 0 && (
               <span className="ml-3 text-base font-semibold text-gray-400">({meta.total})</span>

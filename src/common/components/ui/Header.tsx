@@ -212,6 +212,12 @@ export default function Header({slug} : any) {
                 <Link href={getLocalizedUrl('/news')}>{t('news')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/contact']) && activeStyle)}>
+                <Link href={getLocalizedUrl('/contact')}>{t('contact')}</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
             
           </NavigationMenuList>
         </NavigationMenu>
