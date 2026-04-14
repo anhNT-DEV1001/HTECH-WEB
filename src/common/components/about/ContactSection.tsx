@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { htechService } from "@/common/services/htech.service";
+import { useClientTranslation } from "@/i18n";
 
 type ContactFormData = {
   fullName: string;
@@ -20,7 +21,8 @@ const initialFormData: ContactFormData = {
   message: "",
 };
 
-export default function ContactSection() {
+export default function ContactSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
@@ -48,10 +50,10 @@ export default function ContactSection() {
         message: formData.message.trim(),
       });
 
-      setSubmitMessage("Gửi thông tin thành công. Chúng tôi sẽ liên hệ lại sớm nhất.");
+      setSubmitMessage(t("about_contact_success"));
       setFormData(initialFormData);
     } catch {
-      setSubmitError("Không thể gửi thông tin lúc này. Vui lòng thử lại sau.");
+      setSubmitError(t("about_contact_error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -68,10 +70,10 @@ export default function ContactSection() {
         className="text-center mb-10"
       >
         <h2 className="text-2xl md:text-3xl font-bold uppercase text-[#222222] mb-4">
-          Liên hệ với chúng tôi
+          {t("about_contact_title")}
         </h2>
         <p className="text-[#666666] text-sm md:text-base max-w-lg mx-auto">
-          Thông tin bạn cung cấp sẽ được cam kết bảo mật và chỉ sử dụng cho mục đích liên hệ.
+          {t("about_contact_privacy")}
         </p>
       </motion.div>
 
@@ -86,11 +88,11 @@ export default function ContactSection() {
         <form className="flex flex-col space-y-6" onSubmit={sendContactMail}>
           {/* Họ tên */}
           <div className="flex flex-col">
-            <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">Họ tên*</label>
+            <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">{t("about_contact_fullname")}</label>
             <input
               name="fullName"
               type="text"
-              placeholder="Họ và tên đầy đủ"
+              placeholder={t("about_contact_fullname_placeholder")}
               className="w-full bg-[#f4f4f5] text-gray-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-red-400 transition-all placeholder:text-gray-400"
               value={formData.fullName}
               onChange={handleInputChange}
@@ -100,11 +102,11 @@ export default function ContactSection() {
 
           {/* Email */}
           <div className="flex flex-col">
-            <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">Email*</label>
+            <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">{t("about_contact_email")}</label>
             <input
               name="email"
               type="email"
-              placeholder="Địa chỉ Email liên hệ"
+              placeholder={t("about_contact_email_placeholder")}
               className="w-full bg-[#f4f4f5] text-gray-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-red-400 transition-all placeholder:text-gray-400"
               value={formData.email}
               onChange={handleInputChange}
@@ -115,11 +117,11 @@ export default function ContactSection() {
           {/* Số điện thoại và Công ty (Layout 2 cột trên Desktop) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col">
-              <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">Số điện thoại*</label>
+              <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">{t("about_contact_phone")}</label>
               <input
                 name="phone"
                 type="tel"
-                placeholder="Số điện thoại liên hệ"
+                placeholder={t("about_contact_phone_placeholder")}
                 className="w-full bg-[#f4f4f5] text-gray-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-red-400 transition-all placeholder:text-gray-400"
                 value={formData.phone}
                 onChange={handleInputChange}
@@ -127,11 +129,11 @@ export default function ContactSection() {
               />
             </div>
             <div className="flex flex-col">
-              <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">Công ty</label>
+              <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">{t("about_contact_company")}</label>
               <input
                 name="company"
                 type="text"
-                placeholder="Tên công ty (nếu có)"
+                placeholder={t("about_contact_company_placeholder")}
                 className="w-full bg-[#f4f4f5] text-gray-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-red-400 transition-all placeholder:text-gray-400"
                 value={formData.company}
                 onChange={handleInputChange}
@@ -141,10 +143,10 @@ export default function ContactSection() {
 
           {/* Lời nhắn */}
           <div className="flex flex-col">
-            <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">Lời nhắn*</label>
+            <label className="text-sm font-semibold text-gray-800 mb-2 ml-2">{t("about_contact_message")}</label>
             <textarea
               name="message"
-              placeholder="Vui lòng để lại lời nhắn của bạn, chúng tôi sẽ phản hồi sớm nhất có thể..."
+              placeholder={t("about_contact_message_placeholder")}
               rows={4}
               className="w-full bg-[#f4f4f5] text-gray-700 rounded-[24px] px-6 py-4 focus:outline-none focus:ring-2 focus:ring-red-400 transition-all resize-none placeholder:text-gray-400"
               value={formData.message}
@@ -167,7 +169,7 @@ export default function ContactSection() {
               disabled={isSubmitting}
               className="bg-linear-to-r from-[#ff5a5a] to-[#ff3b3b] text-white font-semibold py-4 px-10 rounded-full shadow-[0_8px_20px_rgba(255,90,90,0.4)] hover:shadow-[0_10px_25px_rgba(255,90,90,0.6)] hover:-translate-y-1 transition-all duration-300"
             >
-              {isSubmitting ? "Đang gửi..." : "Gửi thông tin"}
+              {isSubmitting ? t("about_contact_submitting") : t("about_contact_submit")}
             </button>
           </div>
         </form>

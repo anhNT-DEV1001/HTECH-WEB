@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ArrowUpRight,
   Facebook,
   Instagram,
   Linkedin,
@@ -14,14 +13,29 @@ import { useClientTranslation } from "@/i18n";
 import { useEffect, useState } from "react";
 import { htechService } from "@/common/services/htech.service";
 
+type CompanyInfo = {
+  name?: string;
+  address?: string;
+  email?: string;
+  phone?: string;
+};
+
+type CompanyInfoResponse = {
+  data?: CompanyInfo;
+};
+
 export default function Footer({ lng }: { lng: string }) {
   const { t } = useClientTranslation(lng);
-  const [companyInfo, setCompanyInfo] = useState<any>(null);
+  const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
+  const getLocalizedUrl = (path: string) => {
+    const cleanPath = path === "/" ? "" : path;
+    return `/${lng}${cleanPath}`;
+  };
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
       try {
-        const res: any = await htechService.getCompanyInfo();
+        const res = await htechService.getCompanyInfo() as CompanyInfoResponse;
         if (res?.data) {
           setCompanyInfo(res.data);
         }
@@ -46,11 +60,11 @@ export default function Footer({ lng }: { lng: string }) {
           <div className="lg:col-span-3 space-y-4 whitespace-nowrap">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_about')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
-              <Link href="/" className="hover:text-[#EF5941] transition-colors">{t('footer_home')}</Link>
-              <Link href="/abouts" className="hover:text-[#EF5941] transition-colors">{t('footer_about_us')}</Link>
-              <Link href="/partner" className="hover:text-[#EF5941] transition-colors">{t('footer_partnership')}</Link>
-              <Link href="/privacy" className="hover:text-[#EF5941] transition-colors">{t('footer_privacy')}</Link>
-              <Link href="/terms" className="hover:text-[#EF5941] transition-colors">{t('footer_terms')}</Link>
+              <Link href={getLocalizedUrl("/")} className="hover:text-[#EF5941] transition-colors">{t('footer_home')}</Link>
+              <Link href={getLocalizedUrl("/abouts")} className="hover:text-[#EF5941] transition-colors">{t('footer_about_us')}</Link>
+              <Link href={getLocalizedUrl("/partners")} className="hover:text-[#EF5941] transition-colors">{t('footer_partnership')}</Link>
+              <Link href={getLocalizedUrl("/privacy")} className="hover:text-[#EF5941] transition-colors">{t('footer_privacy')}</Link>
+              <Link href={getLocalizedUrl("/terms")} className="hover:text-[#EF5941] transition-colors">{t('footer_terms')}</Link>
             </div>
           </div>
 
@@ -58,9 +72,9 @@ export default function Footer({ lng }: { lng: string }) {
           <div className="lg:col-span-2 space-y-4 whitespace-nowrap">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_products')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
-              <Link href="/services" className="hover:text-[#EF5941] transition-colors">{t('footer_services')}</Link>
-              <Link href="/projects" className="hover:text-[#EF5941] transition-colors">{t('footer_projects')}</Link>
-              <Link href="/news" className="hover:text-[#EF5941] transition-colors">{t('footer_news')}</Link>
+              <Link href={getLocalizedUrl("/services")} className="hover:text-[#EF5941] transition-colors">{t('footer_services')}</Link>
+              <Link href={getLocalizedUrl("/projects")} className="hover:text-[#EF5941] transition-colors">{t('footer_projects')}</Link>
+              <Link href={getLocalizedUrl("/news")} className="hover:text-[#EF5941] transition-colors">{t('footer_news')}</Link>
             </div>
           </div>
           {/* Liên hệ */}

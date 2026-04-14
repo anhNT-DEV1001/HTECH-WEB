@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Search, X, Calendar, Building2, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import { htechService } from "@/common/services/htech.service";
+import { useClientTranslation } from "@/i18n";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface ProjectCategory {
   id: number;
   name_vn: string;
-  name_en: string;
+  name_en?: string;
   slug: string;
 }
 
@@ -20,9 +21,11 @@ interface Project {
   title_vn: string;
   title_en: string;
   summary_vn: string;
+  summary_en?: string;
   thumbnail_url: string;
   client_name: string;
   industry_vn: string;
+  industry_en?: string;
   start_date: string;
   end_date: string | null;
   status: "UPCOMING" | "IN_PROGRESS" | "COMPLETED";
@@ -41,9 +44,9 @@ interface Meta {
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const STATUS_MAP = {
-  COMPLETED: { label: "Hoàn thành", color: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" },
-  IN_PROGRESS: { label: "Đang thực hiện", color: "bg-amber-500/15 text-amber-400 border-amber-500/30" },
-  UPCOMING: { label: "Sắp triển khai", color: "bg-sky-500/15 text-sky-400 border-sky-500/30" },
+  COMPLETED: { color: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30", labelKey: "project_status_completed" },
+  IN_PROGRESS: { color: "bg-amber-500/15 text-amber-400 border-amber-500/30", labelKey: "project_status_in_progress" },
+  UPCOMING: { color: "bg-sky-500/15 text-sky-400 border-sky-500/30", labelKey: "project_status_upcoming" },
 };
 
 const API_ORIGIN = (() => {
@@ -59,9 +62,9 @@ function resolveImage(url: string): string {
   return `${API_ORIGIN}${url}`;
 }
 
-function formatDate(dateStr: string | null) {
+function formatDate(dateStr: string | null, lng: string) {
   if (!dateStr) return null;
-  return new Date(dateStr).toLocaleDateString("vi-VN", { month: "2-digit", year: "numeric" });
+  return new Date(dateStr).toLocaleDateString(lng === "en" ? "en-US" : "vi-VN", { month: "2-digit", year: "numeric" });
 }
 
 // ─── Skeleton Card ───────────────────────────────────────────────────────────
@@ -86,9 +89,14 @@ function SkeletonCard() {
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
 
-function ProjectCard({ project, index, slug }: { project: Project; index: number; slug?: string }) {
+function ProjectCard({ project, index, lng }: { project: Project; index: number; lng: string }) {
+  const { t } = useClientTranslation(lng);
   const status = STATUS_MAP[project.status] ?? STATUS_MAP.UPCOMING;
-  const detailHref = `/${slug || 'vi'}/projects/${project.id}`;
+  const detailHref = `/${lng}/projects/${project.id}`;
+  const title = lng === "en" ? (project.title_en || project.title_vn) : project.title_vn;
+  const summary = lng === "en" ? (project.summary_en || project.summary_vn) : project.summary_vn;
+  const categoryName = project.category ? (lng === "en" ? (project.category.name_en || project.category.name_vn) : project.category.name_vn) : "";
+  const statusLabel = t(status.labelKey);
 
   return (
     <motion.div
@@ -98,12 +106,12 @@ function ProjectCard({ project, index, slug }: { project: Project; index: number
       transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
       className="group relative flex flex-col rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl border border-gray-100 hover:border-[#EF5941]/20 transition-all duration-300"
     >
-      <Link href={detailHref} className="absolute inset-0 z-10" aria-label={project.title_vn} />
+      <Link href={detailHref} className="absolute inset-0 z-10" aria-label={title} />
       {/* Thumbnail */}
       <div className="relative h-52 overflow-hidden bg-gray-100">
         <img
           src={resolveImage(project.thumbnail_url)}
-          alt={project.title_vn}
+          alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             const img = e.target as HTMLImageElement;
@@ -118,13 +126,13 @@ function ProjectCard({ project, index, slug }: { project: Project; index: number
         {/* Featured badge */}
         {project.is_featured && (
           <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-[#EF5941] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">
-            ★ Nổi bật
+            ★ {t("project_featured")}
           </span>
         )}
 
         {/* Status badge */}
         <span className={`absolute top-3 right-3 inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold backdrop-blur-sm ${status.color}`}>
-          {status.label}
+          {statusLabel}
         </span>
       </div>
 
@@ -134,19 +142,19 @@ function ProjectCard({ project, index, slug }: { project: Project; index: number
         {project.category && (
           <span className="inline-flex items-center gap-1 text-xs font-medium text-[#EF5941]">
             <Tag className="h-3 w-3" />
-            {project.category.name_vn}
+            {categoryName}
           </span>
         )}
 
         {/* Title */}
         <h3 className="text-base font-bold text-gray-900 leading-snug line-clamp-2 group-hover:text-[#EF5941] transition-colors duration-200">
-          {project.title_vn}
+          {title}
         </h3>
 
         {/* Summary */}
-        {project.summary_vn && (
+        {summary && (
           <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">
-            {project.summary_vn}
+            {summary}
           </p>
         )}
 
@@ -161,8 +169,8 @@ function ProjectCard({ project, index, slug }: { project: Project; index: number
           {(project.start_date || project.end_date) && (
             <span className="inline-flex items-center gap-1.5 text-xs text-gray-400">
               <Calendar className="h-3.5 w-3.5 shrink-0" />
-              {formatDate(project.start_date)}
-              {project.end_date && ` → ${formatDate(project.end_date)}`}
+              {formatDate(project.start_date, lng)}
+              {project.end_date && ` → ${formatDate(project.end_date, lng)}`}
             </span>
           )}
         </div>
@@ -174,13 +182,8 @@ function ProjectCard({ project, index, slug }: { project: Project; index: number
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
-
-interface Props {
-  slug?: string;
-}
-
-export default function ProjectListSection({ slug }: Props) {
+export default function ProjectListSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
   const [projects, setProjects] = useState<Project[]>([]);
   const [categories, setCategories] = useState<ProjectCategory[]>([]);
   const [meta, setMeta] = useState<Meta>({ total: 0, page: 1, limit: 12, totalPages: 1 });
@@ -212,7 +215,7 @@ export default function ProjectListSection({ slug }: Props) {
   useEffect(() => {
     (async () => {
       try {
-        const res: any = await htechService.getProjectCategories();
+        const res = await htechService.getProjectCategories() as { data?: ProjectCategory[] };
         setCategories(res?.data ?? []);
       } catch { /* silent */ }
       finally { setCatLoading(false); }
@@ -223,10 +226,10 @@ export default function ProjectListSection({ slug }: Props) {
   const fetchProjects = useCallback(async () => {
     setLoading(true);
     try {
-      const params: any = { page, limit: 12 };
+      const params: Record<string, string | number> = { page, limit: 12 };
       if (debouncedSearch) params.search = debouncedSearch;
       if (activeCategoryId) params.category_id = activeCategoryId;
-      const res: any = await htechService.getAllProjects(params);
+      const res = await htechService.getAllProjects(params) as { data?: { records?: Project[]; meta?: Meta } };
       setProjects(res?.data?.records ?? []);
       setMeta(res?.data?.meta ?? { total: 0, page: 1, limit: 12, totalPages: 1 });
     } catch { setProjects([]); }
@@ -242,9 +245,9 @@ export default function ProjectListSection({ slug }: Props) {
 
         {/* ── Header ─────────────────────────────────────────────────────────── */}
         <div className="mb-8 flex flex-col gap-1">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#EF5941]">Danh mục dự án</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#EF5941]">{t("project_list_kicker")}</p>
           <h2 className="text-2xl sm:text-3xl font-extrabold uppercase text-gray-900">
-            Tất cả dự án
+            {t("project_list_title")}
             {meta.total > 0 && (
               <span className="ml-3 text-base font-semibold text-gray-400">({meta.total})</span>
             )}
@@ -260,7 +263,7 @@ export default function ProjectListSection({ slug }: Props) {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Tìm kiếm dự án..."
+              placeholder={t("project_list_search_placeholder")}
               className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-10 py-2.5 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-[#EF5941] focus:outline-none focus:ring-2 focus:ring-[#EF5941]/20 transition"
             />
             {search && (
@@ -283,7 +286,7 @@ export default function ProjectListSection({ slug }: Props) {
                 : "border-gray-200 bg-white text-gray-600 hover:border-[#EF5941]/50 hover:text-[#EF5941]"
               }`}
           >
-            Tất cả
+            {t("project_list_all")}
           </button>
           {catLoading
             ? Array.from({ length: 4 }).map((_, i) => (
@@ -298,7 +301,7 @@ export default function ProjectListSection({ slug }: Props) {
                     : "border-gray-200 bg-white text-gray-600 hover:border-[#EF5941]/50 hover:text-[#EF5941]"
                   }`}
               >
-                {cat.name_vn}
+                {lng === "en" ? (cat.name_en || cat.name_vn) : cat.name_vn}
               </button>
             ))}
         </div>
@@ -317,15 +320,15 @@ export default function ProjectListSection({ slug }: Props) {
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 text-4xl">
               🗂️
             </div>
-            <p className="text-lg font-semibold text-gray-700">Không tìm thấy dự án nào</p>
+            <p className="text-lg font-semibold text-gray-700">{t("project_list_empty_title")}</p>
             <p className="text-sm text-gray-400 max-w-xs">
-              Thử thay đổi từ khoá tìm kiếm hoặc chọn danh mục khác.
+              {t("project_list_empty_desc")}
             </p>
             <button
               onClick={() => { setSearch(""); setActiveCategoryId(null); }}
               className="mt-2 rounded-full bg-[#EF5941] px-5 py-2 text-sm font-semibold text-white hover:bg-[#d84e38] transition"
             >
-              Xem tất cả dự án
+              {t("project_list_view_all")}
             </button>
           </motion.div>
         ) : (
@@ -339,7 +342,7 @@ export default function ProjectListSection({ slug }: Props) {
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
               {projects.map((project, i) => (
-                <ProjectCard key={project.id} project={project} index={i} slug={slug} />
+                <ProjectCard key={project.id} project={project} index={i} lng={lng} />
               ))}
             </motion.div>
           </AnimatePresence>

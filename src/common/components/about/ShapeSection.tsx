@@ -2,8 +2,10 @@
 
 import { animate, motion, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { useClientTranslation } from "@/i18n";
 
-export default function ShapeSection() {
+export default function ShapeSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
   return (
     <section 
       id="shape-section" 
@@ -40,10 +42,10 @@ export default function ShapeSection() {
           className="relative z-10 w-11/12 md:w-full max-w-4xl bg-[#f5f5f5] rounded-[32px] p-8 md:p-14 -mt-20 md:-mt-28 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
         >
           <h2 className="text-lg md:text-3xl font-bold uppercase text-[#333333] text-center mb-6">
-            Định hình sứ mệnh
+            {t("about_shape_title")}
           </h2>
           <p className="text-[#666666] text-lg md:text-lg leading-relaxed  font-normal">
-            HTECH được thành lập với sứ mệnh kế thừa những giá trị cốt lõi của SETECH, đồng thời tiếp tục kết nối công nghệ và giải pháp từ nhiều lĩnh vực khác nhau nhằm ứng dụng hiệu quả vào việc giải quyết các nhu cầu và thách thức tại Việt Nam. Với hơn 20 năm kinh nghiệm trong việc cung cấp và lắp đặt thiết bị an ninh – an toàn, thiết bị điện tử viễn thông; tổ chức các triển lãm quốc tế, hội thảo chuyên ngành và hoạt động tư vấn, HTECH cam kết mang đến những sự kiện và giải pháp có giá trị thực tiễn, tạo tác động tích cực và bền vững.
+            {t("about_shape_description")}
           </p>
         </motion.div>
 
@@ -60,7 +62,7 @@ export default function ShapeSection() {
             <h3 className="text-4xl md:text-5xl font-bold text-[#1E40AF] mb-2 flex items-center">
               <AnimatedNumber value={1000} />+
             </h3>
-            <p className="text-[#666666] text-sm md:text-base font-medium">Khách hàng tin cậy</p>
+            <p className="text-[#666666] text-sm md:text-base font-medium">{t("about_shape_stat_1")}</p>
           </div>
 
           {/* Cột 2 */}
@@ -68,7 +70,7 @@ export default function ShapeSection() {
             <h3 className="text-4xl md:text-5xl font-bold text-[#1E40AF] mb-2 flex items-center">
               <AnimatedNumber value={100} />+
             </h3>
-            <p className="text-[#666666] text-sm md:text-base font-medium">Nhân sự tài năng</p>
+            <p className="text-[#666666] text-sm md:text-base font-medium">{t("about_shape_stat_2")}</p>
           </div>
 
           {/* Cột 3 */}
@@ -76,7 +78,7 @@ export default function ShapeSection() {
             <h3 className="text-4xl md:text-5xl font-bold text-[#1E40AF] mb-2 flex items-center">
               <AnimatedNumber value={150} />+
             </h3>
-            <p className="text-[#666666] text-sm md:text-base font-medium">Thương hiệu đồng hành</p>
+            <p className="text-[#666666] text-sm md:text-base font-medium">{t("about_shape_stat_3")}</p>
           </div>
         </motion.div>
     </section>

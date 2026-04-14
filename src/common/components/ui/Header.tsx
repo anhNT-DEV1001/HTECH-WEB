@@ -26,7 +26,34 @@ import { usePathname } from "next/navigation"
 import { useClientTranslation } from "@/i18n"
 import { JsonLangFile } from "@/enums"
 
-export default function Header({slug} : any) {
+function MobileNavLink({
+  href,
+  children,
+  active,
+  getLocalizedUrl,
+  onClick,
+}: {
+  href: string;
+  children: React.ReactNode;
+  active?: boolean;
+  getLocalizedUrl: (path: string) => string;
+  onClick: () => void;
+}) {
+  return (
+    <Link
+      href={getLocalizedUrl(href)}
+      onClick={onClick}
+      className={cn(
+        "block rounded-md px-4 py-2 text-base font-medium transition-colors hover:bg-[#FFF0ED] hover:text-[#EF5941]",
+        active ? "bg-[#FFF0ED] text-[#EF5941]" : "text-black"
+      )}
+    >
+      {children}
+    </Link>
+  )
+}
+
+export default function Header({ slug }: { slug: string }) {
   const [isOpen, setIsOpen] = React.useState(false)
   const [isVisible, setIsVisible] = React.useState(true)
   const [lastScrollY, setLastScrollY] = React.useState(0)
@@ -74,20 +101,6 @@ export default function Header({slug} : any) {
     });
   };
 
-  // Helper component cho Mobile link để tự động đóng Sheet khi click
-  const MobileLink = ({ href, children, active }: { href: string, children: React.ReactNode, active?: boolean }) => (
-    <Link
-      href={getLocalizedUrl(href)}
-      onClick={() => setIsOpen(false)}
-      className={cn(
-        "block rounded-md px-4 py-2 text-base font-medium transition-colors hover:bg-[#FFF0ED] hover:text-[#EF5941]",
-        active ? "bg-[#FFF0ED] text-[#EF5941]" : "text-black"
-      )}
-    >
-      {children}
-    </Link>
-  )
-
   return (
     <div className={cn(
       "fixed top-0 left-0 right-0 z-50 flex w-full justify-center px-4 pt-4 bg-transparent transition-all duration-500 ease-in-out",
@@ -105,7 +118,7 @@ export default function Header({slug} : any) {
                 </button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[350px] overflow-y-auto pt-10" aria-describedby={undefined}>
-                <SheetTitle className="sr-only">Menu điều hướng</SheetTitle>
+                <SheetTitle className="sr-only">{t('nav_menu')}</SheetTitle>
                 <div className="flex flex-col gap-6">
                   {/* Logo trong Mobile Menu */}
                   <Link href={`/${slug}/`} onClick={() => setIsOpen(false)}>
@@ -116,23 +129,23 @@ export default function Header({slug} : any) {
                   <nav className="flex flex-col gap-2">
                     <div className="space-y-1">
                       <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">HTECH</h4>
-                      <MobileLink href="/" active={pathname === getLocalizedUrl("/")}>{t('home')}</MobileLink>
-                      <MobileLink href="/abouts" active={pathname?.startsWith(getLocalizedUrl("/abouts"))}>{t('abouts')}</MobileLink>
+                      <MobileNavLink href="/" active={pathname === getLocalizedUrl("/")} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('home')}</MobileNavLink>
+                      <MobileNavLink href="/abouts" active={pathname?.startsWith(getLocalizedUrl("/abouts"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('abouts')}</MobileNavLink>
                     </div>
 
                     <div className="space-y-1 mt-4">
-                      <MobileLink href="/projects" active={isMenuActive(['/projects'])}>{t('projects')}</MobileLink>
+                      <MobileNavLink href="/projects" active={isMenuActive(['/projects'])} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('projects')}</MobileNavLink>
                     </div>
 
                     <div className="space-y-1 mt-4">
                       <h4 className="px-4 text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('partnership')}</h4>
-                      <MobileLink href="/partners" active={pathname?.startsWith(getLocalizedUrl("/partners"))}>{t('partners')}</MobileLink>
-                      <MobileLink href="/jobs" active={pathname?.startsWith(getLocalizedUrl("/jobs"))}>{t('jobs')}</MobileLink>
+                      <MobileNavLink href="/partners" active={pathname?.startsWith(getLocalizedUrl("/partners"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('partners')}</MobileNavLink>
+                      <MobileNavLink href="/jobs" active={pathname?.startsWith(getLocalizedUrl("/jobs"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('jobs')}</MobileNavLink>
                     </div>
 
                     <div className="space-y-1 mt-4">
-                      <MobileLink href="/services" active={pathname?.startsWith(getLocalizedUrl("/services"))}>{t('services')}</MobileLink>
-                      <MobileLink href="/news" active={pathname?.startsWith(getLocalizedUrl("/news"))}>{t('news')}</MobileLink>
+                      <MobileNavLink href="/services" active={pathname?.startsWith(getLocalizedUrl("/services"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('services')}</MobileNavLink>
+                      <MobileNavLink href="/news" active={pathname?.startsWith(getLocalizedUrl("/news"))} getLocalizedUrl={getLocalizedUrl} onClick={() => setIsOpen(false)}>{t('news')}</MobileNavLink>
                     </div>
                   </nav>
                 </div>
@@ -225,7 +238,7 @@ export default function Header({slug} : any) {
         {/* Right actions */}
         <div className="flex shrink-0 items-center gap-2 md:gap-4">
           <LanguageSwitcher />
-          <Link href={getLocalizedUrl('/abouts')} className="hidden sm:flex rounded-full bg-[#EF5941] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#d84e38]">
+          <Link href={getLocalizedUrl('/contact')} className="hidden sm:flex rounded-full bg-[#EF5941] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#d84e38]">
             {t('join_us')}
           </Link>
         </div>

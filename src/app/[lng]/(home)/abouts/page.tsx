@@ -1,14 +1,18 @@
-import ContactSection from "@/common/components/about/ContactSection";
 import MissionVisionSection from "@/common/components/about/Mission";
 import MissionDetailsSection from "@/common/components/about/MissionDetail";
 import ShapeSection from "@/common/components/about/ShapeSection";
 
-export default function Abouts() {
+export default async function Abouts({
+  params,
+}: {
+  params: Promise<{ lng: string }>;
+}) {
+  const { lng } = await params;
   return (
     <div className="">
-      <ShapeSection />
-      <MissionVisionSection />
-      <MissionDetailsSection />
+      <ShapeSection lng={lng} />
+      <MissionVisionSection lng={lng} />
+      <MissionDetailsSection lng={lng} />
       {/* <ContactSection /> */}
     </div>
   )

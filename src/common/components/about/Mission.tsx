@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image"; // Nên dùng next/image như mình đã tối ưu ở dưới
-import MissionDetailsSection from "./MissionDetail";
+import { useClientTranslation } from "@/i18n";
 
-export default function MissionVisionSection() {
+export default function MissionVisionSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
   return (
     <section
       id="mission-section"
@@ -24,13 +25,13 @@ export default function MissionVisionSection() {
             transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
           >
             <h2 className="text-xl md:text-2xl font-extrabold uppercase mb-6 leading-tight">
-              Tầm nhìn
+              {t("about_vision_title")}
             </h2>
             <p className="text-sm md:text-lg text-blue-100 mb-6 leading-relaxed">
-              HTECH hướng tới trở thành công ty công nghệ khát vọng nâng tầm trí tuệ Việt Nam trên thế giới.
+              {t("about_vision_1")}
             </p>
             <p className="text-sm md:text-lg text-blue-100 leading-relaxed">
-              Đồng hành cùng các Doanh nghiệp, Tập Đoàn kinh doanh thành công trên nền tảng số, đồng thời mang đến cơ hội phát triển sự nghiệp cả về chuyên môn và vật chất cho Cán Bộ Nhân Viên.
+              {t("about_vision_2")}
             </p>
           </motion.div>
 
@@ -46,7 +47,7 @@ export default function MissionVisionSection() {
             {/* Đã sửa đường dẫn thành tuyệt đối (/assets/...) và dùng thẻ Image của Next.js */}
             <Image
               src="/assets/abouts/img.jpeg" 
-              alt="HTECH Tầm nhìn và sứ mệnh"
+              alt={t("about_vision_alt")}
               fill
               className="object-cover filter"
               sizes="(max-width: 768px) 100vw, 60vw"

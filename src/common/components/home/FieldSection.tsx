@@ -1,69 +1,38 @@
 "use client"; // Đừng quên thêm dòng này vì ta dùng useState, useEffect và Framer Motion
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, CalendarDays, Lightbulb, Headset, BriefcaseMedical, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
+import { TrendingUp, CalendarDays, Lightbulb, Headset, BriefcaseMedical } from 'lucide-react';
+import { useClientTranslation } from "@/i18n";
 
-export default function FieldSection() {
+export default function FieldSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
   const fields = [
     {
       icon: TrendingUp,
-      title: "Tư vấn đầu tư",
-      description: "Chuyển giao công nghệ và tham gia các dự án đầu tư"
+      title: t("home_field_1_title"),
+      description: t("home_field_1_description")
     },
     {
       icon: CalendarDays,
-      title: "Tổ chức sự kiện",
-      description: "Triển lãm, hội thảo, kết nối doanh nghiệp\n(business matching)"
+      title: t("home_field_2_title"),
+      description: t("home_field_2_description")
     },
     {
       icon: Lightbulb,
-      title: "Tích hợp giải pháp",
-      description: "Giải pháp phát triển Thành phố\nThông minh (Smart City)"
+      title: t("home_field_3_title"),
+      description: t("home_field_3_description")
     },
     {
       icon: Headset,
-      title: "Cung cấp dịch vụ",
-      description: "Dịch vụ visa, tổ chức tour, in ấn, thiết kế\nvà cung cấp quà tặng"
+      title: t("home_field_4_title"),
+      description: t("home_field_4_description")
     },
     {
       icon: BriefcaseMedical,
-      title: "Y tế",
-      description: "Hoạt động của các bệnh viện, trạm y tế,\ncác cơ sở nuôi dưỡng, điều dưỡng."
+      title: t("home_field_5_title"),
+      description: t("home_field_5_description")
     }
   ];
-
-  // Logic cho hiệu ứng Typing (Gõ chữ)
-  const fullText = "HTECH được xây dựng và phát triển dựa trên nền tảng của đội ngũ trí thức trẻ, năng động, nhiệt huyết và giàu khát vọng, với hơn 10 năm kinh nghiệm trong đa dạng các lĩnh vực.";
-  const [displayedText, setDisplayedText] = useState("");
-
-  useEffect(() => {
-    let i = 0;
-    let intervalId: any;
-    let timeoutId: any;
-
-    const startTyping = () => {
-      setDisplayedText("");
-      i = 0;
-
-      intervalId = setInterval(() => {
-        setDisplayedText(fullText.slice(0, i + 1));
-        i++;
-
-        if (i === fullText.length) {
-          clearInterval(intervalId);
-          timeoutId = setTimeout(startTyping, 4000);
-        }
-      }, 40);
-    };
-
-    startTyping();
-
-    return () => {
-      clearInterval(intervalId as any);
-      clearTimeout(timeoutId as any);
-    };
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -89,15 +58,13 @@ export default function FieldSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        LĨNH VỰC HOẠT ĐỘNG
+        {t("home_field_title")}
       </motion.h2>
 
       {/* Typing Text */}
       <div className="min-h-[90px] md:min-h-[60px] flex justify-center mb-16 w-full px-4">
         <p className="text-center text-[#1E0D01]/80 max-w-4xl text-base md:text-lg leading-relaxed inline-block">
-          {/* {displayedText} */}
-          HTECH được xây dựng và phát triển dựa trên nền tảng của đội ngũ trí thức trẻ, năng động, nhiệt huyết và giàu khát vọng, với hơn 10 năm kinh nghiệm trong đa dạng các lĩnh vực.
-          <span className="animate-pulse font-bold ml-1 text-gray-400"></span>
+          {t("home_field_intro")}
         </p>
       </div>
 

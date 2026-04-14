@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { useRef, useState } from "react";
+import { useClientTranslation } from "@/i18n";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 interface ServiceItem {
@@ -11,45 +12,6 @@ interface ServiceItem {
   image: string;
   featured?: boolean;
 }
-
-const services: ServiceItem[] = [
-  {
-    id: 1,
-    title: "Tư vấn Đầu tư",
-    description:
-      "Chuyển giao công nghệ và tham gia các dự án đầu tư.",
-    image: "/assets/services/slider1.jpg",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Tổ chức Sự kiện",
-    description:
-      "Triển lãm, hội thảo, kết nối doanh nghiệp (business matching, vv...).",
-    image: "/assets/services/slider2.jpg",
-  },
-  {
-    id: 3,
-    title: "Tích hợp Giải pháp",
-    description:
-      "Giải pháp phát triển Thành phố Thông minh (Smart City).",
-    image: "/assets/services/slider3.jpg",
-  },
-  {
-    id: 4,
-    title: "Cung cấp Dịch vụ",
-    description:
-      "Dịch vụ visa, tổ chức tour, in ấn, thiết kế và cung cấp quà tặng, v.v.",
-    image: "/assets/services/slider4.jpg",
-  },
-  {
-    id: 5,
-    title: "Dịch vụ Y tế",
-    description:
-      "Hoạt động của các bệnh viện, trạm y tế, các cơ sở nuôi dưỡng, điều dưỡng. Phát triển các giải pháp/ thiết bị y , y dược",
-    image: "/assets/services/slider5.jpg",
-  },
-];
 
 // ─── Card component ───────────────────────────────────────────────────────────
 function ServiceCard({
@@ -102,7 +64,7 @@ function ServiceCard({
 }
 
 // ─── Slider (mobile horizontal drag) ─────────────────────────────────────────
-function MobileSlider() {
+function MobileSlider({ services, t }: { services: ServiceItem[]; t: (key: string) => string }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const [activeIdx, setActiveIdx] = useState(0);
@@ -132,7 +94,7 @@ function MobileSlider() {
         onDragEnd={handleDragEnd}
         className="flex gap-4 cursor-grab active:cursor-grabbing will-change-transform"
       >
-        {services.map((item, i) => (
+        {services.map((item) => (
           <motion.div
             key={item.id}
             className="flex-shrink-0 w-[280px] bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col"
@@ -159,7 +121,7 @@ function MobileSlider() {
           <button
             key={i}
             onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={`${t("services_slider_title")} ${i + 1}`}
             className={`h-2 rounded-full transition-all duration-300 ${i === activeIdx ? "w-6 bg-blue-600" : "w-2 bg-gray-300"
               }`}
           />
@@ -170,7 +132,7 @@ function MobileSlider() {
 }
 
 // ─── Desktop bento grid ───────────────────────────────────────────────────────
-function DesktopBentoGrid() {
+function DesktopBentoGrid({ services }: { services: ServiceItem[] }) {
   // Layout: row 1 → full-width featured card; row 2 → 2 cards; row 3 → 2 cards
   const featured = services[0];
   const rest = services.slice(1);
@@ -188,7 +150,42 @@ function DesktopBentoGrid() {
 }
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
-export default function ServiceSliderSection() {
+export default function ServiceSliderSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
+  const services: ServiceItem[] = [
+    {
+      id: 1,
+      title: t("services_item_1_title"),
+      description: t("services_item_1_description"),
+      image: "/assets/services/slider1.jpg",
+      featured: true,
+    },
+    {
+      id: 2,
+      title: t("services_item_2_title"),
+      description: t("services_item_2_description"),
+      image: "/assets/services/slider2.jpg",
+    },
+    {
+      id: 3,
+      title: t("services_item_3_title"),
+      description: t("services_item_3_description"),
+      image: "/assets/services/slider3.jpg",
+    },
+    {
+      id: 4,
+      title: t("services_item_4_title"),
+      description: t("services_item_4_description"),
+      image: "/assets/services/slider4.jpg",
+    },
+    {
+      id: 5,
+      title: t("services_item_5_title"),
+      description: t("services_item_5_description"),
+      image: "/assets/services/slider5.jpg",
+    },
+  ];
+
   return (
     <section
       id="service-slider-section"
@@ -204,19 +201,19 @@ export default function ServiceSliderSection() {
           className="text-center mb-10"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-gray-800 mb-3">
-            Trải nghiệm Dịch vụ
+            {t("services_slider_title")}
           </h2>
           <p className="text-gray-500 text-sm sm:text-base max-w-l mx-auto leading-relaxed">
-            HTECH được xây dựng và phát triển dựa trên nền tảng của đội ngũ trí thức trẻ, năng động, nhiệt huyết và giàu khát vọng, với hơn 10 năm kinh nghiệm trong các lĩnh vực: cung cấp và lắp đặt thiết bị an ninh – an toàn; thiết bị viễn thông và điện tử; tổ chức các triển lãm quốc tế, hội thảo chuyên ngành; và cung cấp dịch vụ tư vấn chuyên sâu.
+            {t("services_slider_description")}
           </p>
         </motion.div>
 
         {/* Desktop: bento grid | Mobile: drag slider */}
         <div className="hidden sm:block">
-          <DesktopBentoGrid />
+          <DesktopBentoGrid services={services} />
         </div>
         <div className="block sm:hidden">
-          <MobileSlider />
+          <MobileSlider services={services} t={t} />
         </div>
       </div>
     </section>

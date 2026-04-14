@@ -1,8 +1,26 @@
 import { htechService } from '@/common/services/htech.service';
 import { getLocalizedField } from '@/common/utils/localizedField';
+import { useServerTranslation as getServerTranslation } from '@/i18n';
 import Link from 'next/link';
 
 export const revalidate = 0; // Disable static caching so it always fetches fresh data
+
+type NewsCategory = {
+  name_vn?: string;
+  name_en?: string;
+};
+
+type NewsArticle = {
+  id: number;
+  category_id?: number;
+  category?: NewsCategory | null;
+  title_vn?: string;
+  title_en?: string;
+  content_vn?: string;
+  content_en?: string;
+  thumbnail_url?: string;
+  created_at?: string;
+};
 
 export default async function NewsDetailPage({
   params,
@@ -12,13 +30,14 @@ export default async function NewsDetailPage({
   const resolvedParams = await params;
   const lng = resolvedParams.lng;
   const id = resolvedParams.id;
+  const { t } = await getServerTranslation(lng);
 
-  let article: any = null;
-  let relatedNews: any[] = [];
+  let article: NewsArticle | null = null;
+  let relatedNews: NewsArticle[] = [];
 
   try {
     // 1. Fetch main article details
-    const res: any = await htechService.getNewsById(id);
+    const res = await htechService.getNewsById(id) as { data?: NewsArticle };
     if (res?.data) {
       article = res.data;
 
@@ -30,18 +49,18 @@ export default async function NewsDetailPage({
       }
 
       // 2. Fetch related articles based on the same category
-      const relatedRes: any = await htechService.getAllNews({
+      const relatedRes = await htechService.getAllNews({
         limit: 4, // Fetch 4 in case one of them is the current article
         category_id: article.category_id,
-      });
+      }) as { data?: { records?: NewsArticle[] }; records?: NewsArticle[] };
 
       const records = relatedRes?.data?.records || relatedRes?.records || [];
       if (records && Array.isArray(records)) {
         // Filter out the current article and take only 3
         relatedNews = records
-          .filter((item: any) => String(item.id) !== String(id))
+          .filter((item) => String(item.id) !== String(id))
           .slice(0, 3)
-          .map((item: any) => {
+          .map((item) => {
             let url = item.thumbnail_url;
             if (url && !url.startsWith('http')) {
               url = `${host}${url.startsWith('/') ? url : `/${url}`}`;
@@ -58,10 +77,10 @@ export default async function NewsDetailPage({
     return (
       <div className="min-h-screen bg-gray-50 pt-20 pb-10 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Không tìm thấy bài viết</h2>
-          <p className="text-gray-500 mb-6">Bài viết này có thể đã bị xóa hoặc không tồn tại.</p>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('news_detail_not_found_title')}</h2>
+          <p className="text-gray-500 mb-6">{t('news_detail_not_found_desc')}</p>
           <Link href={`/${lng}/news`} className="bg-[#FF4A3F] text-white px-6 py-3 rounded-full hover:bg-red-600 transition-colors">
-            Quay lại trang tin tức
+            {t('news_detail_back_to_news')}
           </Link>
         </div>
       </div>
@@ -85,7 +104,7 @@ export default async function NewsDetailPage({
         <div className="mb-8">
           <Link href={`/${lng}/news`} className="text-gray-500 hover:text-[#FF4A3F] flex items-center gap-2 text-sm font-medium transition-colors">
             <span className="text-lg leading-none tracking-tighter">«</span>
-            Quay lại Tin Tức
+            {t('news_detail_back_label')}
           </Link>
         </div>
 
@@ -137,12 +156,12 @@ export default async function NewsDetailPage({
           <aside className="w-full lg:w-1/3">
             <div className="sticky top-32">
               <h3 className="text-xl font-bold uppercase px-4 mb-6 text-[#1E0D01]">
-                Bài viết liên quan
+                {t('news_related_title')}
               </h3>
 
               {relatedNews.length > 0 ? (
                 <div className="flex flex-col gap-6">
-                  {relatedNews.map((item: any) => {
+                  {relatedNews.map((item) => {
                     const relTitle = getLocalizedField(item, "title", lng);
                     const relDate = item.created_at ? new Date(item.created_at).toLocaleDateString(lng === 'vi' ? 'vi-VN' : 'en-US', {
                       year: 'numeric',
@@ -176,7 +195,7 @@ export default async function NewsDetailPage({
                   })}
                 </div>
               ) : (
-                <p className="text-gray-500 italic text-sm">Không có bài viết liên quan.</p>
+                <p className="text-gray-500 italic text-sm">{t('news_related_empty')}</p>
               )}
             </div>
           </aside>

@@ -3,15 +3,25 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { htechService } from "@/common/services/htech.service";
+import { useClientTranslation } from "@/i18n";
 
-export default function HeroSection() {
-  const [companyInfo, setCompanyInfo] = useState<any>(null);
-  const [videoError, setVideoError] = useState(false);
+type CompanyInfo = {
+  banner?: string;
+};
+
+type CompanyInfoResponse = {
+  data?: CompanyInfo;
+};
+
+export default function HeroSection({ lng }: { lng: string }) {
+  const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
+  const [failedVideoUrls, setFailedVideoUrls] = useState<Record<string, true>>({});
+  const { t } = useClientTranslation(lng);
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
       try {
-        const res: any = await htechService.getCompanyInfo();
+        const res = (await htechService.getCompanyInfo()) as CompanyInfoResponse;
         if (res?.data) {
           setCompanyInfo(res.data);
         }
@@ -21,10 +31,6 @@ export default function HeroSection() {
     };
     fetchCompanyInfo();
   }, []);
-
-  useEffect(() => {
-    setVideoError(false);
-  }, [companyInfo?.banner]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -63,6 +69,7 @@ export default function HeroSection() {
 
   const bannerUrl = resolveUrl(companyInfo?.banner);
   const isVideo = bannerUrl ? /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(bannerUrl) : false;
+  const hasVideoError = !!(bannerUrl && failedVideoUrls[bannerUrl]);
 
   return (
     <motion.section
@@ -72,19 +79,19 @@ export default function HeroSection() {
       initial="hidden"
       animate="show"
     >
-      <motion.h1 variants={itemVariants as any} className="text-[#1E0D01] font-bold text-3xl">
-        CÔNG TY CỔ PHẦN CÔNG NGHỆ VÀ SỰ KIỆN HTECH
+      <motion.h1 variants={itemVariants} className="text-[#1E0D01] font-bold text-3xl">
+        {t("home_hero_company_name")}
       </motion.h1>
 
-      <motion.small variants={itemVariants as any} className="text-[#1E0D01]/80 mt-2">
-        Kết nối công nghệ - Kiến tạo tăng trưởng bền vững
+      <motion.small variants={itemVariants} className="text-[#1E0D01]/80 mt-2">
+        {t("home_hero_tagline")}
       </motion.small>
 
       <motion.div
-        variants={itemVariants as any}
+        variants={itemVariants}
         className="my-10 w-[90%] max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-lg bg-gray-100"
       >
-        {isVideo && !videoError ? (
+        {isVideo && !hasVideoError ? (
           <video
             key={bannerUrl} // Chuyển key vào đây để trình duyệt biết cần load lại source khi url đổi
             autoPlay
@@ -92,7 +99,11 @@ export default function HeroSection() {
             muted
             playsInline
             preload="auto"
-            onError={() => setVideoError(true)}
+            onError={() => {
+              if (bannerUrl) {
+                setFailedVideoUrls((prev) => ({ ...prev, [bannerUrl]: true }));
+              }
+            }}
             className="w-full h-full object-cover"
           >
             <source src={bannerUrl} />
@@ -114,14 +125,12 @@ export default function HeroSection() {
         )}
       </motion.div>
 
-      <motion.div variants={itemVariants as any} className="text-[#1E0D01] font-bold text-2xl mb-4">
-        Description
+      <motion.div variants={itemVariants} className="text-[#1E0D01] font-bold text-2xl mb-4">
+        {t("home_hero_description_title")}
       </motion.div>
 
-      <motion.small variants={itemVariants as any} className="text-wrap text-center text-[#1E0D01]/70 max-w-2xl px-4">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos numquam dicta, sed vero sunt
-        reiciendis nisi iusto quae molestias ut voluptates fugiat recusandae magni eius hic laborum
-        similique et provident.
+      <motion.small variants={itemVariants} className="text-wrap text-center text-[#1E0D01]/70 max-w-2xl px-4">
+        {t("home_hero_description")}
       </motion.small>
     </motion.section>
   )

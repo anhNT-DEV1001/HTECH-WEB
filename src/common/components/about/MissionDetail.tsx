@@ -2,44 +2,45 @@
 
 import { motion } from "framer-motion";
 import { Network, Globe2, Rocket, ShieldCheck } from "lucide-react";
+import { useClientTranslation } from "@/i18n";
 
-// Tách data ra một mảng để code clean hơn và dễ dàng map()
-const missionDetails = [
-  {
-    icon: Network,
-    text: "Kết nối công nghệ với thị trường, tạo cầu nối hiệu quả giữa đổi mới sáng tạo và ứng dụng thực tiễn.",
-  },
-  {
-    icon: Globe2,
-    text: "Thúc đẩy hợp tác đa ngành và đa quốc gia, mở rộng cơ hội kết nối và phát triển bền vững.",
-  },
-  {
-    icon: Rocket,
-    text: "Dẫn dắt các xu hướng tiên phong tại Việt Nam, góp phần nâng cao vị thế công nghệ trong khu vực.",
-  },
-  {
-    icon: ShieldCheck,
-    text: "Đóng góp vào phát triển bền vững và nâng cao năng lực quốc gia, thông qua các nền tảng kết nối tri thức và công nghệ.",
-  },
-];
+export default function MissionDetailsSection({ lng }: { lng: string }) {
+  const { t } = useClientTranslation(lng);
+  const missionDetails = [
+    {
+      icon: Network,
+      text: t("about_mission_1"),
+    },
+    {
+      icon: Globe2,
+      text: t("about_mission_2"),
+    },
+    {
+      icon: Rocket,
+      text: t("about_mission_3"),
+    },
+    {
+      icon: ShieldCheck,
+      text: t("about_mission_4"),
+    },
+  ];
 
-export default function MissionDetailsSection() {
   return (
     <section className="w-full bg-white py-12 px-6 md:px-12">
       <div className="container mx-auto max-w-6xl">
         
         {/* Tiêu đề của Section (Tuỳ chọn) */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-xl md:text-3xl font-bold uppercase text-[#1a388a] mb-4">
-            Sứ mệnh
-          </h2>
-        </motion.div>
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-xl md:text-3xl font-bold uppercase text-[#1a388a] mb-4">
+            {t("about_mission_title")}
+        </h2>
+      </motion.div>
 
         {/* Layout 2 cột cho danh sách chi tiết */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">

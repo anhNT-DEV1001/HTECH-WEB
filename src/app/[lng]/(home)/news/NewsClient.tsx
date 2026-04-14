@@ -1,13 +1,45 @@
 'use client';
 
-import { useState, useCallback, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { getLocalizedField } from '@/common/utils/localizedField';
-import { Search, ChevronLeft, ChevronRight, Newspaper } from 'lucide-react';
+import { Search, Newspaper } from 'lucide-react';
 import { useClientTranslation } from '@/i18n/client';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function NewsClient({ lng, initialCategories, initialNewsList, meta, currentCategory, currentSearch, currentPage }: any) {
+type NewsCategory = {
+  id: number;
+  name_vn?: string;
+  name_en?: string;
+};
+
+type NewsItem = {
+  id: number;
+  title_vn?: string;
+  title_en?: string;
+  summary_vn?: string;
+  summary_en?: string;
+  description_vn?: string;
+  description_en?: string;
+  thumbnail_url?: string;
+  created_at?: string;
+};
+
+type NewsMeta = {
+  page: number;
+  totalPages: number;
+};
+
+type NewsClientProps = {
+  lng: string;
+  initialCategories: NewsCategory[];
+  initialNewsList: NewsItem[];
+  meta: NewsMeta;
+  currentCategory?: number;
+  currentSearch: string;
+};
+
+export default function NewsClient({ lng, initialCategories, initialNewsList, meta, currentCategory, currentSearch }: NewsClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -18,7 +50,7 @@ export default function NewsClient({ lng, initialCategories, initialNewsList, me
 
   // Update URL function
   const updateUrl = (newParams: Record<string, string | undefined>) => {
-    let currentParams = new URLSearchParams(searchParams.toString());
+    const currentParams = new URLSearchParams(searchParams.toString());
     Object.entries(newParams).forEach(([key, value]) => {
       if (value) {
         currentParams.set(key, value);
@@ -54,14 +86,14 @@ export default function NewsClient({ lng, initialCategories, initialNewsList, me
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
           <div className="flex items-center gap-3">
-            <h1 className="text-4xl font-bold uppercase text-[#1E0D01]">{'Tin Tức'}</h1>
+            <h1 className="text-4xl font-bold uppercase text-[#1E0D01]">{t('news_page_title')}</h1>
           </div>
 
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="relative w-full md:w-96">
             <input
               type="text"
-              placeholder="Tìm kiếm bài viết..."
+              placeholder={t('news_search_placeholder')}
               className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:border-[#FF4A3F] focus:ring-1 focus:ring-[#FF4A3F] transition-all bg-white"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
@@ -81,9 +113,9 @@ export default function NewsClient({ lng, initialCategories, initialNewsList, me
               }`}
             disabled={isPending}
           >
-            Tất cả
+            {t('news_all_categories')}
           </button>
-          {initialCategories.map((category: any) => (
+          {initialCategories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleCategoryClick(category.id)}
@@ -106,14 +138,14 @@ export default function NewsClient({ lng, initialCategories, initialNewsList, me
         ) : initialNewsList.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm">
             <Newspaper className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-            <h3 className="text-xl font-medium text-gray-900 mb-2">Không tìm thấy bài viết nào</h3>
-            <p className="text-gray-500">Hãy thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác.</p>
+            <h3 className="text-xl font-medium text-gray-900 mb-2">{t('news_empty_title')}</h3>
+            <p className="text-gray-500">{t('news_empty_desc')}</p>
           </div>
         ) : (
           <div className="flex flex-col items-center">
             {/* News Grid */}
             <div className="flex flex-col gap-6 w-full mb-16">
-              {initialNewsList.map((item: any, index: number) => {
+              {initialNewsList.map((item, index: number) => {
                 const title = getLocalizedField(item, "title", lng);
                 const summary = getLocalizedField(item, "summary", lng) || getLocalizedField(item, "description", lng);
 

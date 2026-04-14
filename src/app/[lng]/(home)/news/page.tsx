@@ -3,6 +3,23 @@ import NewsClient from './NewsClient';
 
 export const revalidate = 0; // Disable static caching so it always fetches fresh data
 
+type NewsCategory = {
+  id: number;
+  name_vn?: string;
+  name_en?: string;
+};
+
+type NewsItem = {
+  id: number;
+  thumbnail_url?: string;
+};
+
+type NewsMeta = {
+  page: number;
+  limit: number;
+  totalPages: number;
+};
+
 export default async function NewsServerPage({
   params,
   searchParams,
@@ -21,8 +38,8 @@ export default async function NewsServerPage({
   const currentPage = resolvedSearchParams.page ? Number(resolvedSearchParams.page) : 1;
   const limit = 4;
 
-  let categories = [];
-  let newsList = [];
+  let categories: NewsCategory[] = [];
+  let newsList: NewsItem[] = [];
   let meta = { page: currentPage, limit, totalPages: 1 };
 
   try {
@@ -33,12 +50,12 @@ export default async function NewsServerPage({
         limit,
         category_id: currentCategory,
         search: currentSearch,
-        searchBy: 'title_vn',
+        searchBy: lng === 'en' ? 'title_en' : 'title_vn',
       })
     ]);
 
     // Parse categories
-    const _catRes: any = catRes;
+    const _catRes = catRes as { data?: NewsCategory[] } | NewsCategory[];
     if (_catRes?.data && Array.isArray(_catRes.data)) {
       categories = _catRes.data;
     } else if (Array.isArray(_catRes)) {
@@ -46,7 +63,7 @@ export default async function NewsServerPage({
     }
 
     // Parse news data
-    const _newsRes: any = newsRes;
+    const _newsRes = newsRes as { data?: { records?: NewsItem[]; meta?: NewsMeta }; records?: NewsItem[]; meta?: NewsMeta };
     const records = _newsRes?.data?.records || _newsRes?.records || [];
     const returnedMeta = _newsRes?.data?.meta || _newsRes?.meta || { page: currentPage, limit, totalPages: 1 };
 
@@ -55,7 +72,7 @@ export default async function NewsServerPage({
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
       const host = apiUrl.replace(/\/api\/v1\/?$/, '');
 
-      newsList = records.map((item: any) => {
+      newsList = records.map((item) => {
         let url = item.thumbnail_url;
         if (url && !url.startsWith('http')) {
           url = `${host}${url.startsWith('/') ? url : `/${url}`}`;
