@@ -39,7 +39,7 @@ export default function HeroProjectSection({ lng }: Props) {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-white/90 text-xl md:text-xl lg:text-lg leading-relaxed max-w-md md:max-w-lg md:text-right"
+            className="text-white/90 text-sm md:text-xl lg:text-xl leading-relaxed max-w-md md:max-w-lg md:text-right"
           >
             {t("project_hero_desc")}
           </motion.p>
