@@ -79,11 +79,11 @@ export default function HeroSection({ lng }: { lng: string }) {
       initial="hidden"
       animate="show"
     >
-      <motion.h1 variants={itemVariants} className="text-[#1E0D01] font-bold text-xl sm:text-2xl md:text-3xl text-center px-4">
+      <motion.h1 variants={itemVariants} className="text-[#1E0D01] font-bold text-xl sm:text-2xl md:text-4xl text-center px-4">
         {t("home_hero_company_name")}
       </motion.h1>
 
-      <motion.small variants={itemVariants} className="text-[#1E0D01]/80 mt-2">
+      <motion.small variants={itemVariants} className="text-[#1E0D01]/80 mt-2 md:text-xl">
         {t("home_hero_tagline")}
       </motion.small>
 
