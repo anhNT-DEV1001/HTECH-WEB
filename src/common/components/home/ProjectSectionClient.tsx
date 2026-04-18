@@ -26,6 +26,10 @@ export default function ProjectSectionClient({
   internationalPartnerLogos,
 }: ProjectSectionClientProps) {
   const { t } = useClientTranslation(lng);
+  const partnerLogoFrameClass =
+    "w-28 h-12 md:w-36 md:h-16 lg:w-40 lg:h-16 flex items-center justify-center shrink-0";
+  const partnerLogoImageClass =
+    "w-full h-full object-contain transition-all hover:scale-110 duration-300";
 
   const topRowTrack = buildLogoTrack(domesticPartnerLogos);
   const bottomRowTrack = buildLogoTrack(internationalPartnerLogos);
@@ -133,12 +137,13 @@ export default function ProjectSectionClient({
                 <div className="flex w-full overflow-hidden">
                   <div className="flex w-max gap-12 md:gap-20 items-center animate-marquee-left">
                     {topRowTrack.map((logo, idx) => (
-                      <img 
-                        key={`top-${idx}`} 
-                        src={logo} 
-                        alt={`Domestic partner logo ${idx + 1}`} 
-                        className="h-10 md:h-14 w-auto object-contain transition-all hover:scale-110 duration-300" 
-                      />
+                      <div key={`top-${idx}`} className={partnerLogoFrameClass}>
+                        <img
+                          src={logo}
+                          alt={`Domestic partner logo ${idx + 1}`}
+                          className={partnerLogoImageClass}
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -147,12 +152,13 @@ export default function ProjectSectionClient({
                 <div className="flex w-full overflow-hidden">
                   <div className="flex w-max gap-12 md:gap-20 items-center animate-marquee-right">
                     {bottomRowTrack.map((logo, idx) => (
-                      <img 
-                        key={`bottom-${idx}`} 
-                        src={logo} 
-                        alt={`International partner logo ${idx + 1}`} 
-                        className="h-10 md:h-14 w-auto object-contain transition-all hover:scale-110 duration-300" 
-                      />
+                      <div key={`bottom-${idx}`} className={partnerLogoFrameClass}>
+                        <img
+                          src={logo}
+                          alt={`International partner logo ${idx + 1}`}
+                          className={partnerLogoImageClass}
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
