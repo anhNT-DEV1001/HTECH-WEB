@@ -3,7 +3,6 @@
 import { motion, type Variants } from "framer-motion";
 import { useClientTranslation } from "@/i18n";
 import { getLocalizedField } from "@/common/utils/localizedField";
-import ImageWithFallback from "@/common/components/ui/ImageWithFallback";
 import {
   homeCardBodyClass,
   homeCardTitleClass,
@@ -98,7 +97,7 @@ export default function ProjectSectionClient({
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <div className="w-full md:w-5/12 shrink-0">
-                  <ImageWithFallback
+                  <img
                     src={project.thumbnail_url || '/placeholder-image.jpg'} 
                     alt={title || `Project ${index + 1}`} 
                     className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl shadow-sm bg-gray-200"

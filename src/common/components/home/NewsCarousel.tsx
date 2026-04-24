@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getLocalizedField } from '@/common/utils/localizedField';
 import Link from 'next/link';
-import ImageWithFallback from '@/common/components/ui/ImageWithFallback';
 import { homeCardBodyClass, homeCardTitleClass } from './homeSectionStyles';
 
 type NewsCarouselItem = {
@@ -74,7 +73,7 @@ export default function NewsCarousel({ lng, newsList }: { lng: string; newsList:
                 }`}
             >
               <div className="w-full h-[200px] md:h-[240px] overflow-hidden rounded-[2rem]">
-                <ImageWithFallback
+                <img
                   src={item.thumbnail_url || '/placeholder-image.jpg'}
                   alt={title}
                   className="w-full h-full object-cover bg-gray-200 transition-transform duration-500 group-hover/card:scale-105"
