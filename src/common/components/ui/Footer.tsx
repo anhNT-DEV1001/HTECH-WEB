@@ -15,7 +15,9 @@ import { htechService } from "@/common/services/htech.service";
 
 type CompanyInfo = {
   name?: string;
+  name_en?: string;
   address?: string;
+  address_en?: string;
   email?: string;
   phone?: string;
 };
@@ -27,6 +29,21 @@ type CompanyInfoResponse = {
 export default function Footer({ lng }: { lng: string }) {
   const { t } = useClientTranslation(lng);
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
+  const getLocalizedCompanyField = (
+    fieldName: "name" | "address",
+    fallback: string,
+  ) => {
+    if (!companyInfo) return fallback;
+
+    const englishValue = companyInfo[`${fieldName}_en`];
+    const defaultValue = companyInfo[fieldName];
+
+    if (lng === "en" && englishValue) {
+      return englishValue;
+    }
+
+    return defaultValue || fallback;
+  };
   const getLocalizedUrl = (path: string) => {
     const cleanPath = path === "/" ? "" : path;
     return `/${lng}${cleanPath}`;
@@ -46,6 +63,9 @@ export default function Footer({ lng }: { lng: string }) {
     fetchCompanyInfo();
   }, []);
 
+  const companyName = getLocalizedCompanyField("name", t('footer_company_name'));
+  const companyAddress = getLocalizedCompanyField("address", '120 phố Yên Lãng, Đống Đa, Hà Nội');
+
   return (
     <footer className="bg-[#f4f6f9] pt-10 md:py-12 text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
@@ -54,9 +74,9 @@ export default function Footer({ lng }: { lng: string }) {
             <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 w-auto object-contain md:h-16" />
             <p
               className="whitespace-nowrap text-sm text-gray-500 italic md:text-base"
-              title={companyInfo?.name || t('footer_company_name')}
+              title={companyName}
             >
-              {companyInfo?.name || t('footer_company_name')}
+              {companyName}
             </p>
           </div>
 
@@ -85,7 +105,7 @@ export default function Footer({ lng }: { lng: string }) {
             <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
               <p className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 shrink-0 text-[#EF5941]" />
-                <span>{t('footer_address')}: {companyInfo?.address || '120 phố Yên Lãng, Đống Đa, Hà Nội'}</span>
+                <span>{t('footer_address')}: {companyAddress}</span>
               </p>
               <p className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-[#EF5941]" />
