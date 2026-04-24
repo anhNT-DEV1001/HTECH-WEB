@@ -227,11 +227,11 @@ export default function Header({ slug }: { slug: string }) {
               </NavigationMenuLink>
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), customNavStyle, isMenuActive(['/contact']) && activeStyle)}>
                 <Link href={getLocalizedUrl('/contact')}>{t('contact')}</Link>
               </NavigationMenuLink>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
             
           </NavigationMenuList>
         </NavigationMenu>
@@ -240,7 +240,7 @@ export default function Header({ slug }: { slug: string }) {
         <div className="flex shrink-0 items-center gap-2 md:gap-4">
           <LanguageSwitcher />
           <Link href={getLocalizedUrl('/contact')} className="hidden sm:flex rounded-full bg-[#EF5941] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#d84e38]">
-            {t('join_us')}
+            {t('contact')}
           </Link>
         </div>
       </header>

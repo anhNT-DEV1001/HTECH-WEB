@@ -6,6 +6,7 @@ import { Search, Newspaper } from 'lucide-react';
 import { useClientTranslation } from '@/i18n/client';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import ImageWithFallback from '@/common/components/ui/ImageWithFallback';
 
 type NewsCategory = {
   id: number;
@@ -156,7 +157,7 @@ export default function NewsClient({ lng, initialCategories, initialNewsList, me
                     className="flex flex-col md:flex-row group/card cursor-pointer bg-white rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 overflow-hidden"
                   >
                     <div className="w-full md:w-1/3 h-[300px] md:h-[260px] shrink-0">
-                      <img
+                      <ImageWithFallback
                         src={item.thumbnail_url}
                         alt={title}
                         className="w-full h-full object-cover bg-gray-100 group-hover/card:scale-105 transition-all duration-500 ease-out"

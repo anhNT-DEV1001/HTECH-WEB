@@ -60,7 +60,7 @@ export default function ContactSection({ lng }: { lng: string }) {
   };
 
   return (
-    <section className="w-full min-h-screen py-24 px-4 flex flex-col items-center bg-linear-to-b from-white via-[#fde2e2] to-[#f4f6f9]">
+    <section className="w-full min-h-screen py-24 px-4 flex flex-col items-center bg-linear-to-b from-[#f4f6f9] via-[#fde2e2] to-white">
       {/* Tiêu đề Section */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

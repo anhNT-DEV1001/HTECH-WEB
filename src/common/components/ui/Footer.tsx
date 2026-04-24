@@ -49,27 +49,29 @@ export default function Footer({ lng }: { lng: string }) {
   return (
     <footer className="bg-[#f4f6f9] pt-10 md:py-12 text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
-        {/* SECTION 2: Logo (Footage), Liên hệ, Giới thiệu, Sản phẩm */}
-        <section className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:grid-cols-12">
-          {/* Footage / Logo */}
-          <div className="lg:col-span-3 space-y-4">
-            <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 md:h-16 w-auto object-contain" />
-            <p className="text-sm text-gray-500 italic">{companyInfo?.name || t('footer_company_name')}</p>
+        <section className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-60 lg:gap-x-150 md:gap-y-12">
+          <div className="min-w-0 space-y-4">
+            <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 w-auto object-contain md:h-16" />
+            <p
+              className="whitespace-nowrap text-sm text-gray-500 italic md:text-base"
+              title={companyInfo?.name || t('footer_company_name')}
+            >
+              {companyInfo?.name || t('footer_company_name')}
+            </p>
           </div>
+
           {/* Giới thiệu */}
-          <div className="lg:col-span-3 space-y-4 whitespace-nowrap">
+          <div className="min-w-0 space-y-4 whitespace-nowrap">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_about')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
               <Link href={getLocalizedUrl("/")} className="hover:text-[#EF5941] transition-colors">{t('footer_home')}</Link>
               <Link href={getLocalizedUrl("/abouts")} className="hover:text-[#EF5941] transition-colors">{t('footer_about_us')}</Link>
               <Link href={getLocalizedUrl("/partners")} className="hover:text-[#EF5941] transition-colors">{t('footer_partnership')}</Link>
-              <Link href={getLocalizedUrl("/privacy")} className="hover:text-[#EF5941] transition-colors">{t('footer_privacy')}</Link>
-              <Link href={getLocalizedUrl("/terms")} className="hover:text-[#EF5941] transition-colors">{t('footer_terms')}</Link>
             </div>
           </div>
 
           {/* Sản phẩm */}
-          <div className="lg:col-span-2 space-y-4 whitespace-nowrap">
+          <div className="min-w-0 space-y-4 whitespace-nowrap">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_products')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
               <Link href={getLocalizedUrl("/services")} className="hover:text-[#EF5941] transition-colors">{t('footer_services')}</Link>
@@ -78,7 +80,7 @@ export default function Footer({ lng }: { lng: string }) {
             </div>
           </div>
           {/* Liên hệ */}
-          <div className="lg:col-span-4 space-y-4 whitespace-nowrap">
+          <div className="min-w-0 space-y-4 whitespace-nowrap">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_contact')}</h2>
             <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
               <p className="flex items-start gap-3">
@@ -95,11 +97,10 @@ export default function Footer({ lng }: { lng: string }) {
               </p>
             </div>
           </div>
-
         </section>
 
         {/* SECTION 3: Mạng xã hội (Hàng ngang) */}
-        <section className="flex flex-col md:flex-row items-center justify-between pt-8 gap-6">
+        <section className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2 md:gap-x-28 lg:gap-x-150">
           <div className="flex items-center gap-4">
             <h2 className="text-base font-bold text-gray-700 whitespace-nowrap">{t('footer_social')}:</h2>
             <div className="flex items-center gap-6">
@@ -116,7 +117,7 @@ export default function Footer({ lng }: { lng: string }) {
           </div>
 
           {/* Bản quyền (Chuyển xuống đây cho gọn) */}
-          <div className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
+          <div className="text-xs md:text-sm text-gray-500 whitespace-nowrap md:self-end">
             <p>© 2026 HTECH. All Rights Reserved.</p>
           </div>
         </section>

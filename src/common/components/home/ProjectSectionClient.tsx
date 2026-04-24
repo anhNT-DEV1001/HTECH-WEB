@@ -3,6 +3,13 @@
 import { motion, type Variants } from "framer-motion";
 import { useClientTranslation } from "@/i18n";
 import { getLocalizedField } from "@/common/utils/localizedField";
+import ImageWithFallback from "@/common/components/ui/ImageWithFallback";
+import {
+  homeCardBodyClass,
+  homeCardTitleClass,
+  homeSectionLeadClass,
+  homeSectionTitleClass,
+} from "./homeSectionStyles";
 
 const buildLogoTrack = (logos: string[]) => [...logos, ...logos];
 
@@ -62,8 +69,8 @@ export default function ProjectSectionClient({
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <h2 className="text-[#1E0D01] font-bold uppercase text-3xl mb-2">{t('project_title')}</h2>
-          <p className="text-[#1E0D01]/70 text-base">
+          <h2 className={`${homeSectionTitleClass} mb-2`}>{t('project_title')}</h2>
+          <p className={homeSectionLeadClass}>
             {t('project_subtitle')}
           </p>
         </motion.div>
@@ -91,7 +98,7 @@ export default function ProjectSectionClient({
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <div className="w-full md:w-5/12 shrink-0">
-                  <img 
+                  <ImageWithFallback
                     src={project.thumbnail_url || '/placeholder-image.jpg'} 
                     alt={title || `Project ${index + 1}`} 
                     className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl shadow-sm bg-gray-200"
@@ -99,14 +106,14 @@ export default function ProjectSectionClient({
                 </div>
                 <div className="w-full md:w-7/12 flex flex-col gap-4">
                   {tag ? (
-                    <h4 className="text-[#4A1D15] font-semibold text-lg">{tag}</h4>
+                    <h4 className="text-base font-semibold text-[#4A1D15] sm:text-lg">{tag}</h4>
                   ) : categoryName ? (
-                    <h4 className="text-[#4A1D15] font-semibold text-lg">{categoryName}</h4>
+                    <h4 className="text-base font-semibold text-[#4A1D15] sm:text-lg">{categoryName}</h4>
                   ) : null}
-                  <h3 className="text-[#1E0D01] font-bold text-xl md:text-2xl md:leading-snug pr-0 md:pr-10">
+                  <h3 className={`${homeCardTitleClass} pr-0 md:pr-10 md:text-[1.95rem] md:leading-snug`}>
                     {title || t('project_default_name')}
                   </h3>
-                  <p className="text-[#1E0D01]/70 text-sm leading-relaxed line-clamp-3">
+                  <p className={`${homeCardBodyClass} line-clamp-3`}>
                     {summary || t('project_default_desc')}
                   </p>
                 </div>
@@ -125,7 +132,7 @@ export default function ProjectSectionClient({
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <h3 className="text-[#1E0D01] font-medium uppercase text-lg text-center mb-10 px-4">
+          <h3 className="mb-10 px-4 text-center text-xl font-medium uppercase text-[#1E0D01] sm:text-2xl">
             {t('project_partners')}
           </h3>
           

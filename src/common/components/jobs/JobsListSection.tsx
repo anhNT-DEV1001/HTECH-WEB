@@ -195,6 +195,7 @@ function JobCard({
           >
             {t("jobs_apply")}
           </a>
+          
         ) : (
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[#EF5941] px-5 py-2 text-sm font-semibold text-[#EF5941] hover:bg-[#EF5941] hover:text-white transition-all duration-200 cursor-pointer">
             {t("jobs_apply")}

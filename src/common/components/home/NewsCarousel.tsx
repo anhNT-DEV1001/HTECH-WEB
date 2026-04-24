@@ -3,8 +3,21 @@ import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getLocalizedField } from '@/common/utils/localizedField';
 import Link from 'next/link';
+import ImageWithFallback from '@/common/components/ui/ImageWithFallback';
+import { homeCardBodyClass, homeCardTitleClass } from './homeSectionStyles';
 
-export default function NewsCarousel({ lng, newsList }: { lng: string; newsList: any[] }) {
+type NewsCarouselItem = {
+  id?: number | string;
+  thumbnail_url?: string | null;
+  title_vn?: string;
+  title_en?: string;
+  summary_vn?: string;
+  summary_en?: string;
+  description_vn?: string;
+  description_en?: string;
+};
+
+export default function NewsCarousel({ lng, newsList }: { lng: string; newsList: NewsCarouselItem[] }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -61,17 +74,17 @@ export default function NewsCarousel({ lng, newsList }: { lng: string; newsList:
                 }`}
             >
               <div className="w-full h-[200px] md:h-[240px] overflow-hidden rounded-[2rem]">
-                <img
+                <ImageWithFallback
                   src={item.thumbnail_url || '/placeholder-image.jpg'}
                   alt={title}
-                  className="w-full h-full object-cover bg-gray-200 group-hover/card:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover bg-gray-200 transition-transform duration-500 group-hover/card:scale-105"
                 />
               </div>
               <div className="flex flex-col gap-2 px-1">
-                <h3 className="text-[#1E0D01] font-bold text-lg leading-tight group-hover/card:text-[#FF4A3F] transition-colors line-clamp-2" title={title}>
+                <h3 className={`${homeCardTitleClass} text-lg leading-tight transition-colors group-hover/card:text-[#FF4A3F] line-clamp-2`} title={title}>
                   {title}
                 </h3>
-                <p className="text-[#1E0D01]/60 text-sm leading-relaxed line-clamp-3">
+                <p className={`${homeCardBodyClass} line-clamp-3`}>
                   {summary}
                 </p>
               </div>

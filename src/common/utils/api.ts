@@ -23,10 +23,19 @@ export function extractListFromApiResponse<T = unknown>(payload: unknown): T[] {
 
 export function resolveApiAssetUrl(url: string | null | undefined, fallback: string) {
   if (!url) return fallback;
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("http") || url.startsWith("data:") || url.startsWith("blob:")) return url;
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
-  const host = apiUrl.replace(/\/api\/v1\/?$/, "");
+  const normalizedPath = url.replace(/\\/g, "/");
+  let host = "";
 
-  return host ? `${host}${url.startsWith("/") ? url : `/${url}`}` : url;
+  try {
+    host = new URL(apiUrl).origin;
+  } catch {
+    host = apiUrl.replace(/\/api\/v1\/?$/, "");
+  }
+
+  return host
+    ? `${host}${normalizedPath.startsWith("/") ? normalizedPath : `/${normalizedPath}`}`
+    : normalizedPath;
 }

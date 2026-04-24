@@ -4,6 +4,12 @@ import { motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import { htechService } from "@/common/services/htech.service";
 import { useClientTranslation } from "@/i18n";
+import {
+  homeHeroBodyTitleClass,
+  homeHeroTaglineClass,
+  homeHeroTitleClass,
+  homeSectionLeadClass,
+} from "./homeSectionStyles";
 
 type CompanyInfo = {
   banner?: string;
@@ -79,11 +85,11 @@ export default function HeroSection({ lng }: { lng: string }) {
       initial="hidden"
       animate="show"
     >
-      <motion.h1 variants={itemVariants} className="text-[#1E0D01] font-bold text-xl sm:text-2xl md:text-4xl text-center px-4">
+      <motion.h1 variants={itemVariants} className={`${homeHeroTitleClass} px-4`}>
         {t("home_hero_company_name")}
       </motion.h1>
 
-      <motion.small variants={itemVariants} className="text-[#1E0D01]/80 mt-2 md:text-xl">
+      <motion.small variants={itemVariants} className={homeHeroTaglineClass}>
         {t("home_hero_tagline")}
       </motion.small>
 
@@ -125,11 +131,11 @@ export default function HeroSection({ lng }: { lng: string }) {
         )}
       </motion.div>
 
-      <motion.div variants={itemVariants} className="text-[#1E0D01] font-bold text-2xl mb-4">
+      <motion.div variants={itemVariants} className={`${homeHeroBodyTitleClass} mb-4 px-4`}>
         {t("home_hero_description_title")}
       </motion.div>
 
-      <motion.small variants={itemVariants} className="text-wrap text-center text-[#1E0D01]/70 max-w-2xl px-4">
+      <motion.small variants={itemVariants} className={`${homeSectionLeadClass} max-w-3xl px-4 text-wrap text-center`}>
         {t("home_hero_description")}
       </motion.small>
     </motion.section>

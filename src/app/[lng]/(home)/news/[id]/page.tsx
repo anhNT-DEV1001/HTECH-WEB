@@ -2,6 +2,7 @@ import { htechService } from '@/common/services/htech.service';
 import { getLocalizedField } from '@/common/utils/localizedField';
 import { useServerTranslation as getServerTranslation } from '@/i18n';
 import Link from 'next/link';
+import ImageWithFallback from '@/common/components/ui/ImageWithFallback';
 
 export const revalidate = 0; // Disable static caching so it always fetches fresh data
 
@@ -136,7 +137,7 @@ export default async function NewsDetailPage({
             {/* Thumbnail */}
             {article.thumbnail_url && (
               <div className="w-full rounded-[2rem] overflow-hidden mb-10 shadow-sm border border-gray-100">
-                <img
+                <ImageWithFallback
                   src={article.thumbnail_url}
                   alt={title}
                   className="w-full h-auto max-h-[500px] object-cover"
@@ -176,7 +177,7 @@ export default async function NewsDetailPage({
                         className="group flex flex-col gap-3 items-start bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
                       >
                         <div className="w-full aspect-video rounded-xl overflow-hidden bg-gray-100">
-                          <img
+                          <ImageWithFallback
                             src={item.thumbnail_url}
                             alt={relTitle}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

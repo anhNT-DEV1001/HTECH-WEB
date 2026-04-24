@@ -1,17 +1,29 @@
 import { ArrowUpRight } from 'lucide-react';
 import { htechService } from '@/common/services/htech.service';
 import NewsCarousel from './NewsCarousel';
-import { useServerTranslation } from '@/i18n';
+import { useServerTranslation as getServerTranslation } from '@/i18n';
 import Link from 'next/link';
 import { extractListFromApiResponse, resolveApiAssetUrl } from '@/common/utils/api';
+import { homeSectionTitleClass } from './homeSectionStyles';
+
+type NewsSectionItem = {
+  id?: number | string;
+  thumbnail_url?: string | null;
+  title_vn?: string;
+  title_en?: string;
+  summary_vn?: string;
+  summary_en?: string;
+  description_vn?: string;
+  description_en?: string;
+};
 
 export default async function NewsSection({ lng }: { lng: string }) {
-  const { t } = await useServerTranslation(lng);
+  const { t } = await getServerTranslation(lng);
 
-  let newsList: any[] = [];
+  let newsList: NewsSectionItem[] = [];
   try {
     const response = await htechService.getOutstandingNews();
-    newsList = extractListFromApiResponse<any>(response).map((item: any) => ({
+    newsList = extractListFromApiResponse<NewsSectionItem>(response).map((item) => ({
       ...item,
       thumbnail_url: resolveApiAssetUrl(item.thumbnail_url, '/placeholder-image.jpg'),
     }));
@@ -25,7 +37,7 @@ export default async function NewsSection({ lng }: { lng: string }) {
       <div className="w-full max-w-7xl flex flex-col items-center">
 
         {/* Header */}
-        <h2 className="text-[#1E0D01] font-bold uppercase text-3xl md:text-4xl mb-12 text-center">
+        <h2 className={`${homeSectionTitleClass} mb-12 text-center`}>
           {t('news_title')}
         </h2>
 

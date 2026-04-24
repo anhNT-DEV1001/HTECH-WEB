@@ -189,7 +189,7 @@ export default function ServiceSliderSection({ lng }: { lng: string }) {
   return (
     <section
       id="service-slider-section"
-      className="w-full bg-[#fdf6f6] py-16 px-4 sm:px-8"
+      className="w-full bg-linear-to-b from-white via-[#fde2e2] to-[#f4f6f9] py-16 px-4 sm:px-8"
     >
       <div className="max-w-3xl mx-auto">
         {/* Header */}

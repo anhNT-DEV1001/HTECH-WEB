@@ -40,12 +40,7 @@ export default async function Partners({ params }: Props) {
     <div>
       <HeroPartnerSection lng={lng} />
       <MissionPartnerSection lng={lng} />
-      <PartnerLogoSection
-        title={t("partner_global_title")}
-        highlight={t("partner_global_highlight")}
-        subtitle={t("partner_global_subtitle")}
-        logos={globalLogos}
-      />
+     
       {/* Orange divider */}
       <div className="max-w-3xl mx-auto px-8">
         <div className="h-px bg-gradient-to-r from-transparent via-[#EF5941]/40 to-transparent" />
@@ -54,6 +49,13 @@ export default async function Partners({ params }: Props) {
         title={t("partner_vn_title")}
         highlight={t("partner_vn_highlight")}
         logos={domesticLogos}
+      />
+
+       <PartnerLogoSection
+        title={t("partner_hero_title")}
+        highlight={t("partner_global_subtitle")}
+        // subtitle={}
+        logos={globalLogos}
       />
       {/* <ContactSection /> */}
     </div>

@@ -1,8 +1,14 @@
 "use client"; // Đừng quên thêm dòng này vì ta dùng useState, useEffect và Framer Motion
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { TrendingUp, CalendarDays, Lightbulb, Headset, BriefcaseMedical } from 'lucide-react';
 import { useClientTranslation } from "@/i18n";
+import {
+  homeCardBodyClass,
+  homeCardTitleClass,
+  homeSectionLeadClass,
+  homeSectionTitleClass,
+} from "./homeSectionStyles";
 
 export default function FieldSection({ lng }: { lng: string }) {
   const { t } = useClientTranslation(lng);
@@ -34,7 +40,7 @@ export default function FieldSection({ lng }: { lng: string }) {
     }
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -44,7 +50,7 @@ export default function FieldSection({ lng }: { lng: string }) {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
@@ -53,7 +59,7 @@ export default function FieldSection({ lng }: { lng: string }) {
     <section id="section-field" className="flex flex-col items-center py-16 px-4 w-full bg-gradient-to-b from-transparent via-[#fde2e2] to-transparent relative overflow-hidden">
       {/* Header */}
       <motion.h2
-        className="text-[#1E0D01] font-bold text-3xl mb-6"
+        className={`${homeSectionTitleClass} mb-6 text-center`}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -63,7 +69,7 @@ export default function FieldSection({ lng }: { lng: string }) {
 
       {/* Typing Text */}
       <div className="min-h-[90px] md:min-h-[60px] flex justify-center mb-16 w-full px-4">
-        <p className="text-center text-[#1E0D01]/80 max-w-4xl text-base md:text-lg leading-relaxed inline-block">
+        <p className={`${homeSectionLeadClass} inline-block max-w-4xl text-center`}>
           {t("home_field_intro")}
         </p>
       </div>
@@ -90,19 +96,23 @@ export default function FieldSection({ lng }: { lng: string }) {
           return (
             <motion.div
               key={index}
-              variants={itemVariants as any}
-              whileHover={{ y: -10 }} // Framer Motion: Nhấc khối lên 10px khi hover
-              className="group flex flex-col items-center w-full sm:w-[280px] md:w-[320px] text-center z-10 px-4 py-6 rounded-2xl cursor-pointer transition-all duration-300 hover:bg-white hover:shadow-[0_20px_40px_rgba(239,89,65,0.12)]"
+              variants={itemVariants}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group relative z-10 flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[28px] border border-[#EF5941]/10 bg-transparent px-5 py-7 text-center transition-all duration-500 sm:w-[280px] md:w-[320px] hover:border-[#EF5941]/30 hover:shadow-[0_24px_60px_rgba(239,89,65,0.16)]"
             >
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <div className="absolute -right-10 -top-8 h-28 w-28 rounded-full bg-[#EF5941]/16 blur-3xl" />
+                <div className="absolute -left-8 bottom-6 h-24 w-24 rounded-full bg-[#1E0D01]/8 blur-3xl" />
+                <div className="absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-transparent via-[#EF5941] to-transparent" />
+              </div>
 
               {/* Vùng chứa Icon */}
-              <div className="relative flex items-center justify-center w-24 h-24 mb-6">
+              <div className="relative mb-6 flex h-24 w-24 items-center justify-center">
 
-                {/* Vòng đứt nét bên ngoài: Thêm hiệu ứng xoay 180 độ khi hover */}
-                <div className="absolute inset-0 rounded-full border border-dashed border-[#EF5941]/50 bg-[#EF5941]/5 group-hover:rotate-180 transition-transform duration-700 ease-in-out"></div>
+                <div className="absolute inset-0 rounded-full border border-dashed border-[#EF5941]/45 bg-[#EF5941]/6 transition-transform duration-700 ease-in-out group-hover:rotate-180"></div>
+                <div className="absolute inset-3 rounded-full border border-[#EF5941]/15 transition-all duration-500 group-hover:scale-110 group-hover:border-[#EF5941]/40"></div>
 
-                {/* Khối chứa Icon bên trong: Đổi thành nền đỏ, icon trắng khi hover */}
-                <div className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-sm bg-transparent group-hover:bg-[#EF5941] transition-colors duration-300">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#EF5941]/8 shadow-sm transition-all duration-500 group-hover:bg-[#EF5941] group-hover:shadow-[0_12px_30px_rgba(239,89,65,0.32)]">
                   <IconComponent
                     size={28}
                     className="text-[#EF5941] group-hover:text-white transition-colors duration-300"
@@ -112,10 +122,10 @@ export default function FieldSection({ lng }: { lng: string }) {
               </div>
 
               {/* Text Content */}
-              <h3 className="text-xl font-semibold text-[#EF5941] mb-3 group-hover:text-[#d44830] transition-colors duration-300">
+              <h3 className={`${homeCardTitleClass} mb-3 text-[#EF5941] transition-colors duration-300 group-hover:text-[#d44830]`}>
                 {field.title}
               </h3>
-              <p className="text-[#1E0D01]/70 text-sm whitespace-pre-line leading-relaxed group-hover:text-[#1E0D01] transition-colors duration-300">
+              <p className={`${homeCardBodyClass} whitespace-pre-line transition-colors duration-300 group-hover:text-[#1E0D01]`}>
                 {field.description}
               </p>
 
