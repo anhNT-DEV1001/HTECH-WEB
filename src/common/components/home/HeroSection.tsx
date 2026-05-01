@@ -135,7 +135,7 @@ export default function HeroSection({ lng }: { lng: string }) {
         {t("home_hero_description_title")}
       </motion.div>
 
-      <motion.small variants={itemVariants} className={`${homeSectionLeadClass} max-w-3xl px-4 text-wrap text-center`}>
+      <motion.small variants={itemVariants} className={`${homeSectionLeadClass} line-clamp-2 max-w-5xl px-4 text-center text-balance`}>
         {t("home_hero_description")}
       </motion.small>
     </motion.section>

@@ -68,8 +68,8 @@ export default function FieldSection({ lng }: { lng: string }) {
       </motion.h2>
 
       {/* Typing Text */}
-      <div className="min-h-[90px] md:min-h-[60px] flex justify-center mb-16 w-full px-4">
-        <p className={`${homeSectionLeadClass} inline-block max-w-4xl text-center`}>
+      <div className="min-h-[72px] md:min-h-[60px] flex justify-center mb-16 w-full px-4">
+        <p className={`${homeSectionLeadClass} inline-block line-clamp-2 max-w-5xl text-center text-balance`}>
           {t("home_field_intro")}
         </p>
       </div>
@@ -98,7 +98,7 @@ export default function FieldSection({ lng }: { lng: string }) {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative z-10 flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[28px] border border-[#EF5941]/10 bg-transparent px-5 py-7 text-center transition-all duration-500 sm:w-[280px] md:w-[320px] hover:border-[#EF5941]/30 hover:shadow-[0_24px_60px_rgba(239,89,65,0.16)]"
+              className="group relative z-10 flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[28px] border border-[#EF5941]/10 bg-transparent px-5 py-7 text-center transition-all duration-500 sm:w-[300px] md:w-[340px] xl:w-[350px] hover:border-[#EF5941]/30 hover:shadow-[0_24px_60px_rgba(239,89,65,0.16)]"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="absolute -right-10 -top-8 h-28 w-28 rounded-full bg-[#EF5941]/16 blur-3xl" />
@@ -125,7 +125,7 @@ export default function FieldSection({ lng }: { lng: string }) {
               <h3 className={`${homeCardTitleClass} mb-3 text-[#EF5941] transition-colors duration-300 group-hover:text-[#d44830]`}>
                 {field.title}
               </h3>
-              <p className={`${homeCardBodyClass} whitespace-pre-line transition-colors duration-300 group-hover:text-[#1E0D01]`}>
+              <p className={`${homeCardBodyClass} line-clamp-2 min-h-[3.5rem] text-balance transition-colors duration-300 group-hover:text-[#1E0D01]`}>
                 {field.description}
               </p>
 

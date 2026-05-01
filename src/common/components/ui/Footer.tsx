@@ -69,19 +69,20 @@ export default function Footer({ lng }: { lng: string }) {
   return (
     <footer className="bg-[#f4f6f9] pt-10 md:py-12 text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
-        <section className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-60 lg:gap-x-150 md:gap-y-12">
-          <div className="min-w-0 space-y-4">
+        <section className="flex justify-center md:justify-start">
+          <div className="flex min-w-0 flex-col items-center gap-10 text-center md:items-start md:text-left">
             <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 w-auto object-contain md:h-16" />
             <p
-              className="whitespace-nowrap text-sm text-gray-500 italic md:text-base"
+              className="text-sm text-gray-500 italic md:text-base"
               title={companyName}
             >
               {companyName}
             </p>
           </div>
+        </section>
 
-          {/* Giới thiệu */}
-          <div className="min-w-0 space-y-4 whitespace-nowrap">
+        <section className="grid grid-cols-1 gap-50 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+          <div className="min-w-0 space-y-4">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_about')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
               <Link href={getLocalizedUrl("/")} className="hover:text-[#EF5941] transition-colors">{t('footer_home')}</Link>
@@ -90,8 +91,7 @@ export default function Footer({ lng }: { lng: string }) {
             </div>
           </div>
 
-          {/* Sản phẩm */}
-          <div className="min-w-0 space-y-4 whitespace-nowrap">
+          <div className="min-w-0 space-y-4">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_products')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
               <Link href={getLocalizedUrl("/services")} className="hover:text-[#EF5941] transition-colors">{t('footer_services')}</Link>
@@ -99,8 +99,8 @@ export default function Footer({ lng }: { lng: string }) {
               <Link href={getLocalizedUrl("/news")} className="hover:text-[#EF5941] transition-colors">{t('footer_news')}</Link>
             </div>
           </div>
-          {/* Liên hệ */}
-          <div className="min-w-0 space-y-4 whitespace-nowrap">
+
+          <div className="min-w-0 space-y-4">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_contact')}</h2>
             <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
               <p className="flex items-start gap-3">
@@ -119,8 +119,7 @@ export default function Footer({ lng }: { lng: string }) {
           </div>
         </section>
 
-        {/* SECTION 3: Mạng xã hội (Hàng ngang) */}
-        <section className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2 md:gap-x-28 lg:gap-x-150">
+        <section className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2 md:gap-x-28 lg:grid-cols-3 lg:gap-16">
           <div className="flex items-center gap-4">
             <h2 className="text-base font-bold text-gray-700 whitespace-nowrap">{t('footer_social')}:</h2>
             <div className="flex items-center gap-6">
@@ -136,24 +135,10 @@ export default function Footer({ lng }: { lng: string }) {
             </div>
           </div>
 
-          {/* Bản quyền (Chuyển xuống đây cho gọn) */}
-          <div className="text-xs md:text-sm text-gray-500 whitespace-nowrap md:self-end">
+          <div className="text-xs md:text-sm text-gray-500 whitespace-nowrap md:self-end lg:col-start-3 lg:col-span-1">
             <p>© 2026 HTECH. All Rights Reserved.</p>
           </div>
         </section>
-
-        {/* SECTION 3: Box Liên hệ hợp tác */}
-        {/* <section className="flex flex-col sm:flex-row items-center justify-between rounded-2xl bg-white p-5 sm:px-8 sm:py-4 shadow-sm gap-4 text-center sm:text-left">
-          <p className="text-base md:text-lg font-semibold">{t('footer_cta_text')}</p>
-          <Link 
-            href="/abouts" 
-            className="flex items-center justify-center w-full sm:w-auto gap-2 rounded-xl bg-[#EF5941] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#d84e38]"
-          >
-            {t('footer_cta_button')} <ArrowUpRight className="h-5 w-5"/>
-          </Link>
-        </section> */}
-
-
       </div>
     </footer>
   )

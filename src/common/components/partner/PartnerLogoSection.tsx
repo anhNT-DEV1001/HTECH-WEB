@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { getPartnerLogoScaleClass } from "@/common/utils/partnerLogoSizing";
 
 interface PartnerLogoSectionProps {
   title: string;
@@ -58,7 +59,7 @@ export default function PartnerLogoSection({
               <img
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                className="max-h-12 md:max-h-14 lg:max-h-16 w-auto max-w-full object-contain"
+                className={`max-h-12 md:max-h-14 lg:max-h-16 w-auto max-w-full object-contain transform-gpu ${getPartnerLogoScaleClass(logo)}`}
               />
             </div>
           ))}

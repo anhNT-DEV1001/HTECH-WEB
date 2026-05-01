@@ -15,13 +15,13 @@ export default function HeroPartnerSection({ lng }: Props) {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[1.12] saturate-105"
-        style={{ backgroundImage: "url('/assets/partners/hero.jpg')" }}
+        style={{ backgroundImage: "url('/assets/partners/doitac.jpg')" }}
       />
       
       {/* Dark Overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/16 to-black/5" />
 
-      {/* Content */}
+      {/* Content */}doitac
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pb-12 md:pb-20">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12">
           {/* Left: Title */}

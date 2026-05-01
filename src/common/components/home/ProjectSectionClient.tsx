@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { useClientTranslation } from "@/i18n";
 import { getLocalizedField } from "@/common/utils/localizedField";
+import { getPartnerLogoScaleClass } from "@/common/utils/partnerLogoSizing";
 import {
   homeCardBodyClass,
   homeCardTitleClass,
@@ -35,7 +36,7 @@ export default function ProjectSectionClient({
   const partnerLogoFrameClass =
     "w-28 h-12 md:w-36 md:h-16 lg:w-40 lg:h-16 flex items-center justify-center shrink-0";
   const partnerLogoImageClass =
-    "w-full h-full object-contain transition-all hover:scale-110 duration-300";
+    "w-full h-full object-contain transform-gpu transition-transform duration-300 hover:scale-110";
 
   const topRowTrack = buildLogoTrack(domesticPartnerLogos);
   const bottomRowTrack = buildLogoTrack(internationalPartnerLogos);
@@ -147,7 +148,7 @@ export default function ProjectSectionClient({
                         <img
                           src={logo}
                           alt={`Domestic partner logo ${idx + 1}`}
-                          className={partnerLogoImageClass}
+                          className={`${partnerLogoImageClass} ${getPartnerLogoScaleClass(logo)}`}
                         />
                       </div>
                     ))}
@@ -162,7 +163,7 @@ export default function ProjectSectionClient({
                         <img
                           src={logo}
                           alt={`International partner logo ${idx + 1}`}
-                          className={partnerLogoImageClass}
+                          className={`${partnerLogoImageClass} ${getPartnerLogoScaleClass(logo)}`}
                         />
                       </div>
                     ))}

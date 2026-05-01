@@ -15,7 +15,7 @@ export default function HeroProjectSection({ lng }: Props) {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[1.12] saturate-105"
-        style={{ backgroundImage: "url('/assets/services/heroServiceImg.png')" }}
+        style={{ backgroundImage: "url('/assets/services/bg-hero-du-an.jpeg')" }}
       />
       
       {/* Dark Overlay for depth */}
