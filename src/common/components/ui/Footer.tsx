@@ -68,9 +68,9 @@ export default function Footer({ lng }: { lng: string }) {
 
   return (
     <footer className="bg-[#f4f6f9] pt-10 md:py-12 text-[#1a1a1a]">
-      <div className="mx-auto max-w-6xl px-6 space-y-8 md:space-y-12">
+      <div className="mx-auto max-w-6xl px-6 space-y-4 md:space-y-12">
         <section className="flex justify-center md:justify-start">
-          <div className="flex min-w-0 flex-col items-center gap-10 text-center md:items-start md:text-left">
+          <div className="flex min-w-0 flex-col items-center gap-2 text-center md:items-start md:text-left">
             <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 w-auto object-contain md:h-16" />
             <p
               className="text-sm text-gray-500 italic md:text-base"
