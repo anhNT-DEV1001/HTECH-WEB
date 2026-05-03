@@ -81,7 +81,7 @@ export default function Footer({ lng }: { lng: string }) {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-50 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
           <div className="min-w-0 space-y-4">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_about')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
