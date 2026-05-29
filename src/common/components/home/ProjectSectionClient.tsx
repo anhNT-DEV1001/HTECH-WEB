@@ -76,7 +76,7 @@ export default function ProjectSectionClient({
         </motion.div>
 
         {/* Project Cards */}
-        <div className="flex flex-col gap-8 mb-24">
+        <div className="flex flex-col gap-5 mb-16">
           {projects && projects.length > 0 ? projects.map((project, index: number) => {
             const isReverse = index % 2 !== 0;
             const bgClass = index % 2 === 0 ? "bg-[#F4F5FA]" : "bg-[#F6F4FA]";
@@ -89,7 +89,7 @@ export default function ProjectSectionClient({
             return (
               <motion.div 
                 key={project.id || index}
-                className={`${bgClass} rounded-[2rem] p-6 md:p-10 flex flex-col items-center gap-8 md:gap-12 w-full ${
+                className={`${bgClass} rounded-2xl p-4 md:p-5 lg:p-6 flex flex-col items-center gap-4 md:gap-6 w-full ${
                   isReverse ? "md:flex-row-reverse" : "md:flex-row"
                 }`}
                 variants={isReverse ? slideRightVariant : slideLeftVariant} 
@@ -97,23 +97,23 @@ export default function ProjectSectionClient({
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <div className="w-full md:w-5/12 shrink-0">
+                <div className="w-full md:w-[42%] shrink-0">
                   <img
                     src={project.thumbnail_url || '/placeholder-image.jpg'} 
                     alt={title || `Project ${index + 1}`} 
-                    className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl shadow-sm bg-gray-200"
+                    className="w-full h-44 sm:h-52 md:h-56 object-cover rounded-xl shadow-sm bg-gray-200"
                   />
                 </div>
-                <div className="w-full md:w-7/12 flex flex-col gap-4">
+                <div className="w-full md:w-[58%] flex flex-col gap-2 md:gap-2.5">
                   {tag ? (
                     <h4 className="text-base font-semibold text-[#4A1D15] sm:text-lg">{tag}</h4>
                   ) : categoryName ? (
                     <h4 className="text-base font-semibold text-[#4A1D15] sm:text-lg">{categoryName}</h4>
                   ) : null}
-                  <h3 className={`${homeCardTitleClass} pr-0 md:pr-10 md:text-[1.95rem] md:leading-snug`}>
+                  <h3 className={`${homeCardTitleClass} pr-0 md:pr-6 md:text-[1.95rem] md:leading-tight`}>
                     {title || t('project_default_name')}
                   </h3>
-                  <p className={`${homeCardBodyClass} line-clamp-3`}>
+                  <p className={`${homeCardBodyClass} line-clamp-2 text-base sm:text-lg`}>
                     {summary || t('project_default_desc')}
                   </p>
                 </div>

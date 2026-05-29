@@ -6,7 +6,7 @@ import { useClientTranslation } from "@/i18n";
 import {
   homeCardBodyClass,
   homeCardTitleClass,
-  homeSectionLeadClass,
+  homeSectionIntroClass,
   homeSectionTitleClass,
 } from "./homeSectionStyles";
 
@@ -68,8 +68,8 @@ export default function FieldSection({ lng }: { lng: string }) {
       </motion.h2>
 
       {/* Typing Text */}
-      <div className="min-h-[72px] md:min-h-[60px] flex justify-center mb-16 w-full px-4">
-        <p className={`${homeSectionLeadClass} inline-block line-clamp-2 max-w-5xl text-center text-balance`}>
+      <div className="min-h-[144px] sm:min-h-[120px] lg:min-h-[104px] flex justify-center mb-16 w-full">
+        <p className={homeSectionIntroClass}>
           {t("home_field_intro")}
         </p>
       </div>

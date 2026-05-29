@@ -8,7 +8,7 @@ import {
   homeHeroBodyTitleClass,
   homeHeroTaglineClass,
   homeHeroTitleClass,
-  homeSectionLeadClass,
+  homeSectionIntroClass,
 } from "./homeSectionStyles";
 
 type CompanyInfo = {
@@ -135,9 +135,9 @@ export default function HeroSection({ lng }: { lng: string }) {
         {t("home_hero_description_title")}
       </motion.div>
 
-      <motion.small variants={itemVariants} className={`${homeSectionLeadClass} line-clamp-2 max-w-5xl px-4 text-center text-balance`}>
+      <motion.div variants={itemVariants} className={homeSectionIntroClass}>
         {t("home_hero_description")}
-      </motion.small>
+      </motion.div>
     </motion.section>
   )
 }

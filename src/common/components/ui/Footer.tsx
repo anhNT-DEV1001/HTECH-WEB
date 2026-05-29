@@ -71,7 +71,7 @@ export default function Footer({ lng }: { lng: string }) {
       <div className="mx-auto max-w-6xl px-6 space-y-4 md:space-y-12">
         <section className="flex justify-center md:justify-start">
           <div className="flex min-w-0 flex-col items-center gap-2 text-center md:items-start md:text-left">
-            <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 w-auto object-contain md:h-16" />
+            <img src="/assets/logo.png" alt="HTECH Logo" className="h-12 w-auto object-contain md:-ml-3 md:h-16" />
             <p
               className="text-sm text-gray-500 italic md:text-base"
               title={companyName}
@@ -81,7 +81,7 @@ export default function Footer({ lng }: { lng: string }) {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[minmax(180px,240px)_minmax(180px,220px)_minmax(520px,1fr)] lg:gap-12">
           <div className="min-w-0 space-y-4">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_about')}</h2>
             <div className="flex flex-col space-y-2 text-sm md:text-base text-gray-600">
@@ -103,9 +103,9 @@ export default function Footer({ lng }: { lng: string }) {
           <div className="min-w-0 space-y-4">
             <h2 className="text-lg font-bold text-[#EF5941]">{t('footer_contact')}</h2>
             <div className="flex flex-col space-y-3 text-sm md:text-base text-gray-600">
-              <p className="flex items-start gap-3">
+              <p className="flex items-start gap-3 lg:max-w-[560px]">
                 <MapPin className="h-5 w-5 shrink-0 text-[#EF5941]" />
-                <span>{t('footer_address')}: {companyAddress}</span>
+                <span className="leading-relaxed">{t('footer_address')}: {companyAddress}</span>
               </p>
               <p className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-[#EF5941]" />
