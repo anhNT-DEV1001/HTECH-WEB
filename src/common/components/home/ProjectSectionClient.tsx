@@ -97,14 +97,14 @@ export default function ProjectSectionClient({
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <div className="w-full md:w-[42%] shrink-0">
+                <div className="w-full md:w-[38%] lg:w-[36%] shrink-0">
                   <img
                     src={project.thumbnail_url || '/placeholder-image.jpg'} 
                     alt={title || `Project ${index + 1}`} 
                     className="w-full h-44 sm:h-52 md:h-56 object-cover rounded-xl shadow-sm bg-gray-200"
                   />
                 </div>
-                <div className="w-full md:w-[58%] flex flex-col gap-2 md:gap-2.5">
+                <div className="w-full md:flex-1 flex flex-col gap-2 md:gap-2.5">
                   {tag ? (
                     <h4 className="text-base font-semibold text-[#4A1D15] sm:text-lg">{tag}</h4>
                   ) : categoryName ? (

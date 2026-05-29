@@ -15,9 +15,9 @@ export default function HeroPartnerSection({ lng }: Props) {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[1.12] saturate-105"
-        style={{ backgroundImage: "url('/assets/partners/doitac.jpg')" }}
+        style={{ backgroundImage: "url('/assets/partners/doitac.png')" }}
       />
-      
+
       {/* Dark Overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/16 to-black/5" />
 

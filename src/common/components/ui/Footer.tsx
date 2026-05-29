@@ -119,7 +119,7 @@ export default function Footer({ lng }: { lng: string }) {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2 md:gap-x-28 lg:grid-cols-3 lg:gap-16">
+        <section className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2 md:gap-x-28 lg:grid-cols-[minmax(180px,240px)_minmax(180px,220px)_minmax(520px,1fr)] lg:gap-12">
           <div className="flex items-center gap-4">
             <h2 className="text-base font-bold text-gray-700 whitespace-nowrap">{t('footer_social')}:</h2>
             <div className="flex items-center gap-6">
