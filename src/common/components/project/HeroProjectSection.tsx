@@ -17,9 +17,9 @@ export default function HeroProjectSection({ lng }: Props) {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[1.12] saturate-105"
         style={{ backgroundImage: "url('/assets/services/bg-hero-du-an.jpeg')" }}
       />
-      
+
       {/* Dark Overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/16 to-black/5" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/50 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pb-12 md:pb-20">

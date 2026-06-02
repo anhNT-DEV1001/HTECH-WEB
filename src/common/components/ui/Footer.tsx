@@ -126,12 +126,6 @@ export default function Footer({ lng }: { lng: string }) {
               <Link href="#" className="text-gray-600 hover:text-[#EF5941] transition-all transform hover:scale-110">
                 <Facebook className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-gray-600 hover:text-[#EF5941] transition-all transform hover:scale-110">
-                <Instagram className="h-6 w-6" />
-              </Link>
-              <Link href="#" className="text-gray-600 hover:text-[#EF5941] transition-all transform hover:scale-110">
-                <Linkedin className="h-6 w-6" />
-              </Link>
             </div>
           </div>
 

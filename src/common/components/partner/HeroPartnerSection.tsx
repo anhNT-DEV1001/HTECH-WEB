@@ -19,7 +19,7 @@ export default function HeroPartnerSection({ lng }: Props) {
       />
 
       {/* Dark Overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/16 to-black/5" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/50 to-transparent" />
 
       {/* Content */}doitac
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pb-12 md:pb-20">
