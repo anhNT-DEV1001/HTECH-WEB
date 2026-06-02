@@ -63,7 +63,7 @@ type Project = {
   industry_vn?: string;
   industry_en?: string;
   thumbnail_url: string;
-  client_name?: string;
+  url?: string;
   scale?: string;
   start_date?: string;
   end_date?: string | null;
@@ -169,7 +169,7 @@ export default async function ProjectDetailPage({
     : "";
 
   const infoCards: { icon: React.ElementType; label: string; value: string; href?: string }[] = [
-    ...(project.client_name ? [{ icon: Building2, label: t("project_detail_client"), value: project.client_name }] : []),
+    ...(project.url ? [{ icon: Building2, label: t("project_detail_url"), value: project.url }] : []),
     ...(industry ? [{ icon: Tag, label: t("project_detail_industry"), value: industry }] : []),
     ...(project.scale ? [{ icon: Layers, label: t("project_detail_scale"), value: project.scale }] : []),
     ...(venue ? [{ icon: MapPin, label: t("project_detail_location"), value: venue }] : []),
@@ -285,12 +285,12 @@ export default async function ProjectDetailPage({
             <div className="rounded-2xl border border-gray-100 bg-white shadow-sm p-6 flex flex-col gap-4">
               <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 border-b border-gray-100 pb-3">{t("project_detail_summary_title")}</h3>
 
-              {project.client_name && (
+              {project.url && (
                 <div className="flex items-start gap-3">
                   <Building2 className="h-4 w-4 text-[#EF5941] mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-xs text-gray-400 mb-0.5">{t("project_detail_client")}</p>
-                    <p className="text-sm font-semibold text-gray-800">{project.client_name}</p>
+                    <p className="text-xs text-gray-400 mb-0.5">{t("project_detail_url")}</p>
+                    <p className="text-sm font-semibold text-gray-800">{project.url}</p>
                   </div>
                 </div>
               )}

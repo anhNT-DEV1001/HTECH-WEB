@@ -56,7 +56,7 @@ export default function FieldSection({ lng }: { lng: string }) {
   };
 
   return (
-    <section id="section-field" className="flex flex-col items-center py-16 px-4 w-full bg-gradient-to-b from-transparent via-[#fde2e2] to-transparent relative overflow-hidden">
+    <section id="section-field" className="flex flex-col items-center py-16 px-4 w-full relative overflow-hidden">
       {/* Header */}
       <motion.h2
         className={`${homeSectionTitleClass} mb-6 text-center`}
@@ -98,7 +98,7 @@ export default function FieldSection({ lng }: { lng: string }) {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative z-10 flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[28px] border border-[#EF5941]/10 bg-transparent px-5 py-7 text-center transition-all duration-500 sm:w-[300px] md:w-[340px] xl:w-[350px] hover:border-[#EF5941]/30 hover:shadow-[0_24px_60px_rgba(239,89,65,0.16)]"
+              className="group relative z-10 flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-[28px] border border-[#EF5941]/10 bg-transparent px-5 py-7 text-center transition-all duration-500 sm:w-[300px] md:w-[340px] xl:w-[350px] hover:border-[#EF5941]/50 hover:shadow-[0_24px_60px_rgba(240,130,108,0.50)]"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="absolute -right-10 -top-8 h-28 w-28 rounded-full bg-[#EF5941]/16 blur-3xl" />
