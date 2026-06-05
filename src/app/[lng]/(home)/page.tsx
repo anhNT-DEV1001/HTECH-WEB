@@ -3,6 +3,9 @@ import HeroSection from "@/common/components/home/HeroSection";
 import FieldSection from "@/common/components/home/FieldSection";
 import ProjectSection from "@/common/components/home/ProjectSection";
 import NewsSection from "@/common/components/home/NewsSection";
+
+export const dynamic = "force-dynamic";
+
 export default async function Home({
   params,
 }: {

@@ -14,7 +14,12 @@ export const htechService = {
    * GET /project/htech/outstanding
    */
   getOutstandingProjects: async () => {
-    return axiosInstance.get('/project/htech/outstanding');
+    return axiosInstance.get('/project/htech/outstanding', {
+      headers: {
+        'Cache-Control': 'no-store',
+        Pragma: 'no-cache',
+      },
+    });
   },
 
   /**

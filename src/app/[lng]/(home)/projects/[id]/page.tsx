@@ -44,6 +44,23 @@ function formatDate(dateStr: string | null, lng: string) {
   });
 }
 
+function hasHtmlContent(content: string) {
+  return /<[^>]+>/.test(content.trim());
+}
+
+function normalizeDescriptionContent(content: string) {
+  if (!content) return "";
+
+  return content.trim().replace(/\r\n/g, "\n");
+}
+
+function normalizeExternalUrl(url: string) {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 type ProjectImageItem = {
   id: number;
   image_url: string;
@@ -167,11 +184,11 @@ export default async function ProjectDetailPage({
   const categoryName = project.category
     ? ((lng === "en" ? (project.category.name_en || project.category.name_vn) : project.category.name_vn) || "")
     : "";
+  const projectUrl = project.url ? normalizeExternalUrl(project.url) : "";
+  const descriptionRaw = normalizeDescriptionContent(description);
+  const descriptionIsHtml = hasHtmlContent(descriptionRaw);
 
   const infoCards: { icon: React.ElementType; label: string; value: string; href?: string }[] = [
-    ...(project.url ? [{ icon: Building2, label: t("project_detail_url"), value: project.url }] : []),
-    ...(industry ? [{ icon: Tag, label: t("project_detail_industry"), value: industry }] : []),
-    ...(project.scale ? [{ icon: Layers, label: t("project_detail_scale"), value: project.scale }] : []),
     ...(venue ? [{ icon: MapPin, label: t("project_detail_location"), value: venue }] : []),
     ...(project.start_date ? [{
       icon: Calendar,
@@ -218,7 +235,7 @@ export default async function ProjectDetailPage({
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white leading-tight drop-shadow-lg max-w-3xl">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase text-white leading-tight tracking-tight drop-shadow-lg max-w-4xl">
             {title}
           </h1>
           <div className="h-1 w-16 rounded-full bg-[#EF5941]" />
@@ -260,10 +277,13 @@ export default async function ProjectDetailPage({
                 <span className="h-5 w-1 rounded-full bg-[#EF5941] inline-block" />
                 {t("project_detail_description_title")}
               </h2>
-              <div
-                className="prose prose-base max-w-none text-gray-700 prose-headings:text-gray-900 prose-a:text-[#EF5941] prose-img:rounded-xl bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
+              <div className="prose prose-base max-w-none text-gray-700 prose-headings:text-gray-900 prose-a:text-[#EF5941] prose-img:rounded-xl bg-white rounded-2xl p-6 shadow-sm border border-gray-100 [&_p]:mb-4 [&_p:last-child]:mb-0 [&_p]:leading-8 [&_br]:block [&_br]:h-4">
+                {descriptionIsHtml ? (
+                  <div dangerouslySetInnerHTML={{ __html: descriptionRaw }} />
+                ) : (
+                  <p className="m-0 whitespace-pre-line">{descriptionRaw}</p>
+                )}
+              </div>
             </section>
           )}
 
@@ -290,7 +310,14 @@ export default async function ProjectDetailPage({
                   <Building2 className="h-4 w-4 text-[#EF5941] mt-0.5 shrink-0" />
                   <div>
                     <p className="text-xs text-gray-400 mb-0.5">{t("project_detail_url")}</p>
-                    <p className="text-sm font-semibold text-gray-800">{project.url}</p>
+                    <a
+                      href={projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-[#EF5941] hover:text-[#d84e38] hover:underline break-all transition-colors"
+                    >
+                      {project.url}
+                    </a>
                   </div>
                 </div>
               )}
