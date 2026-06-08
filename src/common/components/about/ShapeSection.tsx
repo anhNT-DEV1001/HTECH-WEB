@@ -24,7 +24,7 @@ export default function ShapeSection({ lng }: { lng: string }) {
         >
           {/* Thay đổi src bằng đường dẫn ảnh thực tế của bạn */}
           <img
-            src="/assets/home-banner.jpg"
+            src="/assets/aboutus.png"
             alt="Hành trình của HTECH"
             // fill
             className="object-cover"

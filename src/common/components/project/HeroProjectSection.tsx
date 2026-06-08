@@ -15,7 +15,7 @@ export default function HeroProjectSection({ lng }: Props) {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[1.12] saturate-105"
-        style={{ backgroundImage: "url('/assets/services/bg-hero-du-an.jpeg')" }}
+        style={{ backgroundImage: "url('/assets/services/duan.jpg')" }}
       />
 
       {/* Dark Overlay for depth */}
@@ -39,7 +39,7 @@ export default function HeroProjectSection({ lng }: Props) {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-left text-white/90 text-sm md:text-xl lg:text-xl leading-relaxed max-w-md md:max-w-lg"
+            className="text-left text-white/90 text-sm md:text-xl lg:text-xl leading-relaxed max-w-md md:max-w-lg mt-4"
           >
             {t("project_hero_desc")}
           </motion.p>

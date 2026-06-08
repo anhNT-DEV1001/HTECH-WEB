@@ -18,7 +18,7 @@ export default async function Home({
       <HeroSection lng={lng} />
       {/* <ServiceSection lng={lng} /> */}
       <FieldSection lng={lng} />
-      <ProjectSection lng={lng} />
+      {/* <ProjectSection lng={lng} /> */}
       <NewsSection lng={lng} />
     </main>
   );
